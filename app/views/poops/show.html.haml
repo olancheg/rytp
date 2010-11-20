@@ -1,0 +1,28 @@
+%p#notice= notice
+= set_title @poop.title
+%p
+  %b Title:
+  = @poop.title
+%p
+  %b Description:
+  = @poop.description
+%p
+  %b Author:
+  = @poop.author
+%p
+  %b Code:
+  = raw @poop.code
+%p
+  %b Is approved:
+  = @poop.is_approved
+= link_to 'Edit', edit_poop_path(@poop)
+|
+\#{link_to 'Back', poops_path}
+#vk_like
+  %script(type="text/javascript")
+    VK.Widgets.Like("vk_like", {type: "button"});
+= content_for(:comments) do
+  #vk_comments
+    %script(type="text/javascript")
+      VK.Widgets.Comments("vk_comments", {limit: 10, width: "496"});
+

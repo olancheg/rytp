@@ -1,0 +1,25 @@
+%h1 Listing poops
+%table
+  %tr
+    %th Title
+    %th Description
+    %th Author
+    %th Code
+    %th Is approved
+    %th
+    %th
+    %th
+  - @poops.each do |poop|
+    %tr
+      %td= poop.title
+      %td= poop.description
+      %td= poop.author
+      %td= poop.code
+      %td= poop.is_approved
+      %td= poop.rate
+      %td= poop.category.name
+      %td= link_to 'Show', poop
+      %td= link_to 'Edit', edit_poop_path(poop)
+      %td= link_to 'Destroy', poop, :confirm => 'Are you sure?', :method => :delete
+%br/
+= link_to 'New Poop', new_poop_path

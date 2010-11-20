@@ -1,0 +1,52 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Tahoma,Geneva,Kalimati,sans-serif; }
+
+.content {
+  clear: both;
+  margin: auto;
+  width: 900px; }
+
+img {
+  border: 0; }
+
+#header {
+  background-color: #9b6e44;
+  height: 138px; }
+  #header #logo, #header #menu {
+    float: left;
+    margin-top: 25px;
+    margin-right: 22px;
+    display: block; }
+  #header #menu {
+    text-transform: uppercase;
+    list-style: none;
+    margin-top: 57px; }
+    #header #menu li {
+      margin-right: 15px;
+      float: left; }
+    #header #menu a {
+      color: #fff;
+      padding: 10px;
+      text-decoration: none; }
+    #header #menu a:hover, #header #menu .active {
+      background-color: #4c3a2c; }
+
+#container {
+  padding: 15px;
+  background: #4c2e12 url("/images/triangle.png") center bottom no-repeat; }
+  #container a {
+    color: #FFF; }
+    #container a:hover {
+      color: #CCC; }
+
+#footer {
+  padding: 15px;
+  background-color: #fff; }
+  #footer a {
+    color: #3f2d1f; }
+    #footer a:hover {
+      color: #000; }
+  #footer #vk_comments {
+    margin: auto; }
