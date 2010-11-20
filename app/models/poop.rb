@@ -5,8 +5,8 @@ class Poop < ActiveRecord::Base
 
   scope :by_category, lambda { |category| where('category_id IN (?)', Category.find_by_name(category))}
   scope :ordered, order('updated_at DESC')
-  scope :approved, where('is_approved="t"')
-  scope :not_approved, where('is_approved="f"')
+  scope :approved, where('is_approved = ?', true)
+  scope :not_approved, where('is_approved = ?', false)
   scope :popular, order('rate DESC').approved
 
   attr_protected :rate
