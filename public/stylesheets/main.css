@@ -11,7 +11,7 @@
 img, iframe {
   border: 0; }
 
-iframe {
+.video > iframe {
   margin: auto;
   width: 610px !important; }
 
