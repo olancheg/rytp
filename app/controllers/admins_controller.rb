@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  before_filter :only_main, :except => :login
+  before_filter :only_main, :except => [ :login, :logout, :not_approved ] 
 
   def login
     if session[:admin]

@@ -71,6 +71,8 @@ img, iframe {
     padding: 10px; }
   #container .title {
     clear: both; }
+    #container .title a {
+      text-decoration: none; }
   #container .info {
     padding-top: 0; }
     #container .info label {
