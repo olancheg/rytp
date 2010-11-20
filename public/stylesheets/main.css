@@ -56,7 +56,7 @@ img, iframe {
     width: 610px;
     margin-bottom: 20px; }
   #container #vk_like {
-    display: inline-block; }
+    float: right; }
   #container h1.rytp, #container h1.rytpmv {
     display: block;
     float: left;
