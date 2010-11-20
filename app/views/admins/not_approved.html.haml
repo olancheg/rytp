@@ -1,0 +1,7 @@
+#not_approved_poops
+  - if @poops.empty?
+    Нет ни одного видео.
+  - else
+    = render :partial => 'poops/poop', :collection => @poops
+    #navigation
+      = will_paginate @poops

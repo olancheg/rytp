@@ -2,8 +2,10 @@
   %head
     %title RYTP #{title}
     %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")
-    = auto_discovery_link_tag(:rss) if page_feeds?('index', 'rytpmv')
+    = auto_discovery_link_tag(:rss, rss_feed_path+".rss")
     = stylesheet_link_tag :all
+    = javascript_include_tag :all
+    = csrf_meta_tag
     %script(type="text/javascript" src="http://userapi.com/js/api/openapi.js?17")
     %script(type="text/javascript")
       \VK.init({ apiId: 2021578, onlyWidgets: true });
@@ -18,4 +20,5 @@
         = yield
     #footer
       .content
+        <a name="comments"></a>
         #{yield :comments}

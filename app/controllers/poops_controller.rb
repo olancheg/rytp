@@ -1,84 +1,76 @@
 class PoopsController < ApplicationController
-  def index
-    @poops = Poop.by_category('RYTP')
+  before_filter :authenticate, :only => [ :edit, :create, :update, :destroy ]
 
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => @poops }
-      format.rss { render :layout => false }
-    end
+  def index
+    @poops = Poop.ordered.by_category('RYTP').approved.paginate(:per_page => 10, :page => params[:page])
   end
 
   def rytpmv
-    @poops = Poop.by_category('RYTPMV')
+    @poops = Poop.ordered.by_category('RYTPMV').approved.paginate(:per_page => 10, :page => params[:page])
 
-    respond_to do |format|
-      format.html { render :template => 'poops/index' }
-      format.xml  { render :xml => @poops }
-    end
+    render :template => 'poops/index'
   end
 
   def top
-    @poops = Poop.by_category(params[:category] || 'RYTP')
+    @poops = Poop.popular.by_category(params[:category] || 'RYTP').limit(20)
+  end
+
+  def vote
+    @poop = Poop.find(params[:id])
+
+    unless voted?(@poop.id)
+      @poop.rate+=1
+      @poop.save
+      cookies[:votes]="#{cookies[:votes]}|#{@poop.id}"
+    end
+
+    if request.xhr?
+      render :update do |page|
+        page.replace_html "votes_#{@poop.id}", @poop.rate
+        page << "$('vote_btn_#{@poop.id}').replace('#{t :kosar}')"
+      end
+    else
+      redirect_to @poop
+    end
   end
 
   def show
-    @poop = Poop.find(params[:id])
-
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => @poop }
-    end
+    @poop = Poop.find_by_id(params[:id])
   end
 
   def new
     @poop = Poop.new
-
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => @poop }
-    end
   end
 
   def edit
-    @poop = Poop.find(params[:id])
+    @poop = Poop.find_by_id(params[:id])
   end
 
   def create
     @poop = Poop.new(params[:poop])
+    @poop.is_approved = false
 
-    respond_to do |format|
-      if @poop.save
-        format.html { redirect_to(@poop, :notice => 'Poop was successfully created.') }
-        format.xml  { render :xml => @poop, :status => :created, :location => @poop }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @poop.errors, :status => :unprocessable_entity }
-      end
+    if @poop.save
+      redirect_to root_path
+    else
+      render :action => "new"
     end
   end
 
   def update
-    @poop = Poop.find(params[:id])
+    @poop = Poop.find_by_id(params[:id])
 
-    respond_to do |format|
-      if @poop.update_attributes(params[:poop])
-        format.html { redirect_to(@poop, :notice => 'Poop was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @poop.errors, :status => :unprocessable_entity }
-      end
+    if @poop.update_attributes(params[:poop])
+      redirect_to watch_path(@poop)
+    else
+      render :action => "edit"
     end
   end
 
   def destroy
-    @poop = Poop.find(params[:id])
+    @poop = Poop.find_by_id(params[:id])
     @poop.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(poops_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to root_path
   end
 end

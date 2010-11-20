@@ -4,5 +4,4 @@ class StaticController < ApplicationController
 
   def study
   end
-
 end

@@ -1,0 +1,24 @@
+.poop{ :id => ["poop", poop.id] }
+  %h1.title
+    = link_to truncate(poop.title, :length => 50), watch_path(poop)
+  .video
+    = video(poop.code)
+  .description
+    = poop.description
+  .info
+    %label{ :id => ["votes", poop.id] } #{poop.rate}
+    .links
+      - if voted?(poop.id)
+        дать косарь
+      - else
+        = link_to 'дать косарь', vote_poop_path(poop), :class => :vote, :id => "vote_btn_#{poop.id}",:remote => true
+      |
+      = link_to 'комментарии', watch_path(poop)+'#comments', :class => :comment_link
+      - unless content_for(:vk_like).empty?
+        |
+        = yield :vk_like
+    - if admin?
+      .admin_links
+        = link_to 'подтвердить', approve_path(poop) if controller.action_name == 'not_approved'
+        = link_to 'редактировать', edit_poop_path(poop)
+        = link_to 'удалить', poop, :method => :delete, :confirm => 'Вы уверены?'

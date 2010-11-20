@@ -2,6 +2,7 @@ ru:
   edit: "редактирование poop'a"
   new: "добавить poop"
   back: "назад"
+  kosar: "дать косарь"
   menu:
     rytp: "rytp"
     rytpmv: "rytpmv"
@@ -9,3 +10,4 @@ ru:
     study: "учебка"
     top: "топ"
     add: "добавить"
+    not_approved: "новые"

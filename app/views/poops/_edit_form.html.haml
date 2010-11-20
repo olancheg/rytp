@@ -23,10 +23,10 @@
     %br/
     = f.text_area :code
   .field
-    = f.label 'Категория'
+    = f.label 'Подтверждено?'
     %br/
+    = f.check_box :is_approved
+  .field
     = collection_select(:poop, :category_id, Category.all, :id, :name, :prompt => true)
   .actions
-    %br/
-    %br/
     = f.submit

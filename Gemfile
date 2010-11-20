@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.1'
 gem 'haml'
 gem 'will_paginate'
+gem 'russian'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

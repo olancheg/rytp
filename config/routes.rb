@@ -1,12 +1,22 @@
 Rytp::Application.routes.draw do
+  match 'login' => 'admins#login', :as => :login
+  match 'logout' => 'admins#logout', :as => :logout
+  match 'not_approved' => 'admins#not_approved', :as => :not_approved
+  match ':id/approve' => 'admins#approve', :as => :approve
+  resources :admins
+
   match 'index' => 'poops#index', :as => :index
-  match 'wiki' => 'static#wiki', :as => :wiki
-  match 'study' => 'static#study', :as => :study
   match 'rytpmv' => 'poops#rytpmv', :as => :rytpmv
   match 'top/:category' => 'poops#top', :as => :top
   match 'add_poop' => 'poops#new', :as => :add_poop
   match ':id' => 'poops#show', :as => :watch, :constraints => { :id => /\d+/ }
+  match ':id/vote' => 'poops#vote', :as => :vote_poop, :constraints => { :id => /\d+/ }
   resources :poops
+
+  match 'wiki' => 'static#wiki', :as => :wiki
+  match 'study' => 'static#study', :as => :study
+
+  match 'feed' => 'rss#index', :as => :rss_feed
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

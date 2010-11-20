@@ -11,3 +11,6 @@
     = link_to t(:'menu.top'), top_path(:RYTP), :class => active?('top')
   %li
     = link_to t(:'menu.add'), add_poop_path, :class => active?('new', 'create')
+  - if admin?
+    %li
+      = link_to t(:'menu.not_approved'), not_approved_path, :class => active?('not_approved')

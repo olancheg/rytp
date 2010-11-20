@@ -14,4 +14,8 @@ module ApplicationHelper
   def page_feeds?(*pages)
     pages.include?(controller.action_name)
   end
+
+  def admin?
+    !session[:admin].nil?
+  end
 end
