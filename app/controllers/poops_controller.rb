@@ -36,6 +36,7 @@ class PoopsController < ApplicationController
 
   def show
     @poop = Poop.find_by_id(params[:id])
+    redirect_to root_path unless @poop
   end
 
   def new
