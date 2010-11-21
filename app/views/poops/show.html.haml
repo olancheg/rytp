@@ -2,7 +2,7 @@
 = content_for(:vk_like) do
   #vk_like
     %script(type="text/javascript")
-      VK.Widgets.Like("vk_like", {type: "mini"});
+      VK.Widgets.Like("vk_like", {type: "vertical"});
 = render :partial => 'poops/poop', :object => @poop
 = link_to 'назад', :back
 = content_for(:comments) do
