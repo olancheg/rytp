@@ -17,6 +17,6 @@
       = link_to 'комментарии', watch_path(poop)+'#comments', :class => :comment_link
     - if admin?
       .admin_links
-        = link_to 'подтвердить', approve_path(poop) if controller.action_name == 'not_approved'
+        = link_to 'подтвердить', approve_path(poop), :remote => true if controller.action_name == 'not_approved'
         = link_to 'редактировать', edit_poop_path(poop)
         = link_to 'удалить', poop, :method => :delete, :confirm => 'Вы уверены?'
