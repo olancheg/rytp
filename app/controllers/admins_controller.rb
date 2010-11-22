@@ -1,5 +1,6 @@
 class AdminsController < ApplicationController
   before_filter :only_main, :except => [ :login, :logout, :not_approved ] 
+  before_filter :authenticate, :only => :not_approved
 
   def login
     if session[:admin]
@@ -38,7 +39,12 @@ class AdminsController < ApplicationController
 
     if request.xhr?
       render :update do |page|
-        page.replace_html 'not_approved_poops', (render :partial => 'poops/poop', :collection => @poops)
+        if @poops
+          page.replace_html 'not_approved_poops', (render :partial => 'poops/poop', :collection => @poops)
+        else
+          page.replace_html 'not_approved_poops', 'Нет ни одного видео.'
+        end
+
         page.replace_html 'navigation', will_paginate(@poops)
       end
     else
