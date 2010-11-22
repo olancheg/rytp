@@ -1,5 +1,5 @@
 class PoopsController < ApplicationController
-  before_filter :authenticate, :only => [ :edit, :create, :update, :destroy ]
+  before_filter :authenticate, :only => [ :edit, :update, :destroy ]
 
   def index
     @poops = Poop.ordered.by_category('RYTP').approved.paginate(:per_page => 10, :page => params[:page])

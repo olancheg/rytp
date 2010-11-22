@@ -83,10 +83,6 @@ img, iframe {
     margin-bottom: 20px;
   }
 
-  #vk_like {
-    display: inline-block;
-  }
-
   h1.rytp, h1.rytpmv {
     display: block;
     float: left;
@@ -163,6 +159,7 @@ img, iframe {
   }
 
   #vk_comments {
+    min-height: 180px;
     margin: auto;
   }
 }

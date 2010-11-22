@@ -1,6 +1,6 @@
 %html
   %head
-    %title RYTP #{title}
+    %title #{title}
     %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")
     = auto_discovery_link_tag(:rss, rss_feed_path+".rss")
     = stylesheet_link_tag :all
@@ -31,5 +31,4 @@
         \" сегодня' "+
         \"border='0' width='88' height='15'><\/a>")
         \//--></script><!--/LiveInternet-->
-        %a(name="comments")
         #{yield :comments}

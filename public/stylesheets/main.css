@@ -55,8 +55,6 @@ img, iframe {
   #container .poop {
     width: 610px;
     margin-bottom: 20px; }
-  #container #vk_like {
-    display: inline-block; }
   #container h1.rytp, #container h1.rytpmv {
     display: block;
     float: left;
@@ -105,6 +103,7 @@ img, iframe {
     #footer a:hover {
       color: #000; }
   #footer #vk_comments {
+    min-height: 180px;
     margin: auto; }
 
 #error_explanation {

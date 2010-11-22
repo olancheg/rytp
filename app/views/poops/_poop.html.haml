@@ -1,15 +1,14 @@
 .poop{ :id => ["poop", poop.id] }
   %h1.title
-    = link_to truncate(poop.title, :length => 50), watch_path(poop)
+    = link_to poop.title, watch_path(poop)
   .video
     = video(poop.code)
   .description
     = poop.description
+    #{"by #{poop.author}" unless poop.author.empty?}
   .info
     %label{ :id => ["votes", poop.id] } #{poop.rate}
     .links
-      - unless content_for(:vk_like).empty?
-        = yield :vk_like
       - if voted?(poop.id)
         дать косарь
       - else

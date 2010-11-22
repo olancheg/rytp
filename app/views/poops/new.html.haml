@@ -1,4 +1,4 @@
 %h1 Добавить Poop
-= set_title t(:new)
+= set_title nil, t(:new)
 = render 'form'
-= link_to t(:back), (:back || index_path)
+= link_to t(:back), :back

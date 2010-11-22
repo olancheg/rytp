@@ -1,10 +1,14 @@
 module ApplicationHelper
   def title
-    "| "+content_for(:title) unless content_for(:title).empty?
+    content_for(:title) unless content_for(:title).empty?
   end
 
-  def set_title(title)
-    content_for :title, title
+  def set_title(prefix, title)
+    if title
+      content_for :title, [prefix || 'RYTP', title].join(' | ')
+    else
+      content_for :title, prefix || 'RYTP'
+    end
   end
 
   def active?(*actions)
