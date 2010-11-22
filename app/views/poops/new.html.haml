@@ -1,4 +1,5 @@
-%h1 Добавить Poop
 = set_title nil, t(:new)
+%h1 Добавить Poop
+#notice #{flash[:notice]}
 = render 'form'
 = link_to t(:back), :back

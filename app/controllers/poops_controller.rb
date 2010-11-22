@@ -2,11 +2,11 @@ class PoopsController < ApplicationController
   before_filter :authenticate, :only => [ :edit, :update, :destroy ]
 
   def index
-    @poops = Poop.ordered.by_category('RYTP').approved.paginate(:per_page => 10, :page => params[:page])
+    @poops = Poop.ordered.by_category('RYTP').approved.paginate(:per_page => 5, :page => params[:page])
   end
 
   def rytpmv
-    @poops = Poop.ordered.by_category('RYTPMV').approved.paginate(:per_page => 10, :page => params[:page])
+    @poops = Poop.ordered.by_category('RYTPMV').approved.paginate(:per_page => 5, :page => params[:page])
 
     render :template => 'poops/index'
   end
@@ -52,7 +52,8 @@ class PoopsController < ApplicationController
     @poop.is_approved = false
 
     if @poop.save
-      redirect_to root_path
+      flash[:notice]="Ваш пуп добавлен. Он появится после проверки администратором."
+      redirect_to add_poop_path
     else
       render :action => "new"
     end
@@ -72,6 +73,6 @@ class PoopsController < ApplicationController
     @poop = Poop.find_by_id(params[:id])
     @poop.destroy
 
-    redirect_to root_path
+    redirect_to :back
   end
 end
