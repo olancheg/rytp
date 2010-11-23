@@ -13,20 +13,35 @@ module PoopsHelper
 
   def random_poop(category)
     @@poops ||= Poop.by_category(category).approved
-    poops = @@poops.map(&:id) if @@poops
-    watch_path poops[rand(poops.count)]
+
+    unless @@poops.empty?
+      poops = @@poops.map(&:id)
+      watch_path poops[rand(poops.count)]
+    else
+      root_path
+    end
   end
 
   def previous_poop(category, current)
     @@poops ||= Poop.by_category(category).approved
-    poops = @@poops.map(&:id) if @@poops
-    watch_path poops[poops.index(current)-1]
+
+    unless @@poops.empty?
+      poops = @@poops.map(&:id)
+      watch_path poops[poops.index(current)-1]
+    else
+      root_path
+    end
   end
 
   def next_poop(category, current)
     @@poops ||= Poop.by_category(category).approved
-    poops = @@poops.map(&:id) if @@poops
-    pos = poops.index(current)
-    watch_path poops[pos == poops.count-1 ? 0 : pos+1]
+
+    unless @@poops.empty?
+      poops = @@poops.map(&:id)
+      pos = poops.index(current)
+      watch_path poops[pos == poops.count-1 ? 0 : pos+1]
+    else
+      root_path
+    end
   end
 end
