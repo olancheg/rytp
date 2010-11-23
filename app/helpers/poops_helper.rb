@@ -29,7 +29,7 @@ module PoopsHelper
     poops = poop_ids(category)
 
     if poops
-      pos = poops.index(current)
+      pos = poops.index(current) || 0
       watch_path poops.at(pos == (poops.count-1) ? 0 : pos+1)
     else
       root_path
