@@ -2,11 +2,23 @@ class PoopsController < ApplicationController
   before_filter :admin?, :only => [ :edit, :update, :destroy ]
 
   def index
-    redirect_to watch_path(Poop.by_category('RYTP').approved.last)
+    poop = Poop.by_category('RYTP').approved.last
+
+    if poop
+      redirect_to watch_path poop
+    else
+      render :template => 'poops/index'
+    end
   end
 
   def rytpmv
-    redirect_to watch_path(Poop.by_category('RYTPMV').approved.last)
+    poop = Poop.by_category('RYTPMV').approved.last
+
+    if poop
+      redirect_to watch_path poop
+    else
+      render :template => 'poops/index'
+    end
   end
 
   def top
@@ -59,6 +71,7 @@ class PoopsController < ApplicationController
 
   def show
     @poop = Poop.find(params[:id])
+    logger.debug @poop.category.inspect
     redirect_to root_path unless @poop
   end
 
@@ -96,6 +109,6 @@ class PoopsController < ApplicationController
     @poop = Poop.find(params[:id])
     @poop.destroy
 
-    redirect_to :back
+    redirect_to @poop.category.name == 'RYTP' ? root_path : rytpmv_path
   end
 end

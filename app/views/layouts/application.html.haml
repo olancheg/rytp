@@ -19,14 +19,14 @@
       %table
         %tr
           %td.left
-            - if controller_name == 'poops' and action_name == 'show'
+            - if controller_name == 'poops' and action_name == 'show' and @poop.is_approved
               #nav_left
                 = link_to 'previous', previous_poop(@poop.category.name, @poop.id), :id => 'previous'
           %td
             .content
               = yield
           %td.right
-            - if controller_name == 'poops' and action_name == 'show'
+            - if controller_name == 'poops' and action_name == 'show' and @poop.is_approved
               #nav_right
                 = link_to 'next', next_poop(@poop.category.name, @poop.id), :id => 'next'
                 = link_to 'random', random_poop(@poop.category.name), :id => 'random'

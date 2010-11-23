@@ -35,12 +35,12 @@ class AdminsController < ApplicationController
     @poop = Poop.find_by_id(params[:id])
     @poop.is_approved = true
     @poop.save
-    @poops = Poop.not_approved.ordered.paginate(:per_page => 10, :page => params[:page])
+    @poops = Poop.not_approved.ordered.paginate(:per_page => 5, :page => params[:page])
 
     if request.xhr?
       render :update do |page|
-        if @poops
-          page.replace_html 'not_approved_poops', (render :partial => 'poops/poop', :collection => @poops)
+        unless @poops.empty?
+          page.replace_html 'not_approved_poops', render(:partial => 'poops/poop', :collection => @poops)
         else
           page.replace_html 'not_approved_poops', 'Нет ни одного видео.'
         end
