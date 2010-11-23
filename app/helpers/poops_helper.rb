@@ -22,15 +22,15 @@ module PoopsHelper
 
   def previous_poop(category, current)
     poops = poop_ids(category)
-    poops ? watch_path(poops.at poops.index(current)-1) : root_path
+    poops ? watch_path(poops.at poops.index(current)||0-1) : root_path
   end
 
   def next_poop(category, current)
     poops = poop_ids(category)
 
-    unless poops.empty?
+    if poops
       pos = poops.index(current)
-      watch_path poops[pos == (poops.count-1) ? 0 : pos+1]
+      watch_path poops.at(pos == (poops.count-1) ? 0 : pos+1)
     else
       root_path
     end
