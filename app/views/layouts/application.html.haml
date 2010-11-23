@@ -3,8 +3,8 @@
     %title #{title}
     %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")
     = auto_discovery_link_tag(:rss, rss_feed_path+".rss")
-    = stylesheet_link_tag :all
-    = javascript_include_tag :all
+    = stylesheet_link_tag :all, :cache => true
+    = javascript_include_tag :all, :cache => true
     = csrf_meta_tag
     %script(type="text/javascript" src="http://userapi.com/js/api/openapi.js?17")
     %script(type="text/javascript")
@@ -19,14 +19,14 @@
       %table
         %tr
           %td.left
-            - if controller_name == 'poops' and action_name == 'show' and @poop.is_approved
+            - if controller_name == 'poops' and action_name == 'show' and @poop and @poop.is_approved
               #nav_left
                 = link_to 'previous', previous_poop(@poop.category.name, @poop.id), :id => 'previous'
           %td
             .content
               = yield
           %td.right
-            - if controller_name == 'poops' and action_name == 'show' and @poop.is_approved
+            - if controller_name == 'poops' and action_name == 'show' and @poop and @poop.is_approved
               #nav_right
                 = link_to 'next', next_poop(@poop.category.name, @poop.id), :id => 'next'
                 = link_to 'random', random_poop(@poop.category.name), :id => 'random'
