@@ -16,8 +16,20 @@
           = link_to image_tag('/images/logo.png'), root_path
         = render :partial => '/layouts/menu'
     #container
-      .content
-        = yield
+      %table
+        %tr
+          %td.left
+            - if controller_name == 'poops' and action_name == 'show'
+              #nav_left
+                = link_to 'previous', previous_poop(@poop.category.name, @poop.id), :id => 'previous'
+          %td
+            .content
+              = yield
+          %td.right
+            - if controller_name == 'poops' and action_name == 'show'
+              #nav_right
+                = link_to 'next', next_poop(@poop.category.name, @poop.id), :id => 'next'
+                = link_to 'random', random_poop(@poop.category.name), :id => 'random'
     #footer
       .content
         \<!--LiveInternet counter--><script type="text/javascript"><!--

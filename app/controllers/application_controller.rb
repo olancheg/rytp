@@ -2,22 +2,51 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :init_cookies
 
-  def authenticate
+  def admin?
     redirect_to login_path if session[:admin].nil?
   end
 
-  def only_main
+  def main_admin?
     user = Admin.find_by_id(session[:admin]) if session[:admin]
-    if !(user and user.main)
-      redirect_to root_path
-    end
+
+    redirect_to root_path unless user and user.main
   end
 
   def init_cookies
-    cookies[:votes]={ :value => "0", :expires => Time.now + 24*7*4*3600 } if cookies[:votes].nil?
+    cookies[:good]={ :value => Marshal.dump([]), :expires => Time.now + 24*7*4*3600 } if cookies[:good].nil?
+    cookies[:bad]={ :value => Marshal.dump([]), :expires => Time.now + 24*7*4*3600 } if cookies[:bad].nil?
+  end
+
+  def unvote(poop, storage)
+    remove_from_storage(poop, storage)
+  end
+
+  def vote_for(poop, storage)
+    add_to_storage(poop, storage)
   end
 
   def voted?(poop)
-    poop.to_s.scan(/(#{cookies[:votes]})/).length > 0
+    element_in_storage(poop, :good)
+  end
+
+  def voted_bad?(poop)
+    element_in_storage(poop, :bad)
+  end
+
+  def element_in_storage(element, storage)
+    array = Marshal.load(cookies[storage])
+    array.include?(element)
+  end
+
+  def add_to_storage(element, storage)
+    array = Marshal.load(cookies[storage])
+    array << element
+    cookies[storage] = Marshal.dump(array)
+  end
+
+  def remove_from_storage(element, storage)
+    array = Marshal.load(cookies[storage])
+    array.delete element
+    cookies[storage] = Marshal.dump(array)
   end
 end

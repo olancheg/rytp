@@ -7,7 +7,7 @@ xml.rss :version => "2.0" do
     
     for poop in @poops
       xml.item do
-        xml.title poop.title
+        xml.title poop.title+' | '+poop.category.name+' '+author(poop.author)
         xml.description poop.description
         xml.pubDate poop.created_at.to_s(:rfc822)
         xml.link watch_url(poop)

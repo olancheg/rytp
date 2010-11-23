@@ -1,9 +1,0 @@
-= set_title controller.action_name=='rytpmv' ? 'RYTPMV' : nil, nil
-- if @poops.empty?
-  Нет ни одного видео.
-- else
-  = render :partial => 'poops/poop', :collection => @poops
-  = will_paginate @poops
-=# link_to 'Edit', edit_poop_path(poop)
-=# link_to 'Destroy', poop, :confirm => 'Are you sure?', :method => :delete
-=# link_to 'New Poop', new_poop_path

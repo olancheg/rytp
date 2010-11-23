@@ -1,41 +1,64 @@
 class PoopsController < ApplicationController
-  before_filter :authenticate, :only => [ :edit, :update, :destroy ]
+  before_filter :admin?, :only => [ :edit, :update, :destroy ]
 
   def index
-    @poops = Poop.ordered.by_category('RYTP').approved.paginate(:per_page => 5, :page => params[:page])
+    redirect_to watch_path(Poop.by_category('RYTP').approved.last)
   end
 
   def rytpmv
-    @poops = Poop.ordered.by_category('RYTPMV').approved.paginate(:per_page => 5, :page => params[:page])
-
-    render :template => 'poops/index'
+    redirect_to watch_path(Poop.by_category('RYTPMV').approved.last)
   end
 
   def top
-    @poops = Poop.popular.by_category(params[:category] || 'RYTP').limit(20)
+    @poops = Poop.popular.by_category(params[:category] || 'RYTP').paginate(:per_page => 7, :page => params[:page])
   end
 
   def vote
-    @poop = Poop.find(params[:id])
+    unless voted?(params[:id])
+      @poop = Poop.find(params[:id])
+      redirect_to root_path unless @poop
 
-    unless voted?(@poop.id)
       @poop.rate+=1
       @poop.save
-      cookies[:votes]="#{cookies[:votes]}|#{@poop.id}"
-    end
+      vote_for(@poop.id, :good)
+      unvote(@poop.id, :bad)
 
-    if request.xhr?
-      render :update do |page|
-        page.replace_html "votes_#{@poop.id}", @poop.rate
-        page << "$('vote_btn_#{@poop.id}').replace('#{t :kosar}')"
+      if request.xhr?
+        render :update do |page|
+          page.replace_html "votes_#{@poop.id}", @poop.rate.to_s+' '+Russian.p(@poop.rate, "косарь", "косаря", "косарей")
+          page.replace_html "vote_bad_btn_#{@poop.id}", link_to('ХУNТА', vote_bad_path(@poop), :remote => true)
+          page.replace_html "vote_btn_#{@poop.id}", 'дать косарь'
+        end
+      else
+        redirect_to @poop
       end
-    else
-      redirect_to @poop
+    end
+  end
+
+  def vote_bad
+    unless voted_bad?(params[:id])
+      @poop = Poop.find(params[:id])
+      redirect_to root_path unless @poop
+
+      @poop.rate-=1
+      @poop.save
+      vote_for(@poop.id, :bad)
+      unvote(@poop.id, :good)
+
+      if request.xhr?
+        render :update do |page|
+          page.replace_html "votes_#{@poop.id}", @poop.rate.to_s+' '+Russian.p(@poop.rate, "косарь", "косаря", "косарей")
+          page.replace_html "vote_bad_btn_#{@poop.id}", 'ХУNТА'
+          page.replace_html "vote_btn_#{@poop.id}", link_to('дать косарь', vote_poop_path(@poop), :remote => true)
+        end
+      else
+        redirect_to @poop
+      end
     end
   end
 
   def show
-    @poop = Poop.find_by_id(params[:id])
+    @poop = Poop.find(params[:id])
     redirect_to root_path unless @poop
   end
 
@@ -44,7 +67,7 @@ class PoopsController < ApplicationController
   end
 
   def edit
-    @poop = Poop.find_by_id(params[:id])
+    @poop = Poop.find(params[:id])
   end
 
   def create
@@ -60,7 +83,7 @@ class PoopsController < ApplicationController
   end
 
   def update
-    @poop = Poop.find_by_id(params[:id])
+    @poop = Poop.find(params[:id])
 
     if @poop.update_attributes(params[:poop])
       redirect_to watch_path(@poop)
@@ -70,7 +93,7 @@ class PoopsController < ApplicationController
   end
 
   def destroy
-    @poop = Poop.find_by_id(params[:id])
+    @poop = Poop.find(params[:id])
     @poop.destroy
 
     redirect_to :back

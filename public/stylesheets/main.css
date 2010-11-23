@@ -41,6 +41,32 @@ img, iframe {
   padding: 15px;
   padding-bottom: 40px;
   background: #4c2e12 url("/images/triangle.png") center bottom no-repeat; }
+  #container table {
+    margin: auto; }
+    #container table td.left, #container table td.right {
+      vertical-align: top;
+      padding-top: 200px; }
+  #container #nav_left {
+    font-size: 40px;
+    padding-right: 5px; }
+    #container #nav_left a {
+      text-decoration: none; }
+    #container #nav_left a:before {
+      content: url("/images/lt.png");
+      padding-right: 5px; }
+  #container #nav_right {
+    font-size: 40px;
+    padding-left: 5px; }
+    #container #nav_right a {
+      text-decoration: none;
+      display: block; }
+    #container #nav_right a:first-child:after {
+      content: url("/images/gt.png");
+      padding-left: 5px; }
+    #container #nav_right #random {
+      color: #9d6e44; }
+      #container #nav_right #random:hover {
+        color: #ae8b6c; }
   #container a {
     color: #FFF; }
     #container a:hover {
@@ -50,6 +76,8 @@ img, iframe {
   #container .links {
     display: inline-block;
     float: right; }
+    #container .links .link {
+      display: inline-block; }
   #container .content {
     width: 610px; }
   #container .poop {
@@ -67,20 +95,27 @@ img, iframe {
   #container .description, #container .info {
     background-color: #cfa57f;
     padding: 10px; }
+  #container .description {
+    color: #fff;
+    background-color: #432912; }
+  #container .author {
+    color: #fff;
+    background-color: #8b5e34;
+    padding: 5px 10px; }
+    #container .author .show_description {
+      float: right; }
   #container .title {
     clear: both; }
     #container .title a {
       text-decoration: none; }
-  #container .info {
-    margin-bottom: 10px;
-    padding-top: 0; }
-    #container .info label {
-      font-size: 1.2em;
-      font-weight: bold; }
-    #container .info a {
-      color: #490d0f; }
-      #container .info a:hover {
-        color: #9a3c3f; }
+  #container .info label {
+    font-size: 1.2em;
+    font-weight: bold; }
+  #container .info a {
+    text-decoration: none;
+    color: #490d0f; }
+    #container .info a:hover {
+      color: #9a3c3f; }
   #container #login_box {
     width: 300px;
     margin: auto; }
@@ -94,9 +129,13 @@ img, iframe {
     #container #login_box input[type=text] {
       margin-bottom: 5px;
       float: left; }
+  #container #notice {
+    color: red;
+    margin: 10px; }
 
 #footer {
   padding: 15px;
+  clear: both;
   background-color: #fff; }
   #footer a {
     color: #3f2d1f; }

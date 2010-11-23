@@ -10,7 +10,8 @@ Rytp::Application.routes.draw do
   match 'top/:category' => 'poops#top', :as => :top
   match 'add_poop' => 'poops#new', :as => :add_poop
   match ':id' => 'poops#show', :as => :watch, :constraints => { :id => /\d+/ }
-  match ':id/vote' => 'poops#vote', :as => :vote_poop, :constraints => { :id => /\d+/ }
+  match ':id/good' => 'poops#vote', :as => :vote_poop, :constraints => { :id => /\d+/ }
+  match ':id/bad' => 'poops#vote_bad', :as => :vote_bad, :constraints => { :id => /\d+/ }
   resources :poops
 
   match 'wiki' => 'static#wiki', :as => :wiki

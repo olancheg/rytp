@@ -4,7 +4,7 @@ class Poop < ActiveRecord::Base
   belongs_to :category
 
   scope :by_category, lambda { |category| where('category_id IN (?)', Category.find_by_name(category))}
-  scope :ordered, order('updated_at DESC')
+  scope :ordered, order('created_at DESC')
   scope :approved, where('is_approved = ?', true)
   scope :not_approved, where('is_approved = ?', false)
   scope :popular, order('rate DESC').approved

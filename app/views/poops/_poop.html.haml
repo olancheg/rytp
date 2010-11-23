@@ -1,22 +1,33 @@
 .poop{ :id => ["poop", poop.id] }
   %h1.title
-    = link_to poop.title, watch_path(poop)
+    = poop.title+" | "+poop.category.name
   .video
     = video(poop.code)
-  .description
-    = poop.description
-    #{"by #{poop.author}" unless poop.author.empty?}
   .info
-    %label{ :id => ["votes", poop.id] } #{poop.rate}
+    %label{ :id => ["votes", poop.id] } #{poop.rate.to_s+' '+Russian.p(poop.rate, "косарь", "косаря", "косарей")}
     .links
-      - if voted?(poop.id)
-        дать косарь
-      - else
-        = link_to 'дать косарь', vote_poop_path(poop), :class => :vote, :id => "vote_btn_#{poop.id}",:remote => true
+      .link{:id => "vote_btn_#{poop.id}"}
+        - if voted?(poop.id)
+          дать косарь
+        - else
+          = link_to 'дать косарь', vote_poop_path(poop), :remote => true
       |
-      = link_to 'комментарии', watch_path(poop)+'#comments', :class => :comment_link
+      .link{:id => "vote_bad_btn_#{poop.id}"}
+        - if voted_bad?(poop.id)
+          ХУNТА
+        - else
+          = link_to 'ХУNТА', vote_bad_path(poop), :remote => true
+
+      - if controller.action_name=='top'
+        | #{ link_to 'подробнее', watch_path(poop), :class => :comment_link }
     - if admin?
       .admin_links
         = link_to 'подтвердить', approve_path(poop), :remote => true unless poop.is_approved
         = link_to 'редактировать', edit_poop_path(poop)
         = link_to 'удалить', poop, :method => :delete, :confirm => 'Вы уверены?'
+  .author
+    автор: #{poop.author}
+    .show_description
+      = link_to_function 'описание', "show_description(#{poop.id})"
+  .description{ :id => [ 'description', poop.id ] }(style='display: none')
+    = poop.description

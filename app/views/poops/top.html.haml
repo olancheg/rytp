@@ -2,6 +2,4 @@
 %h1.rytp #{link_to 'RYTP', top_path('RYTP'), :class => (params[:category]=='RYTP' ? 'active' : nil)}
 %h1.rytp #{link_to 'RYTPMV', top_path('RYTPMV'), :class => (params[:category]=='RYTPMV' ? 'active' : nil)}
 = render :partial => 'poops/poop', :collection => @poops
-=# link_to 'Edit', edit_poop_path(poop)
-=# link_to 'Destroy', poop, :confirm => 'Are you sure?', :method => :delete
-=# link_to 'New Poop', new_poop_path
+= will_paginate @poops
