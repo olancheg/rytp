@@ -11,35 +11,26 @@ module PoopsHelper
     controller.voted_bad?(poop)
   end
 
-  def random_poop(category)
-    @@poops ||= Poop.by_category(category).approved
+  def poop_ids(category)
+    @@poops ||= Poop.by_category(category).approved.map {|e| e.id}
+  end
 
-    unless @@poops.empty?
-      poops = @@poops.map(&:id)
-      watch_path poops[rand(poops.count)]
-    else
-      root_path
-    end
+  def random_poop(category)
+    poops = poop_ids(category)
+    poops ? watch_path(poops.at rand(poops.count-1)) : root_path
   end
 
   def previous_poop(category, current)
-    @@poops ||= Poop.by_category(category).approved
-
-    unless @@poops.empty?
-      poops = @@poops.map(&:id)
-      watch_path poops[poops.index(current)-1]
-    else
-      root_path
-    end
+    poops = poop_ids(category)
+    poops ? watch_path(poops.at poops.index(current)-1) : root_path
   end
 
   def next_poop(category, current)
-    @@poops ||= Poop.by_category(category).approved
+    poops = poop_ids(category)
 
-    unless @@poops.empty?
-      poops = @@poops.map(&:id)
+    unless poops.empty?
       pos = poops.index(current)
-      watch_path poops[pos == poops.count-1 ? 0 : pos+1]
+      watch_path poops[pos == (poops.count-1) ? 0 : pos+1]
     else
       root_path
     end
