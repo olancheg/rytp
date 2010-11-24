@@ -12,24 +12,25 @@ module PoopsHelper
   end
 
   def poop_ids(category)
-    @@poops ||= Poop.by_category(category).approved.map {|e| e.id}
+    @@poops ||= Poop.approved.find_all_by_category_id(category).map {|e| e.id}
   end
 
-  def random_poop(category)
-    poops = poop_ids(category)
+  def random_poop(poop)
+    poops = poop_ids(poop.category_id)
     poops ? watch_path(poops.at rand(poops.count-1)) : root_path
   end
 
-  def previous_poop(category, current)
-    poops = poop_ids(category)
-    poops ? watch_path(poops.at poops.index(current)||0-1) : root_path
+  def previous_poop(poop)
+    poops = poop_ids(poop.category_id)
+    logger.debug poops[-1]
+    poops ? watch_path(poops.at ((poops.index(poop.id)||0)-1)) : root_path
   end
 
-  def next_poop(category, current)
-    poops = poop_ids(category)
+  def next_poop(poop)
+    poops = poop_ids(poop.category_id)
 
     if poops
-      pos = poops.index(current) || 0
+      pos = poops.index(poop.id)||0
       watch_path poops.at(pos == (poops.count-1) ? 0 : pos+1)
     else
       root_path

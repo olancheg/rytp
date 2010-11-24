@@ -71,7 +71,6 @@ class PoopsController < ApplicationController
 
   def show
     @poop = Poop.find(params[:id])
-    logger.debug @poop.category.inspect
     redirect_to root_path unless @poop
   end
 
