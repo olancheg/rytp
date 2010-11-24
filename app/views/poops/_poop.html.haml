@@ -10,13 +10,13 @@
         - if voted?(poop.id)
           дать косарь
         - else
-          = link_to 'дать косарь', vote_poop_path(poop), :remote => true
+          = link_to 'дать косарь', vote_poop_path(poop)+'?nofollow', :remote => true
       |
       .link{:id => "vote_bad_btn_#{poop.id}"}
         - if voted_bad?(poop.id)
           ХУNТА
         - else
-          = link_to 'ХУNТА', vote_bad_path(poop), :remote => true
+          = link_to 'ХУNТА', vote_bad_path(poop)+'?nofollow', :remote => true
 
       - if controller.action_name=='top'
         | #{ link_to 'комментарии', watch_path(poop), :class => :comment_link }
