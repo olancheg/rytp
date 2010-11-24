@@ -144,6 +144,16 @@ img, iframe {
   #footer #vk_comments {
     min-height: 180px;
     margin: auto; }
+  #footer #subfooter {
+    font-size: 14px;
+    width: 650px;
+    padding-top: 20px;
+    margin: auto; }
+    #footer #subfooter > div {
+      float: left;
+      padding-left: 20px; }
+    #footer #subfooter .counter {
+      float: right; }
 
 #error_explanation {
   padding: 10px; }

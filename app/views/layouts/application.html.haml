@@ -32,15 +32,23 @@
                 = link_to 'random', random_poop(@poop), :id => 'random'
     #footer
       .content
-        \<!--LiveInternet counter--><script type="text/javascript"><!--
-        \document.write("<a href='http://www.liveinternet.ru/click' "+
-        \"target=_blank><img src='//counter.yadro.ru/hit?t26.6;r"+
-        \escape(document.referrer)+((typeof(screen)=="undefined")?"":
-        \";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
-        \screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
-        \";"+Math.random()+
-        \"' alt='' title='LiveInternet: показано число посетителей за"+
-        \" сегодня' "+
-        \"border='0' width='88' height='15'><\/a>")
-        \//--></script><!--/LiveInternet-->
         #{yield :comments}
+        #subfooter
+          .logo #{link_to image_tag('/images/pocyk.jpg'), 'http://vkontakte.ru/club19331162', :target => '_blank'}
+          .letsweb #{link_to image_tag('/images/letsweb.jpg'), 'http://letsweb.ru', :target => '_blank'}
+          .text
+            %p
+              %b RYTP.ru
+              является наилучшим источником RYTP и RYTPMV.
+            %p Совместный сайт поцыков из группы вконтакте и летсвеб.
+          .counter
+            \<!--LiveInternet counter--><script type="text/javascript"><!--
+            \document.write("<a href='http://www.liveinternet.ru/click' "+
+            \"target=_blank><img src='//counter.yadro.ru/hit?t13.1;r"+
+            \escape(document.referrer)+((typeof(screen)=="undefined")?"":
+            \";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+            \screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+            \";"+Math.random()+
+            \"' alt='' title='LiveInternet: показано число просмотров за 24"+
+            \" часа, посетителей за 24 часа и за сегодня' "+
+            \"border='0' width='88' height='31'><\/a>")//--></script><!--/LiveInternet-->
