@@ -17,13 +17,13 @@ module PoopsHelper
 
   def random_poop(poop)
     poops = poop_ids(poop.category_id)
+    logger.debug poops.inspect
     poops ? watch_path(poops.at rand(poops.count-1)) : root_path
   end
 
   def previous_poop(poop)
     poops = poop_ids(poop.category_id)
-    logger.debug poops[-1]
-    poops ? watch_path(poops.at ((poops.index(poop.id)||0)-1)) : root_path
+    poops ? watch_path(poops.at((poops.index(poop.id)||0)-1)) : root_path
   end
 
   def next_poop(poop)
