@@ -1,15 +1,33 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  title: MyString
-  description: MyText
-  author: MyString
+first:
+  title: My poop number one
+  description: some description
+  author:
   code: MyText
-  is_approved: false
+  is_approved: true
+  category_id: 2
 
-two:
-  title: MyString
-  description: MyText
-  author: MyString
-  code: MyText
-  is_approved: false
+second:
+  title: poop number two
+  description: 
+  author: 
+  code: <script>alert('pidaras');</script> lol
+  is_approved: true
+  category_id: 2
+
+third:
+  title: My poop number two
+  description: some description
+  author:
+  code: third poop
+  is_approved: true
+  category_id: 1
+
+last:
+  title: last pooop
+  description: 
+  author: 
+  code: asdasdasd
+  is_approved: true
+  category_id: 1

@@ -12,12 +12,11 @@ module PoopsHelper
   end
 
   def poop_ids(category)
-    @@poops ||= Poop.approved.find_all_by_category_id(category).map {|e| e.id}
+    Poop.approved.find_all_by_category_id(category).map(&:id)
   end
 
   def random_poop(poop)
     poops = poop_ids(poop.category_id)
-    logger.debug poops.inspect
     poops ? watch_path(poops.at rand(poops.count-1)) : root_path
   end
 
