@@ -13,8 +13,8 @@ class ApplicationController < ActionController::Base
   end
 
   def init_cookies
-    cookies[:good]={ :value => Marshal.dump([]), :expires => Time.now + 24*7*4*3600 } if cookies[:good].nil?
-    cookies[:bad]={ :value => Marshal.dump([]), :expires => Time.now + 24*7*4*3600 } if cookies[:bad].nil?
+    cookies[:good] = { :value => cookies[:good] || Marshal.dump([]), :expires => Time.now + 24*7*4*3600 }
+    cookies[:bad]  = { :value => cookies[:bad] || Marshal.dump([]), :expires => Time.now + 24*7*4*3600 }
   end
 
   def unvote(poop, storage)
