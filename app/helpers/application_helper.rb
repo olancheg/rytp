@@ -3,20 +3,16 @@ module ApplicationHelper
     content_for(:title) unless content_for(:title).empty?
   end
 
-  def set_title(prefix, title)
-    if title
-      content_for :title, [prefix || 'RYTP', title].join(' | ')
+  def set_title(hash={})
+    if hash[:title]
+      content_for :title, [hash[:type] || 'RYTP', hash[:title]].join(' | ')
     else
-      content_for :title, prefix || 'RYTP'
+      content_for :title, hash[:type] || 'RYTP'
     end
   end
 
   def active?(*actions)
     'active' if actions.to_a.include?(controller.action_name.to_s)
-  end
-
-  def page_feeds?(*pages)
-    pages.include?(controller.action_name)
   end
 
   def admin?

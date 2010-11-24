@@ -1,6 +1,6 @@
 %script
   = "$('menu_#{@poop.category.name.downcase}').addClassName('active');" if controller.action_name='show'
-= set_title @poop.title, @poop.category.name
+= set_title :type => @poop.category.name, :title => @poop.title
 = render :partial => 'poops/poop', :object => @poop
 = content_for(:comments) do
   #vk_comments

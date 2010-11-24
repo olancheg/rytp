@@ -19,7 +19,7 @@
           = link_to 'ХУNТА', vote_bad_path(poop), :remote => true
 
       - if controller.action_name=='top'
-        | #{ link_to 'подробнее', watch_path(poop), :class => :comment_link }
+        | #{ link_to 'комментарии', watch_path(poop), :class => :comment_link }
     - if admin?
       .admin_links
         = link_to 'подтвердить', approve_path(poop), :remote => true unless poop.is_approved
