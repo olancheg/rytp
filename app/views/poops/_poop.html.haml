@@ -6,18 +6,18 @@
   .info
     %label{ :id => ["votes", poop.id] } #{poop.rate.to_s+' '+Russian.p(poop.rate, "косарь", "косаря", "косарей")}
     .links
-      .link{:id => "vote_btn_#{poop.id}"}
-        - if voted?(poop.id)
-          дать косарь
-        - else
-          = link_to 'дать косарь', vote_poop_path(poop), :remote => true, :rel => 'nofollow'
-      |
-      .link{:id => "vote_bad_btn_#{poop.id}"}
-        - if voted_bad?(poop.id)
-          ХУNТА
-        - else
-          = link_to 'ХУNТА', vote_bad_path(poop), :remote => true, :rel => 'nofollow'
-
+      %noindex
+        .link{:id => "vote_btn_#{poop.id}"}
+          - if voted?(poop.id)
+            дать косарь
+          - else
+            = link_to 'дать косарь', vote_poop_path(poop), :remote => true
+        |
+        .link{:id => "vote_bad_btn_#{poop.id}"}
+          - if voted_bad?(poop.id)
+            ХУNТА
+          - else
+            = link_to 'ХУNТА', vote_bad_path(poop), :remote => true
       - if controller.action_name=='top'
         | #{ link_to 'комментарии', watch_path(poop), :class => :comment_link }
     - if admin?
