@@ -141,6 +141,15 @@ img, iframe {
   #container .new_description textarea, #container .new_code textarea {
     width: 300px;
     height: 100px; }
+  #container p.rytp, #container p.ytp {
+    padding-top: 10px; }
+  #container p acronym {
+    color: #fff;
+    font-size: 1.1em;
+    text-decoration: underline; }
+    #container p acronym:hover {
+      color: #ccc;
+      cursor: hand; }
 
 #footer {
   padding: 15px;

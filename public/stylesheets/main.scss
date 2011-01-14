@@ -220,6 +220,17 @@ img, iframe {
     width: 300px;
     height: 100px;
   }
+
+  p.rytp, p.ytp {
+    padding-top: 10px;
+  }
+
+  p acronym {
+    color: #fff;
+    font-size: 1.1em;
+    text-decoration: underline;
+    &:hover { color: #ccc; cursor: hand; }
+  }
 }
 
 #footer {
