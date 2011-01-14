@@ -50,6 +50,7 @@ img, iframe {
       padding-top: 200px; }
   #container #nav_left {
     font-size: 40px;
+    width: 180px;
     padding-right: 5px; }
     #container #nav_left a {
       text-decoration: none; }
