@@ -8,7 +8,7 @@ class AdminsController < ApplicationController
     else
       if request.post?
         user = Admin.find_by_login(params[:login])
-        if user.password == params[:password]
+        if user and user.password == params[:password]
           session[:admin] = user.id
           redirect_to root_path
         else
