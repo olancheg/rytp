@@ -2,6 +2,9 @@ class StaticController < ApplicationController
   def wiki
   end
 
-  def study
+  def rules
+  end
+
+  def howto
   end
 end

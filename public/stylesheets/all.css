@@ -18,6 +18,8 @@ img, iframe {
 #header {
   background-color: #9b6e44;
   height: 138px; }
+  #header .content {
+    width: 800px !important; }
   #header #logo, #header #menu {
     float: left;
     margin-top: 25px;
@@ -132,6 +134,12 @@ img, iframe {
   #container #notice {
     color: red;
     margin: 10px; }
+  #container .field {
+    color: #fff;
+    padding-bottom: 10px; }
+  #container .new_description textarea, #container .new_code textarea {
+    width: 300px;
+    height: 100px; }
 
 #footer {
   padding: 15px;

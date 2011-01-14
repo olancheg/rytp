@@ -13,10 +13,10 @@
     #header
       .content
         #logo
-          = link_to image_tag('/images/logo.png'), root_path
+          = link_to image_tag('/images/logo.png', :title => 'pocyk'), root_path
         = render :partial => '/layouts/menu'
     #container
-      %table
+      %table.content
         %tr
           %td.left
             - if controller_name == 'poops' and action_name == 'show'

@@ -2,7 +2,8 @@
   - if @poop.errors.any?
     #error_explanation
       %h2
-        = pluralize(@poop.errors.count, "error")+":"
+        = @poop.errors.count
+        = Russian.p(@poop.errors.count, "ошибка", "ошибки", "ошибок")+":"
       %ul
         - @poop.errors.full_messages.each do |msg|
           %li= msg
@@ -14,19 +15,21 @@
     = f.label 'Автор'
     %br/
     = f.text_field :author
-  .field
-    = f.label 'Описание'
+  .field.new_description
+    = f.label 'Описание (не обязательно)'
     %br/
     = f.text_area :description
-  .field
+  .field.new_code
     = f.label 'Код видео'
+    = link_to ' где его взять?', howto_path
     %br/
     = f.text_area :code
   .field
     = f.label 'Категория'
     %br/
     = collection_select(:poop, :category_id, Category.all, :id, :name, :prompt => true)
+  .field
+    = f.label 'Нажимая "отправить", вы соглашаетесь с '
+    = link_to 'правилами', rules_path, :target => '_blank'
   .actions
-    %br/
-    %br/
-    = f.submit
+    = f.submit :value => 'Отправить'

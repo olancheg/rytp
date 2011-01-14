@@ -28,6 +28,6 @@
   .author
     автор: #{poop.author}
     .show_description
-      = link_to_function 'описание', "show_description(#{poop.id})"
+      = link_to_function 'описание', "show_description(#{poop.id})" unless poop.description.empty?
   .description{ :id => [ 'description', poop.id ] }(style='display: none')
     = poop.description

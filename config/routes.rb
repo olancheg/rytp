@@ -15,7 +15,8 @@ Rytp::Application.routes.draw do
   resources :poops
 
   match 'wiki' => 'static#wiki', :as => :wiki
-  match 'study' => 'static#study', :as => :study
+  match 'rules' => 'static#rules', :as => :rules
+  match 'howto' => 'static#howto', :as => :howto
 
   match 'feed' => 'rss#index', :as => :rss_feed
 

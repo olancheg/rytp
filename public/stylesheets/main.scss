@@ -23,6 +23,10 @@ img, iframe {
   background-color: #9b6e44;
   height: 138px;
 
+  .content {
+    width: 800px !important;
+  }
+
   #logo, #menu {
     float: left;
     margin-top: 25px;
@@ -204,6 +208,16 @@ img, iframe {
   #notice {
     color: red;
     margin: 10px;
+  }
+
+  .field {
+    color: #fff;
+    padding-bottom: 10px;
+  }
+
+  .new_description textarea, .new_code textarea {
+    width: 300px;
+    height: 100px;
   }
 }
 

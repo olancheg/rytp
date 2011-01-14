@@ -32,8 +32,9 @@ class PoopsController < ApplicationController
 
       @poop.rate+=1
       @poop.save
-      vote_for(@poop.id, :good)
+
       unvote(@poop.id, :bad)
+      vote_for(@poop.id, :good)
 
       if request.xhr?
         render :update do |page|
@@ -54,14 +55,15 @@ class PoopsController < ApplicationController
 
       @poop.rate-=1
       @poop.save
-      vote_for(@poop.id, :bad)
+
       unvote(@poop.id, :good)
+      vote_for(@poop.id, :bad)
 
       if request.xhr?
         render :update do |page|
           page.replace_html "votes_#{@poop.id}", @poop.rate.to_s+' '+Russian.p(@poop.rate, "косарь", "косаря", "косарей")
-          page.replace_html "vote_bad_btn_#{@poop.id}", 'ХУNТА'
           page.replace_html "vote_btn_#{@poop.id}", link_to('дать косарь', vote_poop_path(@poop), :remote => true)
+          page.replace_html "vote_bad_btn_#{@poop.id}", 'ХУNТА'
         end
       else
         redirect_to @poop

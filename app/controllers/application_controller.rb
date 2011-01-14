@@ -13,8 +13,8 @@ class ApplicationController < ActionController::Base
   end
 
   def init_cookies
-    cookies[:good] = { :value => cookies[:good] || Marshal.dump([]), :expires => Time.now + 24*7*4*3600 }
-    cookies[:bad]  = { :value => cookies[:bad] || Marshal.dump([]), :expires => Time.now + 24*7*4*3600 }
+    cookies.permanent[:good] = cookies[:good] || Marshal.dump([])
+    cookies.permanent[:bad]  = cookies[:bad]  || Marshal.dump([])
   end
 
   def unvote(poop, storage)
@@ -41,12 +41,12 @@ class ApplicationController < ActionController::Base
   def add_to_storage(element, storage)
     array = Marshal.load(cookies[storage])
     array << element
-    cookies[storage] = Marshal.dump(array)
+    cookies.permanent[storage] = Marshal.dump(array)
   end
 
   def remove_from_storage(element, storage)
     array = Marshal.load(cookies[storage])
     array.delete element
-    cookies[storage] = Marshal.dump(array)
+    cookies.permanent[storage] = Marshal.dump(array)
   end
 end
