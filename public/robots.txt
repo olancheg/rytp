@@ -1,2 +1,5 @@
 User-agent: Googlebot
-Disallow: /*/(bad|good)$
+Disallow: /*/bad$
+
+User-agent: Googlebot
+Disallow: /*/good$
