@@ -142,14 +142,21 @@ img, iframe {
     width: 300px;
     height: 100px; }
   #container p.rytp, #container p.ytp {
-    padding-top: 10px; }
+    padding-top: 10px;
+    color: #eaeaea; }
   #container p acronym {
     color: #fff;
     font-size: 1.1em;
     text-decoration: underline; }
     #container p acronym:hover {
       color: #ccc;
-      cursor: hand; }
+      cursor: help; }
+  #container ol {
+    color: #eaeaea; }
+  #container a.code {
+    color: pink; }
+  #container #error_explanation {
+    color: red; }
 
 #footer {
   padding: 15px;

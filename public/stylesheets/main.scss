@@ -223,13 +223,26 @@ img, iframe {
 
   p.rytp, p.ytp {
     padding-top: 10px;
+    color: #eaeaea;
   }
 
   p acronym {
     color: #fff;
     font-size: 1.1em;
     text-decoration: underline;
-    &:hover { color: #ccc; cursor: hand; }
+    &:hover { color: #ccc; cursor: help; }
+  }
+
+  ol {
+    color: #eaeaea;
+  }
+
+  a.code {
+    color: pink;
+  }
+
+  #error_explanation {
+    color: red;
   }
 }
 
