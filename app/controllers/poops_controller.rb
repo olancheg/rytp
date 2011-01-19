@@ -27,7 +27,7 @@ class PoopsController < ApplicationController
 
   def vote
     unless voted?(params[:id])
-      @poop = Poop.find(params[:id])
+      @poop = Poop.find_by_id(params[:id])
       redirect_to root_path unless @poop
 
       @poop.rate+=1
@@ -50,7 +50,7 @@ class PoopsController < ApplicationController
 
   def vote_bad
     unless voted_bad?(params[:id])
-      @poop = Poop.find(params[:id])
+      @poop = Poop.find_by_id(params[:id])
       redirect_to root_path unless @poop
 
       @poop.rate-=1
@@ -72,8 +72,8 @@ class PoopsController < ApplicationController
   end
 
   def show
-    @poop = Poop.find(params[:id])
-    redirect_to root_path unless @poop
+    @poop = Poop.find_by_id(params[:id])
+    redirect_to root_path unless @poop and (@poop.is_approved or !session[:admin].nil?)
   end
 
   def new
@@ -81,7 +81,7 @@ class PoopsController < ApplicationController
   end
 
   def edit
-    @poop = Poop.find(params[:id])
+    @poop = Poop.find_by_id(params[:id])
   end
 
   def create
@@ -97,7 +97,7 @@ class PoopsController < ApplicationController
   end
 
   def update
-    @poop = Poop.find(params[:id])
+    @poop = Poop.find_by_id(params[:id])
 
     if @poop.update_attributes(params[:poop])
       redirect_to watch_path(@poop)
@@ -107,7 +107,7 @@ class PoopsController < ApplicationController
   end
 
   def destroy
-    @poop = Poop.find(params[:id])
+    @poop = Poop.find_by_id(params[:id])
     @poop.destroy
 
     redirect_to @poop.category.name == 'RYTP' ? root_path : rytpmv_path
