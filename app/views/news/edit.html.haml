@@ -1,0 +1,7 @@
+%script $('menu_news').addClassName('active');
+= set_title :title => 'редактирование новости'
+%h1 Editing new
+= render 'form'
+= link_to 'Show', @news
+|
+\#{link_to 'Back', news_index_path}

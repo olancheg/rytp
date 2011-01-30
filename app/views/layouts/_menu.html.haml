@@ -4,11 +4,10 @@
   %li
     = link_to t(:'menu.rytpmv'), rytpmv_path, :id => 'menu_rytpmv'
   %li
-    = link_to t(:'menu.wiki'), wiki_path, :class => active?('wiki')
+    = link_to t(:'menu.feed'), poops_feed_path(:RYTP), :class => ['white', active?('poops')].join(' ')
   %li
-    = link_to t(:'menu.top'), top_path(:RYTP), :class => active?('top')
+    = link_to t(:'menu.wiki'), wiki_path, :class => ['white', 'where_am_i', active?('wiki')].join(' ')
   %li
-    = link_to t(:'menu.add'), add_poop_path, :class => active?('new', 'create')
-  - if admin?
-    %li
-      = link_to t(:'menu.not_approved'), not_approved_path, :class => active?('not_approved')
+    = link_to t(:'menu.top'), top_path(:RYTP), :class => ['white', active?('top')].join(' '), :title => 'пупы с рейтингом 50 косарей и выше'
+  %li
+    = link_to t(:'menu.add'), add_poop_path, :class => ['add_button', active?('new', 'create')].join(' ')

@@ -1,0 +1,7 @@
+= set_title :type => params[:category], :title => 'недавно добавленные'
+%h1.rytp #{link_to 'RYTP', poops_feed_path(:RYTP), :class => (params[:category]=='RYTP' ? 'active' : nil)}
+%h1.rytp #{link_to 'RYTPMV', poops_feed_path(:RYTPMV), :class => (params[:category]=='RYTPMV' ? 'active' : nil)}
+= render :partial => 'poops/poop', :collection => @poops
+- if @poops.empty?
+  .empty Нет ни одного видео.
+= will_paginate @poops

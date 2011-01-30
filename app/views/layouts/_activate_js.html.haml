@@ -1,0 +1,10 @@
+%script
+  \inputPlaceholder($('search'));
+  
+  \$$('.white', '#dropdown_menu').invoke('observe', 'mouseover', function(event) {
+  \  $('dropdown_menu').setStyle('display: block');
+  \});
+  
+  \$$('.white', '#dropdown_menu').invoke('observe', 'mouseout', function(event) {
+  \  $('dropdown_menu').setStyle('display: none');
+  \});

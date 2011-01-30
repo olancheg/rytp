@@ -1,0 +1,4 @@
+= set_title :title => 'поиск'
+= render :partial => 'poops/poop', :collection => @poops
+- if @poops.empty?
+  .empty Ваш запрос не дал результатов.

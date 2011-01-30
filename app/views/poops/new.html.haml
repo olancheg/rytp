@@ -1,5 +1,6 @@
 = set_title :title => t(:new)
 %h1 Добавить Poop
-#notice #{flash[:notice]}
+- if flash[:notice]
+  #notice #{flash[:notice]}
 = render 'form'
 = link_to t(:back), :back

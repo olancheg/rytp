@@ -1,0 +1,13 @@
+%ul#admin_menu
+  - if admin? or policeman?
+    %li
+      = link_to t(:'menu.not_approved'), not_approved_path, :class => active?('not_approved')
+  - if main_admin?
+    %li
+      = link_to t(:'menu.all_admins'), admins_path, :id => 'menu_admins'
+  - if admin?
+    %li
+      = link_to t(:'menu.news_control'), news_index_path, :id => 'menu_news'
+  - if admin? or policeman?
+    %li
+      = link_to t(:'menu.logout'), logout_path

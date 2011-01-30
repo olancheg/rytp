@@ -1,33 +1,33 @@
 .poop{ :id => ["poop", poop.id] }
-  %h1.title
-    = poop.title+" | "+poop.category.name
+  %h1.title(title="#{poop.title}")
+    = truncate(poop.title, :length => 40)
+    #{" | "+poop.category.name if action_name == 'not_approved'}
   .video
     = video(poop.code)
-  .info
-    %label{ :id => ["votes", poop.id] } #{poop.rate.to_s+' '+Russian.p(poop.rate, "косарь", "косаря", "косарей")}
+  .info{ :style => (admin? or policeman?) ? 'height: 40px' : nil }
+    %label{ :id => ["votes", poop.id] } #{poop.rate.to_s+' '+Russian.p(poop.rate.abs, "косарь", "косаря", "косарей")}
     .links
-      %noindex
-        .link{:id => "vote_btn_#{poop.id}"}
-          - if voted?(poop.id)
-            дать косарь
-          - else
-            = link_to 'дать косарь', vote_poop_path(poop), :remote => true
-        |
-        .link{:id => "vote_bad_btn_#{poop.id}"}
-          - if voted_bad?(poop.id)
-            ХУNТА
-          - else
-            = link_to 'ХУNТА', vote_bad_path(poop), :remote => true
-      - if controller.action_name=='top'
-        | #{ link_to 'комментарии', watch_path(poop), :class => :comment_link }
-    - if admin?
+      %div{:id => ["vote_btn", poop.id], :class => [:link, voted?(poop.id) ? :kosar_g : :kosar]}
+        - if voted?(poop.id)
+          дать косарь
+        - else
+          = link_to 'дать косарь', '#', :onclick => "vote(#{poop.id}, 1);return false;"
+
+      %div{:id => ["vote_bad_btn", poop.id], :class => [:link, voted_bad?(poop.id) ? :xunta_g : :xunta]}
+        - if voted_bad?(poop.id)
+          ХУNТА
+        - else
+          = link_to 'ХУNТА', '#', :onclick => "vote(#{poop.id}, 0);return false;"
+      - if ['poops', 'top'].include? controller.action_name
+        #{ link_to 'комментарии', watch_path(poop)+'#comments', :class => :comment_link }
+    - if admin? or policeman?
       .admin_links
         = link_to 'подтвердить', approve_path(poop), :remote => true unless poop.is_approved
         = link_to 'редактировать', edit_poop_path(poop)
-        = link_to 'удалить', poop, :method => :delete, :confirm => 'Вы уверены?'
+        = link_to 'удалить', poop, :method => :delete, :confirm => 'Вы уверены?' if admin?
   .author
-    автор: #{poop.author}
+    %label автор: #{poop.author}
     .show_description
       = link_to_function 'описание', "show_description(#{poop.id})" unless poop.description.empty?
   .description{ :id => [ 'description', poop.id ] }(style='display: none')
-    = poop.description
+    = with_brs(poop.description)

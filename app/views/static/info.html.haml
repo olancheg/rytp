@@ -1,0 +1,19 @@
+= set_title :title => 'информация'
+#info
+  По всем вопросам обращайтесь на почту #{mail_to 'webmaster@rytp.ru'}
+
+#reklama
+  Тут будут расценки на рекламу
+
+#be_admin
+  Хотите стать админом - #{link_to 'напишите нам', 'http://vkontakte.ru/topic23535228_24263511'} 
+  
+#advanced
+  = image_tag '/images/banner.jpg'
+  Установи себе на сайт наш баннер
+  %acronym(title="Hyper Text Markup Language") HTML
+  %textarea#code
+    = "<a href=\"http://rytp.ru\" title=\"RYTP.ru - лучший источник RYTP и RYTPMV\"><img src=\"http://rytp.ru/images/banner.jpg\" alt=\"RYTP banner\" border=\"0\" /></a>"
+  %acronym(title="Bulletin Board Code") BB-code
+  %textarea#code
+    = "[url=http://rytp.ru][img]http://rytp.ru/images/banner.jpg[/img][/url]"

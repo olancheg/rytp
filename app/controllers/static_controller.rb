@@ -10,4 +10,12 @@ class StaticController < ApplicationController
   def rules
     #
   end
+
+  def info
+    #
+  end
+
+  def files
+    #
+  end
 end

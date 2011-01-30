@@ -2,8 +2,11 @@ source 'http://rubygems.org'
 
 gem 'rails'
 gem 'haml'
+gem 'pg'
 gem 'will_paginate'
 gem 'russian'
+gem 'hpricot'
+gem 'bluecloth'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

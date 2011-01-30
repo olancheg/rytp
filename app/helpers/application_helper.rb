@@ -18,4 +18,17 @@ module ApplicationHelper
   def admin?
     !session[:admin].nil?
   end
+
+  def policeman?
+    !session[:policeman].nil?
+  end
+
+  def main_admin?
+    !session[:main].nil?
+  end
+
+  def with_brs(text)
+    text = text.gsub "\n", "<br />" 
+    sanitize text, :tags => %w{br}
+  end
 end

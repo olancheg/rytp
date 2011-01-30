@@ -1,4 +1,7 @@
 Rytp::Application.routes.draw do
+  match 'news/last' => 'news#last', :as => :last_new
+  resources :news
+
   match 'login' => 'admins#login', :as => :login
   match 'logout' => 'admins#logout', :as => :logout
   match 'not_approved' => 'admins#not_approved', :as => :not_approved
@@ -6,6 +9,7 @@ Rytp::Application.routes.draw do
   resources :admins
 
   match 'index' => 'poops#index', :as => :index
+  match 'search' => 'poops#search', :as => :search
   match 'rytpmv' => 'poops#rytpmv', :as => :rytpmv
   match 'top/:category' => 'poops#top', :as => :top
   match 'add_poop' => 'poops#new', :as => :add_poop
@@ -17,8 +21,11 @@ Rytp::Application.routes.draw do
   match 'wiki' => 'static#wiki', :as => :wiki
   match 'rules' => 'static#rules', :as => :rules
   match 'howto' => 'static#howto', :as => :howto
+  match 'info' => 'static#info', :as => :info
+  match 'files' => 'static#files', :as => :files
 
-  match 'feed' => 'rss#index', :as => :rss_feed
+  match 'feed' => 'feed#index', :as => :rss_feed
+  match 'feed/:category' => 'feed#poops', :as => :poops_feed
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

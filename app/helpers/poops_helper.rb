@@ -1,6 +1,6 @@
 module PoopsHelper
   def video(code)
-    raw(sanitize code, :tags => %w{iframe})
+    raw(sanitize code, :tags => %w{iframe}, :attributes => %w{src})
   end
 
   def voted?(poop)
@@ -11,8 +11,8 @@ module PoopsHelper
     controller.voted_bad?(poop)
   end
 
-  def poop_ids(category)
-    Poop.approved.find_all_by_category_id(category).map(&:id)
+  def poop_ids(category_id)
+    Poop.ids(category_id).map(&:id) 
   end
 
   def random_poop(poop)

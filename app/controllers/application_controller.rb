@@ -3,13 +3,19 @@ class ApplicationController < ActionController::Base
   before_filter :init_cookies
 
   def admin?
-    redirect_to login_path if session[:admin].nil?
+    redirect_to root_path if session[:admin].nil?
+  end
+
+  def policeman?
+    redirect_to root_path if session[:policeman].nil?
   end
 
   def main_admin?
-    user = Admin.find_by_id(session[:admin]) if session[:admin]
+    redirect_to root_path if session[:main].nil?
+  end
 
-    redirect_to root_path unless user and user.main
+  def admin_or_policeman?
+    redirect_to root_path if session[:policeman].nil? and session[:admin].nil?
   end
 
   def init_cookies
@@ -26,11 +32,11 @@ class ApplicationController < ActionController::Base
   end
 
   def voted?(poop)
-    element_in_storage(poop, :good)
+    element_in_storage(poop.to_i, :good)
   end
 
   def voted_bad?(poop)
-    element_in_storage(poop, :bad)
+    element_in_storage(poop.to_i, :bad)
   end
 
   def element_in_storage(element, storage)

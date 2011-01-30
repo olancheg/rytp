@@ -1,7 +1,14 @@
 <?xml version="1.0"?>
 <cross-domain-policy>
-  <allow-access-from domain="*vkontake.ru" />
-  <allow-access-from domain="*vk.com" />
-  <allow-access-from domain="*youtube.com" />
-  <allow-access-from domain="*vimeo.com" />
+  <allow-access-from domain="vkontake.ru" />
+  <allow-access-from domain="*.vkontake.ru" />
+
+  <allow-access-from domain="vk.com" />
+  <allow-access-from domain="*.vk.com" />
+
+  <allow-access-from domain="youtube.com" />
+  <allow-access-from domain="*.youtube.com" />
+
+  <allow-access-from domain="vimeo.com" />
+  <allow-access-from domain="*.vimeo.com" />
 </cross-domain-policy>

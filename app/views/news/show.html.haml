@@ -1,0 +1,24 @@
+= set_title :title => @news.title
+#new
+  .image
+    = image_tag @news.photo
+  %h1.title
+    = @news.title
+  %p.content
+    :markdown
+      #{with_brs @news.content}
+  %p.date
+    = @news.created_at.strftime '%d.%m.%Y'
+= content_for :comments do
+  #vk_comments
+    %a(name="comments")
+    %script(type="text/javascript")
+      VK.Widgets.Comments("vk_comments", {limit: 10, width: "496"});
+
+= content_for :left do
+  #previous_new
+    = link_to image_tag('/images/news_prev.png'), previous_new(@news), :title => 'Ctrl + стрелка влево', :class => :prev_page
+
+= content_for :right do
+  #next_new
+    = link_to image_tag('/images/news_next.png'), next_new(@news), :title => 'Ctrl + стрелка вправо', :class => :next_page

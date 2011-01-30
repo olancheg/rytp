@@ -1,4 +1,4 @@
-module RssHelper
+module FeedHelper
   def author(name)
     unless name.empty?
       'by '+name.to_s

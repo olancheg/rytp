@@ -20,14 +20,14 @@
     %br/
     = f.text_area :description
   .field.new_code
-    = f.label 'Код видео (используйте iframe) '
-    = link_to 'где его взять?', howto_path, :class => :code
+    = f.label 'Код видео (используйте iframe!) '
+    = link_to 'где его взять?', howto_path, :class => :code, :target => '_blank'
     %br/
     = f.text_area :code
   .field
     = f.label 'Категория'
     %br/
-    = collection_select(:poop, :category_id, Category.all, :id, :name, :prompt => true)
+    = collection_select(:poop, :category_id, Category.all, :id, :name, :prompt => 'Выберите из списка')
   .field
     = f.label 'Нажимая "Отправить", вы соглашаетесь с '
     = link_to 'правилами', rules_path, :target => '_blank'

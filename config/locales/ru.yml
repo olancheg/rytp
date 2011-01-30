@@ -6,8 +6,30 @@ ru:
   menu:
     rytp: "rytp"
     rytpmv: "rytpmv"
-    wiki: "куда я попал?"
+    feed: "Лента"
+    wiki: "Куда я попал?"
     study: "учебка"
-    top: "топ"
+    top: "ТОП50"
     add: "добавить"
-    not_approved: "новые"
+    not_approved: "новые пупы"
+    all_admins: "администраторы"
+    news_control: "новости"
+    logout: "выйти"
+    news: "Новости"
+    files: "Файлы"
+    info: "Инфо"
+  activerecord:
+    attributes:
+      admin:
+        login: "Логин"
+        password: "Пароль"
+        name: "Имя"
+        policeman: "Ты милиционер?"
+      news:
+        content: "Содержимое новости"
+        title: "Заголовок"
+        photo: "Поле фотография к новости"
+      poop:
+        code: "Код видео"
+        title: "Заголовок"
+        category_id: "Категория"

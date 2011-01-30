@@ -9243,9 +9243,171 @@ Form.Element.DelayedObserver = Class.create({
 })();
 
 
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
+function Set_Cookie( name, value, expires, path, domain, secure ) 
+{
+    var today = new Date();
+    today.setTime( today.getTime() );
+
+    if ( expires )
+      expires = expires * 1000 * 60 * 60 * 24;
+
+    var expires_date = new Date( today.getTime() + (expires) );
+
+    document.cookie = name + "=" +escape( value ) +
+    ( ( expires ) ? ";expires=" + expires_date.toGMTString() : "" ) + 
+    ( ( path ) ? ";path=" + path : "" ) + 
+    ( ( domain ) ? ";domain=" + domain : "" ) +
+    ( ( secure ) ? ";secure" : "" );
+}
+
+function Get_Cookie( check_name ) 
+{
+	var a_all_cookies = document.cookie.split( ';' );
+	var a_temp_cookie = '';
+	var cookie_name = '';
+	var cookie_value = '';
+	var b_cookie_found = false;
+	
+	for ( i = 0; i < a_all_cookies.length; i++ )
+	{
+		a_temp_cookie = a_all_cookies[i].split( '=' );
+		cookie_name = a_temp_cookie[0].replace(/^\s+|\s+$/g, '');
+
+		if ( cookie_name == check_name )
+		{
+			b_cookie_found = true;
+			if ( a_temp_cookie.length > 1 )
+				cookie_value = unescape( a_temp_cookie[1].replace(/^\s+|\s+$/g, '') );
+			return cookie_value;
+			break;
+		}
+		a_temp_cookie = null;
+		cookie_name = '';
+	}
+	if ( !b_cookie_found )
+	{
+		return null;
+	}
+}
+
+
+document.onkeydown = NavigateThrough;
+
+function NavigateThrough(event)
+{
+        if (window.event) event = window.event;
+        if (event.ctrlKey)
+        {
+                var link = null;
+
+                switch (event.keyCode ? event.keyCode : event.which ? event.which : null)
+                {
+                        case 0x25:
+                                link = $$('.prev_page')[0];
+                                break;
+
+                        case 0x27:
+                                link = $$('.next_page')[0];
+                                break;
+
+                        case 0x28:
+                                link = $('random');
+                                break;
+                }
+
+                if (link && link.href) document.location = link.href;
+        }  
+}
+
+
+/**
+ * Example: inputPlaceholder( document.getElementById('my_input_element') )
+ * @param {Element} input
+ * @param {String} [color='#AAA']
+ * @return {Element} input
+ */
+function inputPlaceholder (input, color) {
+
+	if (!input) return null;
+
+	// Do nothing if placeholder supported by the browser (Webkit, Firefox 3.7)
+	if (input.placeholder && 'placeholder' in document.createElement(input.tagName)) return input;
+
+	color = color || '#AAA';
+	var default_color = input.style.color;
+	var placeholder = input.getAttribute('placeholder');
+
+	if (input.value === '' || input.value == placeholder) {
+		input.value = placeholder;
+		input.style.color = color;
+		input.setAttribute('data-placeholder-visible', 'true');
+	}
+
+	var add_event = /*@cc_on'attachEvent'||@*/'addEventListener';
+
+	input[add_event](/*@cc_on'on'+@*/'focus', function(){
+	 input.style.color = default_color;
+	 if (input.getAttribute('data-placeholder-visible')) {
+		 input.setAttribute('data-placeholder-visible', '');
+		 input.value = '';
+	 }
+	}, false);
+
+	input[add_event](/*@cc_on'on'+@*/'blur', function(){
+		if (input.value === '') {
+			input.setAttribute('data-placeholder-visible', 'true');
+			input.value = placeholder;
+			input.style.color = color;
+		} else {
+			input.style.color = default_color;
+			input.setAttribute('data-placeholder-visible', '');
+		}
+	}, false);
+
+	input.form && input.form[add_event](/*@cc_on'on'+@*/'submit', function(){
+		if (input.getAttribute('data-placeholder-visible')) {
+			input.value = '';
+		}
+	}, false);
+
+	return input;
+}
+
 
 function show_description(elem) {
   Effect.toggle('description_'+elem, 'Blind', { duration: 0.4 });
 }
+
+function cookiesEnabled() {
+  Set_Cookie("CookieTest", "Enabled");
+  return (Get_Cookie("CookieTest") == "Enabled");
+}
+
+function vote(id, type) {
+  if (cookiesEnabled()) {
+    if (type == 0) 
+      vote_type = 'bad';
+    else
+      vote_type = 'good';
+
+    new Ajax.Request('/'+id+'/'+vote_type,
+    {
+      method:'get',
+      onSuccess: function(transport){
+        var response = transport.responseText;
+        eval(response);
+      },
+      onFailure: function(){ alert('Ошибка при голосовании!') }
+    });
+  } else 
+    alert('Для голосования необходимо включить cookies!');
+}
+
+Event.observe(window, 'load', function() {
+  var anchor_value;
+  var stripped_url = document.location.toString().split("#");
+  if (stripped_url.length > 1)
+    anchor_value = stripped_url[1];
+  if (anchor_value == 'comments')
+    $('vk_comments').scrollTo();
+});

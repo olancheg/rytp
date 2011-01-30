@@ -1,9 +1,11 @@
+%script $('menu_admins').addClassName('active');
 %h1 Listing admins
-%table
+%table.admins
   %tr
     %th Login
     %th Password
     %th Name
+    %th Policeman?
     %th
     %th
     %th
@@ -12,6 +14,7 @@
       %td= admin.login
       %td= admin.password
       %td= admin.name
+      %td= admin.policeman ? 'yes' : 'no'
       %td= link_to 'Show', admin
       %td= link_to 'Edit', edit_admin_path(admin)
       %td= link_to 'Destroy', admin, :confirm => 'Are you sure?', :method => :delete
