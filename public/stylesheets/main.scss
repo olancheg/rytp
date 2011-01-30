@@ -498,6 +498,14 @@ h1 {
     .date {
       text-align: right;
     }
+
+    a {
+      color: #000;
+
+      &:hover {
+        color: #999;
+      }
+    }
   }
 
   #previous_new a, #next_new a{

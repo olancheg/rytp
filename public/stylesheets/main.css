@@ -332,6 +332,10 @@ h1 {
       color: #000; }
     #container #new .date {
       text-align: right; }
+    #container #new a {
+      color: #000; }
+      #container #new a:hover {
+        color: #999; }
   #container #previous_new a, #container #next_new a {
     background: none;
     margin-top: 300px;
