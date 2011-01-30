@@ -204,7 +204,8 @@ h1 {
     #container a:hover {
       color: #CCC; }
   #container h1 {
-    color: #fff; }
+    color: #fff;
+    padding-bottom: 5px; }
   #container .links {
     float: right; }
     #container .links .link {
@@ -293,17 +294,19 @@ h1 {
   #container .field {
     color: #fff;
     padding-bottom: 10px; }
+  #container .new_code {
+    display: inline-block; }
   #container .new_description textarea, #container .new_code textarea {
     width: 300px;
     height: 100px; }
   #container p.rytp, #container p.ytp {
     padding-top: 10px;
     color: #eaeaea; }
-  #container p acronym {
+  #container p abbr {
     color: #fff;
     font-size: 1.1em;
     text-decoration: underline; }
-    #container p acronym:hover {
+    #container p abbr:hover {
       color: #ccc;
       cursor: help; }
   #container ol {
@@ -348,16 +351,16 @@ h1 {
       color: #000; }
       #container #info a:hover, #container #reklama a:hover, #container #advanced a:hover, #container #file_list a:hover, #container #be_admin a:hover {
         color: #999; }
-    #container #info acronym, #container #reklama acronym, #container #advanced acronym, #container #file_list acronym, #container #be_admin acronym {
+    #container #info abbr, #container #reklama abbr, #container #advanced abbr, #container #file_list abbr, #container #be_admin abbr {
       display: block;
       padding-top: 10px; }
   #container .rules *, #container .where * {
     color: #000 !important; }
   #container .rules ol, #container .where ol {
     padding-left: 20px; }
-  #container .rules acronym, #container .where acronym {
+  #container .rules abbr, #container .where abbr {
     display: inline !important; }
-    #container .rules acronym:hover, #container .where acronym:hover {
+    #container .rules abbr:hover, #container .where abbr:hover {
       color: #999; }
   #container .get_some_code img {
     padding-bottom: 20px; }
@@ -366,7 +369,7 @@ h1 {
     height: 292px;
     width: 400px;
     margin: auto; }
-  #container #advanced textarea#code {
+  #container #advanced textarea.code {
     background-color: #ccc;
     width: 400px;
     height: 60px;

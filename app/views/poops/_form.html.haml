@@ -8,28 +8,28 @@
         - @poop.errors.full_messages.each do |msg|
           %li= msg
   .field
-    = f.label 'Название'
+    = f.label :title
     %br/
     = f.text_field :title
   .field
-    = f.label 'Автор'
+    = f.label :author
     %br/
     = f.text_field :author
   .field.new_description
-    = f.label 'Описание (не обязательно)'
+    = f.label :description
     %br/
     = f.text_area :description
   .field.new_code
-    = f.label 'Код видео (используйте iframe!) '
+    = f.label :code 
     = link_to 'где его взять?', howto_path, :class => :code, :target => '_blank'
     %br/
     = f.text_area :code
   .field
-    = f.label 'Категория'
+    = f.label :category_id
     %br/
     = collection_select(:poop, :category_id, Category.all, :id, :name, :prompt => 'Выберите из списка')
   .field
-    = f.label 'Нажимая "Отправить", вы соглашаетесь с '
+    Нажимая "Отправить", вы соглашаетесь с
     = link_to 'правилами', rules_path, :target => '_blank'
   .actions
     = f.submit :value => 'Отправить'
