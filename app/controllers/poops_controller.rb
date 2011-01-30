@@ -125,6 +125,9 @@ class PoopsController < ApplicationController
     else
       redirect_to @poop.category.name == 'RYTP' ? root_path : rytpmv_path
     end
+
+  rescue
+    redirect_to root_path
   end
 
 private
@@ -133,7 +136,7 @@ private
     if request.env['HTTP_REFERER'].nil? or !(request.env['HTTP_REFERER'] =~ /^http:\/\/(www\.)?#{request.host}/) or
       cookies[:good].empty? or cookies[:bad].empty?
 
-      redirect_to '/404'
+      redirect_to '/error_404'
     end
   end
 end
