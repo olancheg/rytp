@@ -1,4 +1,4 @@
-class AddPolicemanToPoops < ActiveRecord::Migration
+class AddPolicemanToAdmins < ActiveRecord::Migration
   def self.up
     add_column :admins, :policeman, :boolean, :default => false
 
