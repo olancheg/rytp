@@ -9383,14 +9383,14 @@ function cookiesEnabled() {
   return (Get_Cookie("CookieTest") == "Enabled");
 }
 
-function vote(id, type) {
+function vote(id, type, salt) {
   if (cookiesEnabled()) {
     if (type == 0) 
       vote_type = 'bad';
     else
       vote_type = 'good';
 
-    new Ajax.Request('/'+id+'/'+vote_type,
+    new Ajax.Request('/'+id+'/'+vote_type+'?salt='+salt,
     {
       method:'get',
       onSuccess: function(transport){

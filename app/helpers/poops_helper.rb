@@ -1,3 +1,5 @@
+require 'digest'
+
 module PoopsHelper
   def video(code)
     raw(sanitize code, :tags => %w{iframe}, :attributes => %w{src})
@@ -34,5 +36,9 @@ module PoopsHelper
     else
       root_path
     end
+  end
+
+  def salt(rjs = false)
+    Digest::MD5.hexdigest "#{request.remote_ip}_#{rjs ? request.env['HTTP_REFERER'] : request.url}"
   end
 end

@@ -215,7 +215,7 @@ h1 {
       color: #fff; }
       #container .links .link a:hover, #container .links .comment_link:hover {
         color: #d8d8d8; }
-    #container .links .kosar, #container .links .kosar_g, #container .links .xunta, #container .links .xunta_g {
+    #container .links .kosar, #container .links .kosar_g, #container .links .xunta, #container .links .xunta_g, #container .links .comment_link {
       padding: 0 5px 4px 20px;
       text-transform: lowercase; }
     #container .links .kosar {
@@ -226,6 +226,8 @@ h1 {
       background: url("/images/xunta.png") no-repeat; }
     #container .links .xunta_g {
       background: url("/images/xunta_g.png") no-repeat; }
+    #container .links .comment_link {
+      background: url("/images/comments.png") no-repeat; }
   #container .admin_links {
     clear: both; }
   #container .content {

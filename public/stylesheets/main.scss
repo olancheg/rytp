@@ -307,7 +307,7 @@ h1 {
       }
     }
 
-    .kosar, .kosar_g, .xunta, .xunta_g {
+    .kosar, .kosar_g, .xunta, .xunta_g, .comment_link {
       padding: 0 5px 4px 20px;
       text-transform: lowercase;
     }
@@ -326,6 +326,10 @@ h1 {
 
     .xunta_g{
       background: url('/images/xunta_g.png') no-repeat;
+    }
+
+    .comment_link{
+      background: url('/images/comments.png') no-repeat;
     }
   }
 

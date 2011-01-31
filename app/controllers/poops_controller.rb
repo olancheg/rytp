@@ -1,4 +1,5 @@
 require 'hpricot'
+require 'digest'
 
 class PoopsController < ApplicationController
   before_filter :admin_or_policeman?, :only => [ :edit, :update ]
@@ -133,10 +134,16 @@ class PoopsController < ApplicationController
 private
 
   def hacker?
+    logger.debug salt.to_s
+    logger.debug "#{request.remote_ip}; #{request.env['HTTP_REFERER']}"
     if request.env['HTTP_REFERER'].nil? or !(request.env['HTTP_REFERER'] =~ /^http:\/\/(www\.)?#{request.host}/) or
-      cookies[:good].empty? or cookies[:bad].empty?
+      cookies[:good].empty? or cookies[:bad].empty? or params[:salt].nil? or salt != params[:salt]
 
       redirect_to '/error_404'
     end
+  end
+
+  def salt
+    Digest::MD5.hexdigest "#{request.remote_ip}_#{request.env['HTTP_REFERER']}"
   end
 end

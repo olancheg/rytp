@@ -1,5 +1,5 @@
 page.replace_html "votes_#{@poop.id}", @poop.rate.to_s+' '+Russian.p(@poop.rate.abs, "косарь", "косаря", "косарей")
-page.replace_html "vote_bad_btn_#{@poop.id}", link_to('ХУNТА', '#', :onclick => "vote(#{@poop.id}, 0);return false;")
+page.replace_html "vote_bad_btn_#{@poop.id}", link_to('ХУNТА', '#', :onclick => "vote(#{@poop.id}, 0, '#{salt true}');return false;")
 page.replace_html "vote_btn_#{@poop.id}", 'дать косарь'
-page << "$('vote_btn_#{@poop.id}').removeClassName('kosar');$('vote_btn_#{@poop.id}').addClassName('kosar_g');"
-page << "$('vote_bad_btn_#{@poop.id}').addClassName('xunta');$('vote_bad_btn_#{@poop.id}').removeClassName('xunta_g');"
+page << "$('vote_btn_#{@poop.id}').removeClassName('kosar').addClassName('kosar_g');"
+page << "$('vote_bad_btn_#{@poop.id}').addClassName('xunta').removeClassName('xunta_g');"

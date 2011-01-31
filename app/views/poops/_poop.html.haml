@@ -11,13 +11,13 @@
         - if voted?(poop.id)
           дать косарь
         - else
-          = link_to 'дать косарь', '#', :onclick => "vote(#{poop.id}, 1);return false;"
+          = link_to 'дать косарь', '#', :onclick => "vote(#{poop.id}, 1, '#{salt}');return false;"
 
       %div{:id => ["vote_bad_btn", poop.id], :class => [:link, voted_bad?(poop.id) ? :xunta_g : :xunta]}
         - if voted_bad?(poop.id)
           ХУNТА
         - else
-          = link_to 'ХУNТА', '#', :onclick => "vote(#{poop.id}, 0);return false;"
+          = link_to 'ХУNТА', '#', :onclick => "vote(#{poop.id}, 0, '#{salt}');return false;"
       - if ['poops', 'top'].include? controller.action_name
         #{ link_to 'комментарии', watch_path(poop)+'#comments', :class => :comment_link }
     - if admin? or policeman?
