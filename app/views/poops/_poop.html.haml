@@ -1,7 +1,7 @@
 .poop{ :id => ["poop", poop.id] }
   %h1.title(title="#{poop.title} | #{poop.category.name}")
     = truncate(poop.title, :length => 40)
-    #{" | "+poop.category.name if action_name == 'not_approved'}
+    = " | "+poop.category.name if controller.action_name == 'not_approved'
   .video
     = video(poop.code)
   .info{ :style => (admin? or policeman?) ? 'height: 40px' : nil }
