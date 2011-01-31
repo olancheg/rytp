@@ -9374,6 +9374,8 @@ function inputPlaceholder (input, color) {
 }
 
 
+var can_vote = true;
+
 function show_description(elem) {
   Effect.toggle('description_'+elem, 'Blind', { duration: 0.4 });
 }
@@ -9384,14 +9386,18 @@ function cookiesEnabled() {
 }
 
 function vote(obj, id) {
-  if (cookiesEnabled()) {
+  if (cookiesEnabled()) 
+    if (can_vote) {
 
-    $(obj+'_form_'+id).request({
-      onFailure: function(){ alert('Ошибка при голосовании! Попробуйте перезагрузить страницу') }
-    });
+      can_vote = false;
 
-  } else 
-    alert('Для голосования необходимо включить cookies!');
+      $(obj+'_form_'+id).request({
+        onFailure: function(){ can_vote = true; alert('Ошибка при голосовании! Попробуйте перезагрузить страницу') },
+        onSuccess: function(){ can_vote = true; }
+      });
+
+    }else alert('Вы слишком быстро нажимаете на кнопочки');
+  else alert('Для голосования необходимо включить cookies!');
 }
 
 Event.observe(window, 'load', function() {
