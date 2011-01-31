@@ -31,7 +31,7 @@ class PoopsController < ApplicationController
   end
 
   def top
-    @poops = Poop.popular.by_category(params[:category] || 'RYTP').limit(50).paginate(:per_page => 5, :page => params[:page])
+    @poops = Poop.popular.by_category(params[:category] || 'RYTP').paginate(:per_page => 5, :page => params[:page])
   end
 
   def vote
@@ -132,15 +132,8 @@ class PoopsController < ApplicationController
   end
 
 private
-
   def hacker?
-    logger.debug salt.to_s
-    logger.debug "#{request.remote_ip}; #{request.env['HTTP_REFERER']}"
-    if request.env['HTTP_REFERER'].nil? or !(request.env['HTTP_REFERER'] =~ /^http:\/\/(www\.)?#{request.host}/) or
-      cookies[:good].empty? or cookies[:bad].empty? or params[:salt].nil? or salt != params[:salt]
-
-      redirect_to '/error_404'
-    end
+    redirect_to '/error_404' if cookies[:good].empty? or cookies[:bad].empty? or params[:salt].nil? or salt != params[:salt] or !request.post?
   end
 
   def salt

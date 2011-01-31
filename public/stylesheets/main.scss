@@ -294,6 +294,10 @@ h1 {
   .links {
     float: right;
 
+    form {
+      display: inline-block;
+    }
+
     .link {
       color: #333;
       display: inline-block;

@@ -1,5 +1,5 @@
 .poop{ :id => ["poop", poop.id] }
-  %h1.title(title="#{poop.title}")
+  %h1.title(title="#{poop.title} | #{poop.category.name}")
     = truncate(poop.title, :length => 40)
     #{" | "+poop.category.name if action_name == 'not_approved'}
   .video
@@ -7,18 +7,23 @@
   .info{ :style => (admin? or policeman?) ? 'height: 40px' : nil }
     %label{ :id => ["votes", poop.id] } #{poop.rate.to_s+' '+Russian.p(poop.rate.abs, "косарь", "косаря", "косарей")}
     .links
-      %div{:id => ["vote_btn", poop.id], :class => [:link, voted?(poop.id) ? :kosar_g : :kosar]}
-        - if voted?(poop.id)
-          дать косарь
-        - else
-          = link_to 'дать косарь', '#', :onclick => "vote(#{poop.id}, 1, '#{salt}');return false;"
+      = form_tag vote_poop_path(poop.id), :remote => true, :id => "kosar_form_#{poop.id}" do
+        %input{:type => :hidden, :name => :salt, :value => salt}
+        %div{:id => ["vote_btn", poop.id], :class => [:link, voted?(poop.id) ? :kosar_g : :kosar]}
+          - if voted?(poop.id)
+            дать косарь
+          - else
+            = link_to 'дать косарь', '#', :onclick => "vote('kosar', #{poop.id});return false;"
 
-      %div{:id => ["vote_bad_btn", poop.id], :class => [:link, voted_bad?(poop.id) ? :xunta_g : :xunta]}
-        - if voted_bad?(poop.id)
-          ХУNТА
-        - else
-          = link_to 'ХУNТА', '#', :onclick => "vote(#{poop.id}, 0, '#{salt}');return false;"
-      - if ['poops', 'top'].include? controller.action_name
+      = form_tag vote_bad_path(poop.id), :remote => true, :id => "xunta_form_#{poop.id}" do
+        %input{:type => :hidden, :name => :salt, :value => salt}
+        %div{:id => ["vote_bad_btn", poop.id], :class => [:link, voted_bad?(poop.id) ? :xunta_g : :xunta]}
+          - if voted_bad?(poop.id)
+            ХУNТА
+          - else
+            = link_to 'ХУNТА', '#', :onclick => "vote('xunta', #{poop.id});return false;"
+
+      - if ['poops', 'top', 'search'].include? controller.action_name
         #{ link_to 'комментарии', watch_path(poop)+'#comments', :class => :comment_link }
     - if admin? or policeman?
       .admin_links

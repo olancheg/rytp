@@ -7,7 +7,7 @@ class Poop < ActiveRecord::Base
   scope :by_category_id, lambda { |category_id| where('category_id = ?', category_id) }
   scope :ordered, order('created_at DESC')
   scope :approved, where('is_approved = ?', true)
-  scope :rated, where('rate > ?', 49)
+  scope :rated, order('rate DESC').limit(50)
   scope :not_approved, where('is_approved = ?', false)
   scope :popular, order('rate DESC').approved.rated
 

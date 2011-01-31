@@ -208,6 +208,8 @@ h1 {
     padding-bottom: 5px; }
   #container .links {
     float: right; }
+    #container .links form {
+      display: inline-block; }
     #container .links .link {
       color: #333;
       display: inline-block; }

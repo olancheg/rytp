@@ -9383,22 +9383,13 @@ function cookiesEnabled() {
   return (Get_Cookie("CookieTest") == "Enabled");
 }
 
-function vote(id, type, salt) {
+function vote(obj, id) {
   if (cookiesEnabled()) {
-    if (type == 0) 
-      vote_type = 'bad';
-    else
-      vote_type = 'good';
 
-    new Ajax.Request('/'+id+'/'+vote_type+'?salt='+salt,
-    {
-      method:'get',
-      onSuccess: function(transport){
-        var response = transport.responseText;
-        eval(response);
-      },
-      onFailure: function(){ alert('Ошибка при голосовании!') }
+    $(obj+'_form_'+id).request({
+      onFailure: function(){ alert('Ошибка при голосовании! Попробуйте перезагрузить страницу') }
     });
+
   } else 
     alert('Для голосования необходимо включить cookies!');
 }
