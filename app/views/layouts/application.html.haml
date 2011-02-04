@@ -4,7 +4,7 @@
     %title #{title}
     %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")
     %link(rel="shortcut icon" href="/favicon.ico?1")
-    %meta(name="description" content="RYTP.ru является наилучшим источником RYTP и RYTPMV") 
+    %meta{:name => "description", :content => description }
     %meta(name="Keywords" content="rytp, rytpmv, rytp.ru, letsweb, letsweb.ru")
     %noscript
       %meta(http-equiv="refresh" content="0; URL=/badbrowser.html")
@@ -13,9 +13,9 @@
     = javascript_include_tag :all, :cache => true
     = csrf_meta_tag
     %script(type="text/javascript" src="http://userapi.com/js/api/openapi.js?17")
-    %script(type="text/javascript")
-      \VK.init({ apiId: 2021578, onlyWidgets: true });
+    %script(type="text/javascript") VK.init({ apiId: 2021578, onlyWidgets: true });
   %body
+    = render :partial => '/ad/activate_rotaban'
     #main
       #header
         .content
@@ -33,14 +33,16 @@
           %tr
             %td.left
               = yield :left
-            %td
+            %td.middle
               .content
                 = yield
             %td.right
               = yield :right
       #footer
         .content
+          .before #{ yield :ad_block_1 }
           = yield :comments
+          .after  #{ yield :ad_block_2 }
           #subfooter
             .letsweb #{link_to image_tag('/images/letsweb.jpg'), 'http://letsweb.ru', :target => '_blank'}
             .text

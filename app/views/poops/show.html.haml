@@ -1,12 +1,12 @@
 %script
   = "$('menu_#{@poop.category.name.downcase}').addClassName('active');"
 = set_title :type => @poop.category.name, :title => @poop.title
+= set_description truncate(@poop.description, :length => 100)
 = render :partial => 'poops/poop', :object => @poop
 
 = content_for :comments do
   #vk_comments
-    %script(type="text/javascript")
-      VK.Widgets.Comments("vk_comments", {limit: 10, width: "496"});
+    %script(type="text/javascript") VK.Widgets.Comments("vk_comments", {limit: 10, width: "496"});
 
 = content_for :left do
   #nav_left
@@ -16,3 +16,9 @@
   #nav_right
     = link_to image_tag('/images/next.png'), next_poop(@poop), :title => 'Ctrl + стрелка вправо', :class => :next_page, :id => 'next'
     = link_to image_tag('/images/random.png'), random_poop(@poop), :title => 'Ctrl + стрелка вниз', :id => 'random'
+
+= content_for :ad_block_1 do
+  = render :partial => '/ad/before_comments'
+
+= content_for :ad_block_2 do
+  = render :partial => '/ad/after_comments'

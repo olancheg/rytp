@@ -6,7 +6,7 @@
   %li
     = link_to t(:'menu.feed'), poops_feed_path(:RYTP), :class => ['white', active?('poops')].join(' ')
   %li
-    = link_to t(:'menu.wiki'), wiki_path, :class => ['white', 'where_am_i', active?('wiki')].join(' ')
+    = link_to t(:'menu.news'), last_new_path, :class => ['white', 'menu_news_top'].join(' ')
   %li
     = link_to t(:'menu.top'), top_path(:RYTP), :class => ['white', active?('top')].join(' ')
   %li

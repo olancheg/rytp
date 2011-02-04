@@ -1,4 +1,3 @@
-require 'hpricot'
 require 'digest'
 
 class PoopsController < ApplicationController
@@ -24,7 +23,7 @@ class PoopsController < ApplicationController
     poop = Poop.by_category('RYTPMV').approved.last
 
     if poop
-      redirect_to watch_path poop
+      redirect_to watch_path(poop)
     else
       render :template => 'poops/index'
     end
@@ -79,38 +78,18 @@ class PoopsController < ApplicationController
     @poop = Poop.new(params[:poop])
     @poop.is_approved = false
 
-    unless @poop.code.empty?
-      code = Hpricot.parse @poop.code
-      iframes = (code/"iframe")
-      src = iframes.first[:src]
-    end
-
-    if src.nil? or (src =~ /^http\:\/\/(www\.)?(vk\.ru|vkontakte\.ru|youtube\.com|vimeo\.com)/ and iframes.size == 1)
-      @poop.code = code.to_html unless @poop.code.empty?
-
-      if @poop.save
-        flash[:notice]="Ваш пуп добавлен. Он появится после проверки администратором."
-        redirect_to add_poop_path
-      else
-        render :action => "new"
-      end
-
+    if @poop.save
+      flash[:notice]="Ваш пуп добавлен. Он появится после проверки администратором."
+      redirect_to add_poop_path
     else
-      flash[:notice] = "Некорректный код видео."
       render :action => "new"
     end
-
-  rescue
-    flash[:notice] = "Некорректный код видео."
-    render :action => "new"
   end
 
   def update
     @poop = Poop.find_by_id(params[:id])
 
     if @poop.update_attributes(params[:poop])
-      @poop.code = Hpricot(@poop.code).to_html
-      @poop.save
       redirect_to watch_path(@poop)
     else
       render :action => "edit"

@@ -71,7 +71,7 @@ h1 {
 #header {
   height: 138px; }
   #header .content {
-    width: 680px !important; }
+    width: 650px !important; }
   #header #logo {
     float: left;
     margin-top: 30px; }
@@ -130,22 +130,22 @@ h1 {
     height: 92px;
     padding: 5px;
     left: 50%;
-    margin-left: -65px;
+    margin-left: -60px;
     top: 88px;
-    width: 310px;
+    width: 290px;
     font-size: 0.9em;
     background: url("/images/bg_popup_menu.jpg") repeat-x; }
     #header #dropdown_menu .left {
       float: left;
-      padding: 5px 0 0 5px; }
+      padding: 5px 0 0; }
     #header #dropdown_menu .right {
       float: right;
       text-transform: none;
       text-align: center; }
       #header #dropdown_menu .right p {
-        padding: 5px 0 10px; }
+        padding: 8px 0 10px; }
       #header #dropdown_menu .right img {
-        padding-right: 10px; }
+        padding-right: 7px; }
     #header #dropdown_menu ul {
       list-style: none; }
     #header #dropdown_menu li {
@@ -173,17 +173,21 @@ h1 {
 #container {
   padding: 15px;
   padding-bottom: 40px;
-  background: url("/images/triangle.png") center bottom repeat-x; }
+  background: url("/images/triangle.png") center bottom no-repeat; }
   #container table {
     margin: auto; }
     #container table td.left, #container table td.right {
       vertical-align: top; }
-      #container table td.left a, #container table td.right a {
-        padding: 180px 8px 0;
-        margin-top: 29px;
-        display: block;
-        text-decoration: none;
-        background-color: #cd954a; }
+    #container table td.left .rotaban {
+      margin-right: 10px; }
+    #container table td.right .rotaban {
+      margin-left: 10px; }
+  #container #nav_left a, #container #nav_right a, #container #random a {
+    padding: 180px 8px 0;
+    margin-top: 29px;
+    display: block;
+    text-decoration: none;
+    background-color: #cd954a; }
   #container #nav_left a {
     height: 180px; }
   #container #nav_right a {
@@ -195,13 +199,15 @@ h1 {
     margin-top: 0; }
   #container table.admins td, #container table.news th, #container table.news td {
     padding: 5px; }
+  #container .field_with_errors {
+    display: inline-block; }
   #container .empty {
     clear: both;
     padding-top: 30px;
     padding-bottom: 30px; }
-  #container a {
+  #container .middle a {
     color: #FFF; }
-    #container a:hover {
+    #container .middle a:hover {
       color: #CCC; }
   #container h1 {
     color: #fff;
@@ -398,6 +404,8 @@ h1 {
     list-style-type: decimal; }
     #container ol li {
       padding: 3px 0; }
+  #container #news_content {
+    width: 600px; }
 
 #footer {
   padding: 15px;
@@ -408,8 +416,12 @@ h1 {
     #footer a:hover {
       color: #000; }
   #footer #vk_comments {
-    min-height: 180px;
+    min-height: 140px;
     margin: auto; }
+  #footer div.before, #footer div.after {
+    margin: auto;
+    padding: 10px 0;
+    width: 728px; }
   #footer #subfooter {
     font-size: 14px;
     width: 620px;

@@ -1,2 +1,6 @@
+%script $$('.menu_news_top').last().addClassName('active');
 = set_title :title => 'нет новостей :('
 .empty Нет ни одной новости.
+
+= content_for :ad_block_1 do
+  = render :partial => '/ad/before_footer'

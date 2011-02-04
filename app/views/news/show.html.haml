@@ -1,4 +1,7 @@
+%script $$('.menu_news_top').last().addClassName('active');
 = set_title :title => @news.title
+= set_description truncate(@news.content, :length => 100)
+
 #new
   .image
     = image_tag @news.photo
@@ -22,3 +25,9 @@
 = content_for :right do
   #next_new
     = link_to image_tag('/images/news_next.png'), next_new(@news), :title => 'Ctrl + стрелка вправо', :class => :next_page
+
+= content_for :ad_block_1 do
+  = render :partial => '/ad/before_comments'
+
+= content_for :ad_block_2 do
+  = render :partial => '/ad/after_comments'

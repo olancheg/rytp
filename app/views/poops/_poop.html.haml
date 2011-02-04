@@ -7,27 +7,26 @@
   .info{ :style => (admin? or policeman?) ? 'height: 40px' : nil }
     %label{ :id => ["votes", poop.id] } #{poop.rate.to_s+' '+Russian.p(poop.rate.abs, "косарь", "косаря", "косарей")}
     .links
-      = form_tag vote_poop_path(poop.id), :remote => true, :id => "kosar_form_#{poop.id}" do
-        %input{:type => :hidden, :name => :salt, :value => salt}
-        %div{:id => ["vote_btn", poop.id], :class => [:link, voted?(poop.id) ? :kosar_g : :kosar]}
-          - if voted?(poop.id)
-            дать косарь
-          - else
-            = link_to 'дать косарь', '#', :onclick => "vote('kosar', #{poop.id});return false;"
+      %noindex
+        = form_tag vote_poop_path(poop.id), :remote => true, :id => "kosar_form_#{poop.id}" do
+          %input{:type => :hidden, :name => :salt, :value => salt}
+          %div{:id => ["vote_btn", poop.id], :class => [:link, voted?(poop.id) ? :kosar_g : :kosar]}
+            - if voted?(poop.id)
+              дать косарь
+            - else
+              = link_to 'дать косарь', '#', :onclick => "vote('kosar', #{poop.id});return false;"
 
-      = form_tag vote_bad_path(poop.id), :remote => true, :id => "xunta_form_#{poop.id}" do
-        %input{:type => :hidden, :name => :salt, :value => salt}
-        %div{:id => ["vote_bad_btn", poop.id], :class => [:link, voted_bad?(poop.id) ? :xunta_g : :xunta]}
-          - if voted_bad?(poop.id)
-            ХУNТА
-          - else
-            = link_to 'ХУNТА', '#', :onclick => "vote('xunta', #{poop.id});return false;"
-
-      - if ['poops', 'top', 'search'].include? controller.action_name
-        #{ link_to 'комментарии', watch_path(poop)+'#comments', :class => :comment_link }
+        = form_tag vote_bad_path(poop.id), :remote => true, :id => "xunta_form_#{poop.id}" do
+          %input{:type => :hidden, :name => :salt, :value => salt}
+          %div{:id => ["vote_bad_btn", poop.id], :class => [:link, voted_bad?(poop.id) ? :xunta_g : :xunta]}
+            - if voted_bad?(poop.id)
+              ХУNТА
+            - else
+              = link_to 'ХУNТА', '#', :onclick => "vote('xunta', #{poop.id});return false;"
+      = link_to 'комментарии', watch_path(poop)+'#comments', :class => :comment_link if ['poops', 'top', 'search'].include? controller.action_name
     - if admin? or policeman?
       .admin_links
-        = link_to 'подтвердить', approve_path(poop), :remote => true unless poop.is_approved
+        = link_to 'подтвердить', approve_path(poop)+(params[:page] ? '?page='+params[:page] : ''), :remote => true unless poop.is_approved
         = link_to 'редактировать', edit_poop_path(poop)
         = link_to 'удалить', poop, :method => :delete, :confirm => 'Вы уверены?' if admin?
   .author

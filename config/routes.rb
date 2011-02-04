@@ -5,7 +5,7 @@ Rytp::Application.routes.draw do
   match 'login' => 'admins#login', :as => :login
   match 'logout' => 'admins#logout', :as => :logout
   match 'not_approved' => 'admins#not_approved', :as => :not_approved
-  match ':id/approve' => 'admins#approve', :as => :approve
+  match ':id/approve' => 'admins#not_approved', :as => :approve
   resources :admins
 
   match 'index' => 'poops#index', :as => :index
