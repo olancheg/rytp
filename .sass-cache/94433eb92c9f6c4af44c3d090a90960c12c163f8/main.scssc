@@ -1,7 +1,7 @@
 3.0.25 (Classy Cassidy)
-48678495b98ee448eece889334335dff4e663c12
+65ed7146f50e0a5101fbfa8ca65083337b68da54
 o:Sass::Tree::RootNode
-:@template"ê&html, body, div, span, applet, object, iframe,
+:@template"'html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, font, img, ins, kbd, q, s, samp,
@@ -256,7 +256,7 @@ h1 {
     }
   }
 
-  #nav_left, #nav_right, #random {
+  #nav_left, #nav_right, #random, #previous_new, #next_new {
     & a {
       padding: 180px 8px 0;
       margin-top: 29px;
@@ -893,7 +893,7 @@ table;[	o;
 ;;;[ ;iñ;["margin;o;;;;;;"	auto;@;&i o;;	["td.left, td.right;[o;
 ;;;[ ;iô;["vertical-align;o;;;;;;"top;@;&i ;ió;'T;@;&i o;;	["td.left .rotaban;[o;
 ;;;[ ;iø;["margin-right;o;;;;;;"	10px;@;&i ;i÷;'T;@;&i o;;	["td.right .rotaban;[o;
-;;;[ ;iü;["margin-left;o;;;;;;"	10px;@;&i ;iû;'T;@;&i ;ið;'T;@;&i o;;	["##nav_left, #nav_right, #random;[o;;	["& a;[
+;;;[ ;iü;["margin-left;o;;;;;;"	10px;@;&i ;iû;'T;@;&i ;ið;'T;@;&i o;;	["=#nav_left, #nav_right, #random, #previous_new, #next_new;[o;;	["& a;[
 o;
 ;;;[ ;i;["padding;o;;;;;;"180px 8px 0;@;&i o;
 ;;;[ ;i;["margin-top;o;;;;;;"	29px;@;&i o;
