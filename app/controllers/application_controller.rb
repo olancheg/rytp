@@ -55,4 +55,8 @@ class ApplicationController < ActionController::Base
     array.delete element
     cookies.permanent[storage] = Marshal.dump(array)
   end
+
+  def render_404
+    render :file => "#{Rails.root}/public/error_404.html", :layout => false, :status => :not_found
+  end
 end

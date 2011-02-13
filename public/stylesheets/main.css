@@ -61,7 +61,7 @@ h1 {
   font-size: 1.4em; }
 
 #main {
-  background: #a26a20 url("/images/bg.jpg") repeat-x; }
+  background: url("/images/bg.jpg"); }
 
 .video > iframe {
   margin: auto;
@@ -112,7 +112,7 @@ h1 {
     list-style: none;
     display: block;
     padding-top: 110px;
-    margin-left: 105px;
+    margin-left: 95px;
     font-size: 0.8em; }
     #header #admin_menu li {
       float: left; }
@@ -137,7 +137,7 @@ h1 {
     background: url("/images/bg_popup_menu.jpg") repeat-x; }
     #header #dropdown_menu .left {
       float: left;
-      padding: 5px 0 0; }
+      padding: 9px 0 0; }
     #header #dropdown_menu .right {
       float: right;
       text-transform: none;
@@ -145,12 +145,12 @@ h1 {
       #header #dropdown_menu .right p {
         padding: 8px 0 10px; }
       #header #dropdown_menu .right img {
-        padding-right: 7px; }
+        padding-right: 6px; }
     #header #dropdown_menu ul {
       list-style: none; }
     #header #dropdown_menu li {
       display: block;
-      padding: 5px; }
+      padding: 3px; }
     #header #dropdown_menu a {
       color: #111;
       text-decoration: none; }

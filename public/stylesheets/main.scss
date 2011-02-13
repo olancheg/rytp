@@ -73,7 +73,7 @@ h1 {
 }
 
 #main {
-  background: #a26a20 url('/images/bg.jpg') repeat-x;
+  background: url('/images/bg.jpg');
 }
 
 .video > iframe {
@@ -149,7 +149,7 @@ h1 {
     list-style: none;
     display: block;
     padding-top: 110px;
-    margin-left: 105px;
+    margin-left: 95px;
     font-size: 0.8em;
 
     li {
@@ -183,7 +183,7 @@ h1 {
 
     .left {
       float: left;
-      padding: 5px 0 0;
+      padding: 9px 0 0;
     }
 
     .right {
@@ -192,7 +192,7 @@ h1 {
       text-align: center;
 
       p { padding: 8px 0 10px; }
-      img { padding-right: 7px; }
+      img { padding-right: 6px; }
     }
 
     ul {
@@ -201,7 +201,7 @@ h1 {
 
     li {
       display: block;
-      padding: 5px;
+      padding: 3px;
     }
 
     a {

@@ -112,7 +112,7 @@ class PoopsController < ApplicationController
 
 private
   def hacker?
-    redirect_to root_path, :status => :not_found if cookies[:good].empty? or cookies[:bad].empty? or params[:salt].nil? or salt != params[:salt] or !request.post?
+    render_404 if cookies[:good].empty? or cookies[:bad].empty? or params[:salt].nil? or salt != params[:salt] or !request.post?
   end
 
   def salt
