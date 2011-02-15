@@ -61,7 +61,7 @@ h1 {
   font-size: 1.4em; }
 
 #main {
-  background: url("/images/bg.jpg"); }
+  background: #a26a21 url("/images/bg.jpg") repeat-x; }
 
 .video > iframe {
   margin: auto;
@@ -173,7 +173,7 @@ h1 {
 #container {
   padding: 15px;
   padding-bottom: 40px;
-  background: url("/images/triangle.png") center bottom no-repeat; }
+  background: url("/images/triangle.png") center bottom repeat-x; }
   #container table {
     margin: auto; }
     #container table td.left, #container table td.right {
