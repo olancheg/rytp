@@ -9381,8 +9381,8 @@ function show_description(elem) {
 }
 
 function cookiesEnabled() {
-  Set_Cookie("CookieTest", Date.now);
-  return (Get_Cookie("CookieTest") < Date.now+5000);
+  Set_Cookie("CookieTest", Date.now());
+  return (Get_Cookie("CookieTest") < Date.now()+5000);
 }
 
 function vote(obj, id) {
