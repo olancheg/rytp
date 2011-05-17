@@ -4,7 +4,7 @@ class Poop < ActiveRecord::Base
   attr_protected :rate
   belongs_to :category
 
-  before_validation 'self.code = Hpricot.parse(self.code)'
+  before_validation :prepare_code
   validates_presence_of :title
   validates_inclusion_of :category_id, :in => Category.all.map(&:id)
   validate :is_code_safe?
@@ -17,6 +17,11 @@ class Poop < ActiveRecord::Base
   scope :rated, order('rate DESC').limit(50)
   scope :not_approved, where('is_approved = ?', false)
   scope :popular, order('rate DESC').approved.rated
+
+  def prepare_code
+    self.code = Hpricot.parse(self.code)
+    self.code.search("*").collect! { |node| node if not node.name =~ /^iframe$/ }.compact.remove
+  end
 
   def is_code_safe?
     iframes = (self.code/"iframe")
