@@ -1,6 +1,6 @@
 .bundle
 .rspec
-.sass-cache
+.sass-cache/*
 *.swp
 *.swo
 *.rbc
