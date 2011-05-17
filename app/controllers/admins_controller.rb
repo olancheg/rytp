@@ -1,5 +1,7 @@
+# coding: utf-8
+
 class AdminsController < ApplicationController
-  before_filter :main_admin?, :except => [ :login, :logout, :not_approved, :approve ] 
+  before_filter :main_admin?, :except => [ :login, :logout, :not_approved, :approve ]
   before_filter :admin_or_policeman?, :only => [ :not_approved, :approve ]
 
   def login
@@ -58,7 +60,7 @@ class AdminsController < ApplicationController
     @admin = Admin.new(params[:admin])
 
     if @admin.save
-      redirect_to(@admin, :notice => 'Admin was successfully created.') 
+      redirect_to(@admin, :notice => 'Admin was successfully created.')
     else
       render :action => "new"
     end
@@ -68,7 +70,7 @@ class AdminsController < ApplicationController
     @admin = Admin.find(params[:id])
 
     if @admin.update_attributes(params[:admin])
-      redirect_to(@admin, :notice => 'Admin was successfully updated.') 
+      redirect_to(@admin, :notice => 'Admin was successfully updated.')
     else
       render :action => "edit"
     end
@@ -78,6 +80,7 @@ class AdminsController < ApplicationController
     @admin = Admin.find(params[:id])
     @admin.destroy
 
-    redirect_to(admins_url) 
+    redirect_to(admins_url)
   end
 end
+

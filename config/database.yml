@@ -11,7 +11,7 @@ development:
   host: localhost
   port: 5432
   username: postgres
-  password: qweqweqwe
+  password: system
   database: rytp_development
   encoding: utf8
 

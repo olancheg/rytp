@@ -22,8 +22,8 @@ class Poop < ActiveRecord::Base
     iframes = (self.code/"iframe")
     src = iframes.first[:src] unless iframes.empty?
 
-    errors.add(:code, I18n.t(:'wrong_code')) unless 
-        src =~ /^http\:\/\/(www\.)?(vk\.ru|vkontakte\.ru|youtube\.com|vimeo\.com)/ and iframes.size == 1
+    errors.add(:code, I18n.t(:'wrong_code')) unless
+        src =~ /^http\:\/\/(www\.)?(vk\.ru|vkontakte\.ru|youtube\.com|player.vimeo\.com)/ and iframes.size == 1
   end
 
   def self.query_for_search_in(field, tags)
@@ -33,7 +33,7 @@ class Poop < ActiveRecord::Base
   end
 
   def self.search(text)
-    tags = text.to_s.mb_chars.split(/[,\.\/\\\'\":;\-_=\!\@\~\#\$ ]/).uniq.delete_if{|tag| tag.length < 4 or tag.empty?}
+    tags = text.to_s.mb_chars.split(/[,\.\/\\\'\":;\-_=\!\@\~\#\$\% ]/).uniq.delete_if{|tag| tag.length < 4 or tag.empty?}
     return [] if tags.empty?
 
     in_titles = self.query_for_search_in(:title, tags)
@@ -47,3 +47,4 @@ class Poop < ActiveRecord::Base
     find_by_sql("SELECT id FROM poops WHERE is_approved IS TRUE AND category_id = " + category_id.to_s + "  ORDER BY created_at ASC")
   end
 end
+

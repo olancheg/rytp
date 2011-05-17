@@ -75,14 +75,18 @@ h1 {
   #header #logo {
     float: left;
     margin-top: 30px; }
-  #header #menu {
+  #header ul#menu {
     margin-top: 13px;
+    border-radius: 10px;
+    border: 1px #ccc;
+    background: #fff;
+    color: #000;
     text-transform: uppercase;
     list-style: none;
     float: right; }
-    #header #menu li {
+    #header ul#menu li {
       float: left; }
-    #header #menu a {
+    #header ul#menu a {
       color: #000;
       display: block;
       width: 85px;
@@ -90,22 +94,22 @@ h1 {
       background: url("/images/bg_menu.jpg") repeat-x;
       padding: 11px 0;
       text-decoration: none; }
-      #header #menu a:hover, #header #menu a.active {
+      #header ul#menu a:hover, #header ul#menu a.active {
         background-position: 0 -40px; }
-      #header #menu a.white {
+      #header ul#menu a.white {
         z-index: 2;
         text-transform: none;
         width: 100px;
         background: url("/images/bg_submenu.jpg") repeat-x; }
-        #header #menu a.white:hover, #header #menu a.white.active {
+        #header ul#menu a.white:hover, #header ul#menu a.white.active {
           background-position: 0 -40px; }
-      #header #menu a.add_button {
+      #header ul#menu a.add_button {
         color: #fff;
         text-transform: capitalize;
         background: url("/images/bg_dobavit.jpg") repeat-x; }
-        #header #menu a.add_button:hover, #header #menu a.add_button.active {
+        #header ul#menu a.add_button:hover, #header ul#menu a.add_button.active {
           background-position: 0 -40px; }
-      #header #menu a.where_am_i {
+      #header ul#menu a.where_am_i {
         width: 120px; }
   #header #admin_menu {
     text-transform: uppercase;

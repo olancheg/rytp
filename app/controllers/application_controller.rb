@@ -60,3 +60,4 @@ class ApplicationController < ActionController::Base
     render :file => "#{Rails.root}/public/error_404.html", :layout => false, :status => :not_found
   end
 end
+

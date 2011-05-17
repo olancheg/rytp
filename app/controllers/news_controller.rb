@@ -1,3 +1,5 @@
+# coding: utf-8
+
 class NewsController < ApplicationController
   before_filter :admin?, :except => [:show, :last]
 
@@ -29,9 +31,9 @@ class NewsController < ApplicationController
     @news = News.new(params[:news])
 
       if @news.save
-        redirect_to(@news, :notice => 'New was successfully created.')
+        redirect_to @news, :notice => 'Новость успешно создана!'
       else
-        render :action => "new"
+        render :new
       end
   end
 
@@ -39,9 +41,9 @@ class NewsController < ApplicationController
     @news = News.find(params[:id])
 
     if @news.update_attributes(params[:news])
-      redirect_to(@news, :notice => 'New was successfully updated.')
+      redirect_to @news, :notice => 'Новость успешно обновлена!'
     else
-      render :action => "edit" 
+      render :edit
     end
   end
 
@@ -49,6 +51,7 @@ class NewsController < ApplicationController
     @news = News.find(params[:id])
     @news.destroy
 
-    redirect_to(news_index_url) 
+    redirect_to news_index_url
   end
 end
+

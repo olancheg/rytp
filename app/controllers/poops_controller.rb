@@ -1,3 +1,5 @@
+# coding: utf-8
+
 require 'digest'
 
 class PoopsController < ApplicationController
@@ -119,3 +121,4 @@ private
     Digest::MD5.hexdigest "#{request.remote_ip}_#{request.env['HTTP_REFERER']}"
   end
 end
+
