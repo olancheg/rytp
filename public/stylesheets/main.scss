@@ -95,7 +95,8 @@ h1 {
   }
 
   ul#menu {
-    margin-top: 13px;
+    margin-top: 11px;
+    margin-right: 10px;
     border-radius: 10px;
     border: 1px #ccc;
     background: #fff;
@@ -106,6 +107,7 @@ h1 {
 
     li {
       float: left;
+      padding-right: 5px;
     }
 
     a {
@@ -113,37 +115,12 @@ h1 {
       display: block;
       width: 85px;
       text-align: center;
-      background: url('/images/bg_menu.jpg') repeat-x;
       padding: 11px 0;
       text-decoration: none;
+      text-transform: capitalize;
 
       &:hover, &.active {
-        background-position: 0 -40px;
-      }
-
-      &.white {
-        z-index: 2;
-        text-transform: none;
-        width: 100px;
-        background: url('/images/bg_submenu.jpg') repeat-x;
-
-        &:hover, &.active {
-          background-position: 0 -40px;
-        }
-      }
-
-      &.add_button {
-        color: #fff;
-        text-transform: capitalize;
-        background: url('/images/bg_dobavit.jpg') repeat-x;
-
-        &:hover, &.active {
-          background-position: 0 -40px;
-        }
-      }
-
-      &.where_am_i {
-        width: 120px;
+        color: #F00;
       }
     }
   }
@@ -176,14 +153,17 @@ h1 {
     position: absolute;
     z-index: 1;
     display: none;
-    height: 92px;
+    height: 82px;
     padding: 5px;
     left: 50%;
     margin-left: -60px;
-    top: 88px;
+    top: 83px;
     width: 290px;
     font-size: 0.9em;
-    background: url('/images/bg_popup_menu.jpg') repeat-x;
+    background: #fff;
+    border: 1px #ccc;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 
     .left {
       float: left;
@@ -239,7 +219,7 @@ h1 {
 #container {
   padding: 15px;
   padding-bottom: 40px;
-  background: url('/images/triangle.png') center bottom repeat-x;
+  background: url('/images/triangle.png') center bottom no-repeat;
 
   table {
     margin: auto;
@@ -258,7 +238,7 @@ h1 {
   }
 
   #nav_left, #nav_right, #random, #previous_new, #next_new {
-    & a {
+    a {
       padding: 180px 8px 0;
       margin-top: 29px;
       display: block;
@@ -268,17 +248,26 @@ h1 {
   }
 
   #nav_left{
-    a{height: 180px;}
+    a {
+      height: 180px;
+      border-top-left-radius: 30px;
+      border-bottom-left-radius: 30px;
+    }
   }
 
   #nav_right{
-    a{height: 110px;}
+    a {
+      height: 110px;
+      border-top-right-radius: 30px;
+    }
 
     #random{
       background-color: #d26631;
       height: 60px;
       padding-top: 10px;
       margin-top: 0;
+      border-radius: 0;
+      border-bottom-right-radius: 30px;
     }
   }
 
