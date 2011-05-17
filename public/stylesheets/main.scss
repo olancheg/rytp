@@ -100,7 +100,6 @@ h1 {
     border-radius: 10px;
     background: #fff;
     color: #000;
-    text-transform: uppercase;
     list-style: none;
     float: right;
 
@@ -120,6 +119,10 @@ h1 {
 
       &:hover, &.active {
         color: #F00;
+      }
+
+      &#menu_rytp, &#menu_rytpmv {
+        text-transform: uppercase;
       }
     }
   }

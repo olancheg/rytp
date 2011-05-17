@@ -81,7 +81,6 @@ h1 {
     border-radius: 10px;
     background: #fff;
     color: #000;
-    text-transform: uppercase;
     list-style: none;
     float: right; }
     #header ul#menu li {
@@ -97,6 +96,8 @@ h1 {
       text-transform: capitalize; }
       #header ul#menu a:hover, #header ul#menu a.active {
         color: #F00; }
+      #header ul#menu a#menu_rytp, #header ul#menu a#menu_rytpmv {
+        text-transform: uppercase; }
   #header #admin_menu {
     text-transform: uppercase;
     list-style: none;
