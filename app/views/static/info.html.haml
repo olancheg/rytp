@@ -2,15 +2,15 @@
 #info
   По всем вопросам обращайтесь на почту #{mail_to 'webmaster@rytp.ru'}
 
-#reklama
-  Реклама
-  %br/
-  %br/
-  = link_to image_tag('/images/rotaban.jpg'), 'http://www.rotaban.ru/buy/site?rytp.ru&a=puhozi'
+- #reklama
+- #  Реклама
+- #  %br/
+- #  %br/
+- #  = link_to image_tag('/images/rotaban.jpg'), 'http://www.rotaban.ru/buy/site?rytp.ru&a=puhozi'
 
 #be_admin
-  Хотите стать админом - #{link_to 'напишите нам', 'http://vkontakte.ru/topic23535228_24263511'} 
-  
+  Хотите стать админом - #{link_to 'напишите нам', 'http://vkontakte.ru/topic23535228_24263511'}
+
 #advanced
   = image_tag '/images/banner.jpg'
   Установи себе на сайт наш баннер
@@ -23,3 +23,4 @@
 
 = content_for :ad_block_1 do
   = render :partial => '/ad/before_footer'
+

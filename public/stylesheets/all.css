@@ -103,17 +103,17 @@ h1 {
     list-style: none;
     display: block;
     padding-top: 110px;
-    margin-left: 95px;
+    margin-left: 118px;
     font-size: 0.8em; }
     #header #admin_menu li {
       float: left; }
     #header #admin_menu a {
       text-decoration: none;
-      padding: 3px;
-      color: #000;
-      background-color: #cfa57f; }
+      padding: 3px 5px;
+      color: #a00; }
       #header #admin_menu a:hover, #header #admin_menu a.active {
-        color: #fff; }
+        color: #e00;
+        text-decoration: underline; }
   #header #dropdown_menu {
     position: absolute;
     z-index: 1;
@@ -148,7 +148,7 @@ h1 {
       color: #111;
       text-decoration: none; }
       #header #dropdown_menu a:hover {
-        color: #444; }
+        color: #f00; }
   #header #search_box {
     float: right;
     width: 175px;
@@ -183,18 +183,18 @@ h1 {
     background-color: #cd954a; }
   #container #nav_left a {
     height: 180px;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px; }
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px; }
   #container #nav_right a {
     height: 110px;
-    border-top-right-radius: 30px; }
+    border-top-right-radius: 10px; }
   #container #nav_right #random {
     background-color: #d26631;
     height: 60px;
     padding-top: 10px;
     margin-top: 0;
     border-radius: 0;
-    border-bottom-right-radius: 30px; }
+    border-bottom-right-radius: 10px; }
   #container table.admins td, #container table.news th, #container table.news td {
     padding: 5px; }
   #container .field_with_errors {
@@ -237,8 +237,7 @@ h1 {
   #container .admin_links {
     clear: both; }
   #container .content {
-    width: 610px;
-    padding-bottom: 10px; }
+    width: 610px; }
     #container .content form div textarea {
       margin-top: 5px; }
   #container .poop {

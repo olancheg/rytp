@@ -132,7 +132,7 @@ h1 {
     list-style: none;
     display: block;
     padding-top: 110px;
-    margin-left: 95px;
+    margin-left: 118px;
     font-size: 0.8em;
 
     li {
@@ -141,12 +141,12 @@ h1 {
 
     a {
       text-decoration: none;
-      padding: 3px;
-      color: #000;
-      background-color: #cfa57f;
+      padding: 3px 5px;
+      color: #a00;
 
       &:hover, &.active {
-        color: #fff;
+        color: #e00;
+        text-decoration: underline;
       }
     }
   }
@@ -194,7 +194,7 @@ h1 {
       text-decoration: none;
 
       &:hover {
-        color: #444;
+        color: #f00;
       }
     }
   }
@@ -251,15 +251,15 @@ h1 {
   #nav_left{
     a {
       height: 180px;
-      border-top-left-radius: 30px;
-      border-bottom-left-radius: 30px;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
     }
   }
 
   #nav_right{
     a {
       height: 110px;
-      border-top-right-radius: 30px;
+      border-top-right-radius: 10px;
     }
 
     #random{
@@ -268,7 +268,7 @@ h1 {
       padding-top: 10px;
       margin-top: 0;
       border-radius: 0;
-      border-bottom-right-radius: 30px;
+      border-bottom-right-radius: 10px;
     }
   }
 
@@ -351,7 +351,6 @@ h1 {
 
   .content {
     width: 610px;
-    padding-bottom: 10px;
 
     form div textarea {
       margin-top: 5px;
