@@ -171,10 +171,10 @@ h1 {
     margin: auto; }
     #container table td.left, #container table td.right {
       vertical-align: top; }
-    #container table td.left .rotaban {
-      margin-right: 10px; }
-    #container table td.right .rotaban {
-      margin-left: 10px; }
+    #container table td.left > ins {
+      margin-right: 5px; }
+    #container table td.right > ins {
+      margin-left: 5px; }
   #container #nav_left a, #container #nav_right a, #container #random a, #container #previous_new a, #container #next_new a {
     padding: 180px 8px 0;
     margin-top: 29px;

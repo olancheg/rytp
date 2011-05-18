@@ -229,12 +229,12 @@ h1 {
       vertical-align: top;
     }
 
-    td.left .rotaban {
-      margin-right: 10px;
+    td.left > ins {
+      margin-right: 5px;
     }
 
-    td.right .rotaban {
-      margin-left: 10px;
+    td.right > ins {
+      margin-left: 5px;
     }
   }
 
