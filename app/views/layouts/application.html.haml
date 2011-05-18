@@ -13,7 +13,6 @@
     %script(type="text/javascript" src="http://userapi.com/js/api/openapi.js?17")
     %script(type="text/javascript") VK.init({ apiId: 2021578, onlyWidgets: true });
   %body
-    =# render :partial => '/ad/activate_rotaban'
     #main
       #header
         .content
@@ -39,10 +38,8 @@
       #footer
         .content
           .before
-          //#{ yield :ad_block_1 }
+          #{ yield :ad_block_1 }
           = yield :comments
-          .after
-          //#{ yield :ad_block_2 }
           #subfooter
             .letsweb #{link_to image_tag('/images/letsweb.jpg'), 'http://letsweb.ru', :target => '_blank'}
             .text
@@ -52,5 +49,7 @@
               %p Сайт для любителей пупов, от letsweb.ru
             .counter
               = render :partial => 'layouts/counter'
+            .user_agreement(style='clear: both; width: 800px;')
+              = link_to 'пользовательское соглашение', rules_path, :style => 'padding-left: 200px'
           .clear
 
