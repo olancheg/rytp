@@ -6,7 +6,7 @@
 *.rbc
 *.sassc
 **.orig
-config/database.yml
+/config/database.yml
 db/*.sqlite3
 log/*
 tmp/*
