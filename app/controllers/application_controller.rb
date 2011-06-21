@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :init_cookies
+  
+  rescue_from ActionController::RedirectBackError, :with => :redirect_to_root
+  rescue_from ActiveRecord::RecordNotFound, :with => :render_404
+  
+  helper_method :voted?, :voted_bad?
 
   def admin?
     redirect_to root_path if session[:admin].nil?
@@ -58,6 +63,10 @@ class ApplicationController < ActionController::Base
 
   def render_404
     render :file => "#{Rails.root}/public/error_404.html", :layout => false, :status => :not_found
+  end
+
+  def redirect_to_root
+    redirect_to root_path
   end
 end
 

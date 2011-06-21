@@ -1,6 +1,6 @@
 module ApplicationHelper
   def title
-    content_for(:title) unless content_for(:title).empty?
+    content_for(:title) if content_for(:title).present?
   end
 
   def description

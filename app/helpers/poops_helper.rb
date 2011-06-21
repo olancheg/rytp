@@ -5,16 +5,8 @@ module PoopsHelper
     raw(sanitize code, :tags => %w{iframe}, :attributes => %w{src})
   end
 
-  def voted?(poop)
-    controller.voted?(poop)
-  end
-  
-  def voted_bad?(poop)
-    controller.voted_bad?(poop)
-  end
-
   def poop_ids(category_id)
-    Poop.ids(category_id).map(&:id) 
+    Poop.ids_from_category(category_id)
   end
 
   def random_poop(poop)

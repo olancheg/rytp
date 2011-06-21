@@ -15,8 +15,6 @@ class NewsController < ApplicationController
 
   def show
     @news = News.find(params[:id])
-  rescue
-    redirect_to root_path
   end
 
   def new

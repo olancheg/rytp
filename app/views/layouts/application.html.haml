@@ -1,10 +1,10 @@
 !!! 5
 %html
   %head
-    %title #{title}
+    %title= title
     %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")
-    %link(rel="shortcut icon" href="/favicon.ico?1")
-    %meta{:name => "description", :content => description }
+    %link(rel="shortcut icon" href="/favicon.ico")
+    %meta(name="description" content="#{description}")
     %meta(name="keywords" content="rytp, rytpmv, russian youtube poop")
     = auto_discovery_link_tag(:rss, rss_feed_path+'.rss')
     = stylesheet_link_tag :all, :cache => true
@@ -41,15 +41,11 @@
             #{ yield :ad_block_1 }
           = yield :comments
           #subfooter
-            .letsweb #{link_to image_tag('/images/letsweb.jpg'), 'http://letsweb.ru', :target => '_blank'}
             .text
               %p
                 %b RYTP.ru
                 является наилучшим источником RYTP и RYTPMV.
-              %p Сайт для любителей пупов, от letsweb.ru
+              %p Сайт для любителей пупов, от #{link_to 'letsweb.ru', 'http://letsweb.ru'}
             .counter
-              = render :partial => 'layouts/counter'
-            .user_agreement(style='clear: both; width: 800px;')
-              = link_to 'пользовательское соглашение', rules_path, :style => 'padding-left: 200px'
+              = render 'layouts/counter'
           .clear
-

@@ -3,13 +3,13 @@
 %p#notice= notice
 %p
   %b Login:
-  = @admin.login
+  = admin.login
 %p
   %b Password:
-  = @admin.password
+  = admin.password
 %p
   %b Name:
-  = @admin.name
-= link_to 'Edit', edit_admin_path(@admin)
+  = admin.name
+= link_to 'Edit', [ :edit, admin ]
 |
 \#{link_to 'Back', admins_path}

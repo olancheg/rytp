@@ -1,7 +1,7 @@
 = set_title :title => 'войти'
 #login_box
   %h5 #{flash[:notice]}
-  = form_tag('/login') do
+  = form_tag '/login' do
     = label_tag 'Логин'
     = text_field_tag :login, params[:login]
     %br/

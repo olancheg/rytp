@@ -27,21 +27,18 @@ blockquote, q {
 
 blockquote:before, blockquote:after,
 q:before, q:after {
-  content: '';
+  content: "";
   content: none; }
 
-/* remember to define focus styles! */
 :focus {
   outline: 0; }
 
-/* remember to highlight inserts somehow! */
 ins {
   text-decoration: none; }
 
 del {
   text-decoration: line-through; }
 
-/* tables still need 'cellspacing="0"' in the markup */
 table {
   border-collapse: collapse;
   border-spacing: 0; }
@@ -79,15 +76,15 @@ h1 {
     margin-top: 11px;
     margin-right: 10px;
     border-radius: 10px;
-    background: #fff;
-    color: #000;
+    background: white;
+    color: black;
     list-style: none;
     float: right; }
     #header ul#menu li {
       float: left;
       padding-right: 5px; }
     #header ul#menu a {
-      color: #000;
+      color: black;
       display: block;
       width: 85px;
       text-align: center;
@@ -95,7 +92,7 @@ h1 {
       text-decoration: none;
       text-transform: capitalize; }
       #header ul#menu a:hover, #header ul#menu a.active {
-        color: #F00; }
+        color: red; }
       #header ul#menu a#menu_rytp, #header ul#menu a#menu_rytpmv {
         text-transform: uppercase; }
   #header #admin_menu {
@@ -110,9 +107,9 @@ h1 {
     #header #admin_menu a {
       text-decoration: none;
       padding: 3px 5px;
-      color: #a00; }
+      color: #aa0000; }
       #header #admin_menu a:hover, #header #admin_menu a.active {
-        color: #e00;
+        color: #ee0000;
         text-decoration: underline; }
   #header #dropdown_menu {
     position: absolute;
@@ -122,10 +119,10 @@ h1 {
     padding: 4px 5px 0 5px;
     left: 50%;
     margin-left: -60px;
-    top: 89px;
+    top: 84px;
     width: 290px;
     font-size: 0.9em;
-    background: #fff;
+    background: white;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px; }
     #header #dropdown_menu .left {
@@ -145,10 +142,10 @@ h1 {
       display: block;
       padding: 3px; }
     #header #dropdown_menu a {
-      color: #111;
+      color: #111111;
       text-decoration: none; }
       #header #dropdown_menu a:hover {
-        color: #f00; }
+        color: red; }
   #header #search_box {
     float: right;
     width: 175px;
@@ -160,7 +157,7 @@ h1 {
       padding-top: 1px;
       background: url("/images/search_l.png") 0 2px no-repeat;
       border: 0;
-      color: #000;
+      color: black;
       width: 140px; }
 
 #container {
@@ -204,21 +201,21 @@ h1 {
     padding-top: 30px;
     padding-bottom: 30px; }
   #container .middle a {
-    color: #FFF; }
+    color: white; }
     #container .middle a:hover {
-      color: #CCC; }
+      color: #cccccc; }
   #container h1 {
-    color: #fff;
+    color: white;
     padding-bottom: 5px; }
   #container .links {
     float: right; }
     #container .links form {
       display: inline-block; }
     #container .links .link {
-      color: #333;
+      color: #333333;
       display: inline-block; }
     #container .links .link a, #container .links .comment_link {
-      color: #fff; }
+      color: white; }
       #container .links .link a:hover, #container .links .comment_link:hover {
         color: #d8d8d8; }
     #container .links .kosar, #container .links .kosar_g, #container .links .xunta, #container .links .xunta_g, #container .links .comment_link {
@@ -256,10 +253,10 @@ h1 {
     background-color: #cd954a;
     padding: 10px; }
   #container .description {
-    color: #fff;
+    color: white;
     background-color: #432912; }
   #container .author {
-    color: #fff;
+    color: white;
     background-color: #8b5e34;
     padding: 5px 10px;
     height: 20px; }
@@ -299,7 +296,7 @@ h1 {
       margin-bottom: 5px;
       float: left; }
   #container .field {
-    color: #fff;
+    color: white;
     padding-bottom: 10px; }
   #container .new_code {
     display: inline-block; }
@@ -310,11 +307,11 @@ h1 {
     padding-top: 10px;
     color: #eaeaea; }
   #container p abbr {
-    color: #fff;
+    color: white;
     font-size: 1.1em;
     text-decoration: underline; }
     #container p abbr:hover {
-      color: #ccc;
+      color: #cccccc;
       cursor: help; }
   #container ol {
     color: #eaeaea; }
@@ -326,12 +323,12 @@ h1 {
       list-style: circle;
       padding-left: 15px; }
   #container .pagination {
-    color: #fff;
+    color: white;
     font-size: 1em;
     text-align: center; }
   #container #new {
     min-height: 360px;
-    background: #fff;
+    background: white;
     padding: 20px 30px; }
     #container #new .image {
       text-align: center; }
@@ -339,36 +336,36 @@ h1 {
         max-width: 550px;
         padding-bottom: 10px; }
     #container #new h1 {
-      color: #000; }
+      color: black; }
     #container #new .date {
       text-align: right; }
     #container #new a {
-      color: #000; }
+      color: black; }
       #container #new a:hover {
-        color: #999; }
+        color: #999999; }
   #container #previous_new a, #container #next_new a {
     background: none;
     margin-top: 300px;
     padding: 0; }
   #container #info, #container #reklama, #container #advanced, #container #file_list, #container #be_admin {
-    background-color: #fff;
+    background-color: white;
     padding: 15px;
     margin-bottom: 20px; }
     #container #info a, #container #reklama a, #container #advanced a, #container #file_list a, #container #be_admin a {
-      color: #000; }
+      color: black; }
       #container #info a:hover, #container #reklama a:hover, #container #advanced a:hover, #container #file_list a:hover, #container #be_admin a:hover {
-        color: #999; }
+        color: #999999; }
     #container #info abbr, #container #reklama abbr, #container #advanced abbr, #container #file_list abbr, #container #be_admin abbr {
       display: block;
       padding-top: 10px; }
   #container .rules *, #container .where * {
-    color: #000 !important; }
+    color: black !important; }
   #container .rules ol, #container .where ol {
     padding-left: 20px; }
   #container .rules abbr, #container .where abbr {
     display: inline !important; }
     #container .rules abbr:hover, #container .where abbr:hover {
-      color: #999; }
+      color: #999999; }
   #container .get_some_code img {
     padding-bottom: 20px; }
   #container .titor {
@@ -377,7 +374,7 @@ h1 {
     width: 400px;
     margin: auto; }
   #container #advanced textarea.code {
-    background-color: #ccc;
+    background-color: #cccccc;
     width: 400px;
     height: 60px;
     margin-top: 5px;
@@ -407,11 +404,11 @@ h1 {
 #footer {
   padding: 15px;
   clear: both;
-  background-color: #fff; }
+  background-color: white; }
   #footer a {
     color: #3f2d1f; }
     #footer a:hover {
-      color: #000; }
+      color: black; }
   #footer #vk_comments {
     min-height: 140px;
     margin: auto; }

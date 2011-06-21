@@ -10,14 +10,14 @@
     %th
     %th
     %th
-  - @admins.each do |admin|
+  - for an_admin in admins
     %tr
-      %td= admin.login
-      %td= admin.password
-      %td= admin.name
-      %td= admin.policeman ? 'yes' : 'no'
-      %td= link_to 'Show', admin
-      %td= link_to 'Edit', edit_admin_path(admin)
-      %td= link_to 'Destroy', admin, :confirm => 'Are you sure?', :method => :delete
+      %td= an_admin.login
+      %td= an_admin.password
+      %td= an_admin.name
+      %td= an_admin.policeman ? 'yes' : 'no'
+      %td= link_to 'Show', an_admin
+      %td= link_to 'Edit', [ :edit, an_admin ]
+      %td= link_to 'Destroy', an_admin, :confirm => 'Are you sure?', :method => :delete
 %br/
 = link_to 'New Admin', new_admin_path

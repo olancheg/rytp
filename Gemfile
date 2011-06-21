@@ -1,17 +1,23 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.7'
-gem 'haml'
-gem 'pg'
+gem 'rake', '0.8.7'
+
+gem 'decent_exposure'
+
+gem 'haml-rails'
 gem 'will_paginate'
 gem 'russian'
 gem 'hpricot'
+
 gem 'bluecloth'
+
+gem 'pg'
+gem 'pg_search'
+# gem 'bluecloth'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3-ruby', :require => 'sqlite3'
 
 # Use unicorn as the web server
 gem 'unicorn'
@@ -34,4 +40,3 @@ gem 'unicorn'
 # group :development, :test do
 #   gem 'webrat'
 # end
-

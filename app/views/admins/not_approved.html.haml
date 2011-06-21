@@ -3,6 +3,6 @@
   - if @poops.empty?
     .empty Нет ни одного видео.
   - else
-    = render :partial => 'poops/poop', :collection => @poops
+    = render @poops
 #navigation
   = will_paginate @poops
