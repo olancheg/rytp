@@ -13,7 +13,7 @@ class PoopsController < ApplicationController
     if poop
       redirect_to watch_path(poop), :status => :found
     else
-      render :template => 'poops/index'
+      render 'poops/index'
     end
   end
 
@@ -27,7 +27,7 @@ class PoopsController < ApplicationController
     if poop
       redirect_to watch_path(poop)
     else
-      render :template => 'poops/index'
+      render 'poops/index'
     end
   end
 
@@ -37,35 +37,35 @@ class PoopsController < ApplicationController
 
   def vote
     unless voted?(params[:id])
-      @poop = Poop.find_by_id(params[:id])
-      redirect_to root_path unless @poop
+      @poop = Poop.find(params[:id])
 
-      @poop.rate+=1
-      @poop.votes_count+=1 unless voted?(params[:id]) or voted_bad?(params[:id])
+      @poop.rate += 1
+      @poop.votes_count += 1 unless voted?(params[:id]) or voted_bad?(params[:id])
       @poop.save
 
-      unvote(@poop.id, :bad)
-      vote_for(@poop.id, :good)
+      unvote @poop.id, :bad
+      vote_for @poop.id, :good
     end
   end
 
   def vote_bad
     unless voted_bad?(params[:id])
-      @poop = Poop.find_by_id(params[:id])
+      @poop = Poop.find(params[:id])
       redirect_to root_path unless @poop
 
-      @poop.rate-=1
-      @poop.votes_count+=1 unless voted?(params[:id]) or voted_bad?(params[:id])
+      @poop.rate -= 1
+      @poop.votes_count += 1 unless voted?(params[:id]) or voted_bad?(params[:id])
       @poop.save
 
-      unvote(@poop.id, :good)
-      vote_for(@poop.id, :bad)
+      unvote @poop.id, :good
+      vote_for @poop.id, :bad
     end
   end
 
   def show
-    @poop = Poop.find_by_id(params[:id])
-    redirect_to root_path unless @poop and (@poop.is_approved or !session[:admin].nil?)
+    @poop = Poop.find(params[:id])
+    
+    render_404 unless @poop and (@poop.is_approved or !session[:admin].nil?)
   end
 
   def new
@@ -73,7 +73,7 @@ class PoopsController < ApplicationController
   end
 
   def edit
-    @poop = Poop.find_by_id(params[:id])
+    @poop = Poop.find(params[:id])
   end
 
   def create
@@ -81,25 +81,25 @@ class PoopsController < ApplicationController
     @poop.is_approved = false
 
     if @poop.save
-      flash[:notice]="Ваш пуп добавлен. Он появится после проверки администратором."
+      flash[:notice] = "Ваш пуп добавлен. Он появится после проверки администратором."
       redirect_to add_poop_path
     else
-      render :action => "new"
+      render :new
     end
   end
 
   def update
-    @poop = Poop.find_by_id(params[:id])
+    @poop = Poop.find(params[:id])
 
     if @poop.update_attributes(params[:poop])
       redirect_to watch_path(@poop)
     else
-      render :action => "edit"
+      render :edit
     end
   end
 
   def destroy
-    @poop = Poop.find_by_id(params[:id])
+    @poop = Poop.find(params[:id])
     @poop.destroy
 
     if request.referer
@@ -107,9 +107,6 @@ class PoopsController < ApplicationController
     else
       redirect_to @poop.category.name == 'RYTP' ? root_path : rytpmv_path
     end
-
-  rescue
-    redirect_to root_path
   end
 
 private
