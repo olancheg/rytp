@@ -1,72 +1,77 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :init_cookies
-  
+
   rescue_from ActionController::RedirectBackError, :with => :redirect_to_root
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
-  
-  helper_method :voted?, :voted_bad?
+  rescue_from CanCan::AccessDenied, :with => :access_denied
 
-  def admin?
-    redirect_to root_path if session[:admin].nil?
+protected
+
+  def last_new
+    @last_new ||= News.ordered.limit(1).first
   end
 
-  def policeman?
-    redirect_to root_path if session[:policeman].nil?
+  helper_method :last_new
+
+  def last_poop
+    @last_poop ||= Poop.by_category('RYTP').approved.limit(1).last
   end
 
-  def main_admin?
-    redirect_to root_path if session[:main].nil?
+  helper_method :last_poop
+
+  def current_user
+    @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
   end
 
-  def admin_or_policeman?
-    redirect_to root_path if session[:policeman].nil? and session[:admin].nil?
+  helper_method :current_user
+
+  def current_user=(user)
+    @current_user = user
+    # if user is 'nil', it means that we logging him out
+    session[:user_id] = user.nil? ? nil : user.id
   end
 
-  def init_cookies
-    cookies.permanent[:good] = cookies[:good] || Marshal.dump([])
-    cookies.permanent[:bad]  = cookies[:bad]  || Marshal.dump([])
+  def signed_in?
+    !!current_user
   end
 
-  def unvote(poop, storage)
-    remove_from_storage(poop, storage)
+  helper_method :signed_in?
+
+  def require_authentication
+    unless current_user
+      flash[:error] = t(:must_login)
+      if request.xhr?
+        render 'shared/_update_flash', :layout => false
+      else
+        redirect_to_back_or_root
+      end
+    end
   end
 
-  def vote_for(poop, storage)
-    add_to_storage(poop, storage)
+  def redirect_to_back_or path
+    redirect_to (request.referer == '/' or flash[:deleted]) ? path : :back
   end
 
-  def voted?(poop)
-    element_in_storage(poop.to_i, :good)
-  end
-
-  def voted_bad?(poop)
-    element_in_storage(poop.to_i, :bad)
-  end
-
-  def element_in_storage(element, storage)
-    array = Marshal.load(cookies[storage])
-    array.include?(element)
-  end
-
-  def add_to_storage(element, storage)
-    array = Marshal.load(cookies[storage])
-    array << element
-    cookies.permanent[storage] = Marshal.dump(array)
-  end
-
-  def remove_from_storage(element, storage)
-    array = Marshal.load(cookies[storage])
-    array.delete element
-    cookies.permanent[storage] = Marshal.dump(array)
+  def redirect_to_back_or_root
+    redirect_to_back_or watch_path(last_poop)
   end
 
   def render_404
-    render :file => "#{Rails.root}/public/error_404.html", :layout => false, :status => :not_found
+    flash[:error] = t(:page_not_found)
+    redirect_to_back_or_root
   end
 
-  def redirect_to_root
-    redirect_to root_path
+  def access_denied
+    flash[:error] = t(:access_denied)
+    redirect_to_back_or_root
   end
+
+  def set_feed_class
+    @feed_class = 'list_layout'
+  end
+
+  def poops_from_category(category_id)
+    @poops_from_category ||= Poop.poops_from_category(category_id)
+  end
+  helper_method :poops_from_category
 end
-

@@ -1,26 +1,31 @@
 = set_title :title => 'информация'
-#info
-  По всем вопросам обращайтесь на почту #{mail_to 'webmaster@rytp.ru'}
+.info_page
+  .contacts
+    %p
+      Контактный e-mail #{mail_to 'webmaster@rytp.ru'}
+    %p
+      Паблик ВКонтакте #{link_to 'http://vkontakte.ru/public23535228'}
+    %p
+      Хотите стать админом - пишите #{mail_to 'webmaster@rytp.ru', 'на почту'}
+      или #{link_to 'ВКонтакте', 'http://vkontakte.ru/topic23535228_24263511'}
 
-- #reklama
-- #  Реклама
-- #  %br/
-- #  %br/
-- #  = link_to image_tag('/images/rotaban.jpg'), 'http://www.rotaban.ru/buy/site?rytp.ru&a=puhozi'
+  .money_info
+    Все деньги с рекламы идут на оплату
+    %s пеньков
+    хостинга и конкурсов
 
-#be_admin
-  Хотите стать админом - #{link_to 'напишите нам', 'http://vkontakte.ru/topic23535228_24263511'}
-
-#advanced
-  = image_tag '/images/banner.jpg'
-  Установи себе на сайт наш баннер
-  %abbr(title="Hyper Text Markup Language") HTML
-  %textarea.code(readonly)
-    = "<a href=\"http://rytp.ru\" title=\"RYTP.ru - лучший источник RYTP и RYTPMV\"><img src=\"http://rytp.ru/images/banner.jpg\" alt=\"RYTP banner\" border=\"0\" /></a>"
-  %abbr(title="Bulletin Board Code") BB-code
-  %textarea.code(readonly)
-    = "[url=http://rytp.ru][img]http://rytp.ru/images/banner.jpg[/img][/url]"
+  %form.webmaster_info
+    %p.banner
+      Установи себе на сайт наш баннер
+      = link_to image_tag('banner.jpg', :width => 88, :height => 31, :alt => 'RYTP banner', :border => 0), 'http://rytp.ru', :title => 'RYTP.ru - лучший источник RYTP и RYTPMV'
+    %p.abbr
+      %abbr(title="Hyper Text Markup Language") HTML
+    %textarea.code(readonly)
+      = "<a href=\"http://rytp.ru\" title=\"RYTP.ru - лучший источник RYTP и RYTPMV\"><img src=\"http://rytp.ru/images/banner.jpg\" alt=\"RYTP banner\" border=\"0\" width=\"88\" height=\"31\" /></a>"
+    %p.abbr
+      %abbr(title="Bulletin Board Code") BB-code
+    %textarea.code(readonly)
+      = "[url=http://rytp.ru][img]http://rytp.ru/images/banner.jpg[/img][/url]"
 
 = content_for :ad_block_1 do
-  = render :partial => '/ad/before_footer'
-
+  = render '/ad/before_footer'

@@ -1,5 +1,5 @@
-%script $('menu_news').addClassName('active');
 = set_title :title => 'создать новость'
-%h1 Create new
-= render 'form'
-= link_to 'Back', news_index_path
+.news
+  %h1 Добавить новость
+  = render 'form'
+  = link_to t(:back), request.referer

@@ -1,55 +1,57 @@
-# coding: utf-8
-
 class NewsController < ApplicationController
-  before_filter :admin?, :except => [:show, :last]
+  before_filter :require_authentication, :except => [:index, :show]
+  before_filter :find_new
+  authorize_resource
 
   def index
-    @news = News.all
-  end
+    @news = News.ordered.page params[:page]
 
-  def last
-    @new = News.last
-
-    redirect_to @new if @new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
-    @news = News.find(params[:id])
   end
 
   def new
-    @news = News.new
   end
 
   def edit
-    @news = News.find(params[:id])
   end
 
   def create
-    @news = News.new(params[:news])
+    @news = current_user.news.build(params[:news])
 
-      if @news.save
-        redirect_to @news, :notice => 'Новость успешно создана!'
-      else
-        render :new
-      end
+    if @news.save
+      redirect_to @news, :notice => t(:'news.created')
+    else
+      render :new
+    end
   end
 
   def update
-    @news = News.find(params[:id])
-
     if @news.update_attributes(params[:news])
-      redirect_to @news, :notice => 'Новость успешно обновлена!'
+      redirect_to @news, :notice => t(:'news.updated')
     else
       render :edit
     end
   end
 
   def destroy
-    @news = News.find(params[:id])
     @news.destroy
+    redirect_to_back_or news_index_path
+  end
 
-    redirect_to news_index_url
+  private
+
+  def find_new
+    @news ||= if params[:id]
+      News.find(params[:id])
+    else
+      News.new(params[:news])
+    end
   end
 end
 

@@ -1,7 +1,14 @@
 = set_title :title => 'поиск'
-= render :partial => 'poops/poop', :collection => @poops
+.poops= render @poops
+= paginate @poops
 - if @poops.empty?
-  .empty Ваш запрос не дал результатов.
+  = empty
+
+= content_for :left do
+  = render '/ad/left_skyscraper'
+
+= content_for :right do
+  = render '/ad/right_skyscraper'
 
 = content_for :ad_block_1 do
-  = render :partial => '/ad/before_footer'
+  = render '/ad/before_footer'

@@ -1,17 +1,19 @@
 = set_title :type => params[:category], :title => 'недавно добавленные'
-%h1.rytp #{link_to 'RYTP', poops_feed_path(:RYTP), :class => (params[:category]=='RYTP' ? 'active' : nil)}
-%h1.rytp #{link_to 'RYTPMV', poops_feed_path(:RYTPMV), :class => (params[:category]=='RYTPMV' ? 'active' : nil)}
-= render :partial => 'poops/poop', :collection => @poops
+.categories
+  %h1.rytp= link_to 'RYTP', poops_feed_path(:RYTP), :class => ('active' if current_page?(poops_feed_path :RYTP))
+  %h1.rytpmv= link_to 'RYTPMV', poops_feed_path(:RYTPMV), :class => ('active' if current_page?(poops_feed_path :RYTPMV))
+
+.poops= render @poops
+= paginate @poops
 - if @poops.empty?
-  .empty Нет ни одного видео.
-= will_paginate @poops
+  = empty
 
 = content_for :left do
-  = render :partial => '/ad/left_skyscraper'
+  = render '/ad/left_skyscraper'
 
 = content_for :right do
-  = render :partial => '/ad/right_skyscraper'
+  = render '/ad/right_skyscraper'
 
 = content_for :ad_block_1 do
-  = render :partial => '/ad/before_footer'
+  = render '/ad/before_footer'
 

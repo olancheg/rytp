@@ -1,0 +1,479 @@
+// This import applies a global reset to any page that imports this stylesheet.
+@import "blueprint/reset"
+
+// To configure blueprint, edit the partials/base.sass file.
+@import "partials/base"
+
+// Import all the default blueprint modules so that we can access their mixins.
+@import "blueprint"
+
+// Import the non-default scaffolding module.
+@import "blueprint/scaffolding"
+
+// Import sprites
+@import "compass/utilities/sprites"
+@import "icons/*.png"
+
+// Import links helpers
+@import "compass/typography/links/hover-link"
+@import "compass/typography/links/link-colors"
+
+// Import CSS3 helpers
+@import "compass/css3/border-radius"
+@import "compass/css3/inline-block"
+@import "compass/css3/text-shadow"
+@import "compass/css3/transition"
+
+// To generate css equivalent to the blueprint css but with your
+// configuration applied, uncomment:
+// @include blueprint
+
+// If you are doing a lot of stylesheet concatenation, it is suggested
+// that you scope your blueprint styles, so that you can better control
+// what pages use blueprint when stylesheets are concatenated together.
+body.bp
+  +blueprint-typography(true)
+  +blueprint-utilities
+  +blueprint-debug
+  +blueprint-interaction
+  // Remove the scaffolding when you're ready to start doing visual design.
+  // Or leave it in if you're happy with how blueprint looks out-of-the-box
+
+form
+  +blueprint-form
+  // You'll probably want to remove the scaffolding once you start styling your site.
+  +blueprint-scaffolding
+
+.error_explanation
+  +error
+
+img:not([width]):not([height])
+  border: 2px solid red !important
+
+.video > iframe
+  margin: auto
+  width: 629px
+  height: 360px
+
+.container, .content
+  +container
+
+.button
+  .icon.kosar
+    +icons-sprite(kosar)
+  &:hover .icon.kosar
+    +icons-sprite(kosar_hover)
+  .icon.xunta
+    +icons-sprite(xunta)
+  &:hover .icon.xunta
+    +icons-sprite(xunta_hover)
+
+.triangle
+  padding-bottom: 10px
+  background: url(/images/triangle.png) center bottom no-repeat
+
+.admin_panel
+  +column(3.35)
+  position: fixed
+  padding: 10px
+  background-color: #262626
+  left: 50%
+  top: 100px
+  margin-left: -497px
+  +border-radius(5px)
+  z-index: 100
+  ul.links
+    margin-bottom: 0
+    padding-left: 5px
+    list-style-type: none
+    a
+      text-decoration: none
+      +link-colors(#fff, #ccc)
+
+#main
+  background: #D8D8D8 url(/images/bg.jpg)
+  a
+    +link-colors(#009AFF, #0ADDFF)
+  #header
+    color: #fff
+    padding: 10px 0 5px
+    background-color: #000
+    .last_new
+      +column(6)
+      +prepend(3)
+      padding-top: 6px
+      label
+        padding-right: 5px
+    .contest
+      +column(6)
+      padding-top: 6px
+    .auth
+      +column(8, true)
+      vertical-align: middle
+      label
+        +column(1)
+        margin-top: 5px
+        margin-right: 15px
+      label.welcome
+        +column(3)
+      .auth-links
+        margin-bottom: 10px
+        padding: 0
+        vertical-align: top
+        list-style-type: none
+        +inline-block
+        li
+          +inline-block
+        a
+          margin-top: 5px
+          +inline-block
+        &.sign_in
+          margin-bottom: 1px
+          +column(4)
+          .facebook
+            +icons-sprite(facebook)
+          .vkontakte
+            +icons-sprite(vkontakte)
+          .twitter
+            +icons-sprite(twitter)
+          .google
+            +icons-sprite(google)
+          a
+            margin: 0
+            text-indent: -1000px
+            width: 32px
+            height: 32px
+  #sub_header
+    +column(18)
+    +prepend(3)
+    margin-top: 20px
+    #logo
+      +column(3)
+    #social
+      margin-top: 10px
+      +column(5, true)
+      a
+        padding-right: 8px
+    #menu
+      +column(9)
+      +blueprint-typography-body(25px)
+      text-transform: uppercase
+      font-weight: bold
+      a
+        +transition(color 0.5s ease-in-out)
+    #menu, #small_menu
+      padding-left: 0
+      list-style-type: none
+      +text-shadow(#fff 0 1px 1px)
+      li
+        display: inline
+        padding-right: 5px
+      a
+        +link-colors(#2D2D2D, #009AFF)
+        text-decoration: none
+        display: inline
+        &#menu_rytp, &#menu_rytpmv
+          text-transform: uppercase
+    .search_box
+      +column(5, true)
+      .search
+        +column(5, true)
+        margin-left: -3px
+        padding: 4px 5px
+        outline: none
+        color: #000
+        border: 0
+        +border-radius(25px)
+    #small_menu
+      +column(9)
+      margin-top: -40px
+      padding-left: 0
+      color: #000
+  .content
+    +column(20, true)
+    margin: auto
+    margin-top: 20px
+    float: none
+    display: block
+
+    .profile
+      +column(24)
+      +pull(3)
+      .profile_left
+        +column(7)
+        color: #bfbfbf
+        background-color: #000
+        +border-radius(10px)
+        margin-right: 20px
+        margin-bottom: 20px
+        h2
+          padding: 10px 10px 0
+          color: #bfbfbf
+          margin-bottom: 0
+        .statistics
+          padding: 10px
+          border-bottom: 1px solid #272727
+        .links
+          padding: 10px
+        .field
+          clear: both
+          label
+            float: right
+            color: #fff
+      .profile_right
+        +column(16, true)
+        .actions
+          width: 100%
+          background-color: #000
+          margin-bottom: 10px
+          +border-radius(10px)
+          ul.filters, ul.orders
+            padding-left: 1em
+            margin-bottom: 0
+            list-style-type: none
+            +inline-block
+            li
+              +inline-block
+              padding: 5px 5px 5px 0
+          ul.orders
+            float: right
+
+    #next, #previous, #random
+      background: #aaa
+      display: block
+
+    #next
+      padding: 166px 5px 61px
+      +border-top-right-radius(15px)
+    #previous
+      +push(1)
+      padding: 166px 5px 167px
+      +border-top-left-radius(15px)
+      +border-bottom-left-radius(15px)
+    #random
+      padding: 27px 5px
+      background: #999
+      +border-bottom-right-radius(15px)
+
+    .left
+      +column(2)
+    .right
+      +column(2, true)
+      width: auto
+    .left, .right
+      margin: 54px 0 0
+      padding: 0
+    .middle
+      +column(16)
+      padding: 0
+      margin: 0
+      margin-bottom: 30px
+      .categories
+        +column(16.5)
+        h1.rytp, h1.rytpmv
+          +column(3)
+          line-height: 1.5em
+          a
+            padding: 10px
+            margin: 0
+            background-color: #C0C0C0
+            color: #2F2F2F
+            text-decoration: none
+            &:hover, &.active
+              background-color: #2F2F2F
+              color: #C0C0C0
+      .periods
+        +column(16.5)
+        margin-bottom: 30px
+        a
+          padding: 10px
+          margin: 0
+          background-color: #C0C0C0
+          color: #2F2F2F
+          text-decoration: none
+          &:hover, &.active
+            background-color: #2F2F2F
+            color: #C0C0C0
+      .empty
+        margin-left: 230px
+      .poop
+        .title
+          +column(18)
+        .video
+          line-height: 0
+        .info
+          border: 0
+          +column(15.5)
+          margin: 0
+          background-color: #787878
+          form
+            input
+              +column(2.8)
+          .rating
+            +column(6.7)
+            +blueprint-typography-body(25px)
+            color: #fff
+        .links, .admin_links, .description_link
+          text-align: right
+          padding-bottom: 5px
+          a
+            +link-colors(#000, #fff)
+            text-decoration: none
+            span
+              margin-right: 3px
+        .admin_links
+          padding-top: 5px
+          padding-bottom: 0
+        .author
+          font-size: 1.3em
+          a
+            +link-colors(#00f, #0876F9)
+        .author, .description_link
+          +column(7.6)
+          height: 23px
+          padding: 10px 10px 12px
+          margin: 0
+          background-color: #BEBEBE
+        .description_link
+          text-align: right
+        .description
+          +column(15.45)
+          padding: 10px
+          margin: 0
+          background-color: #D4D4D4
+          &.hide
+            display: none
+        .like_buttons
+          +column(16)
+          width: 608px
+          padding: 10px
+          background-color: #fff
+          *
+            vertical-align: top
+          & > div
+            +inline-block
+            vertical-align: top
+      .wrapper
+        margin-bottom: 30px
+        +column(18)
+      .poop_form textarea
+        width: 300px
+        height: 90px
+
+      .news, .info_page, .files
+        +column(16, true)
+        +pull(0.5)
+        padding: 20px
+        border: 1px #CBCBCB solid
+        +border-radius(5px)
+        background-color: #fff
+      .titor
+        background: url(/images/titor.png) no-repeat
+        margin: auto
+        width: 378px
+        height: 292px
+      .files
+        .file_list
+          +column(15)
+          margin-top: 10px
+          .file
+            +column(3)
+            text-align: center
+            a
+              display: block
+          .file_1 .icon
+            width: 100px
+            height: 100px
+            margin-bottom: 5px
+            +icons-sprite(mp3pack)
+          .file_2 .icon
+            width: 100px
+            height: 100px
+            margin-bottom: 5px
+            +icons-sprite(mp3pack)
+      .info_page
+        p.banner
+          margin-top: 10px
+        p.abbr
+          padding: 0
+          margin: 0
+        .webmaster_info textarea
+          width: 400px
+          height: 60px
+      .news
+        form
+          textarea, input[type=text]
+            width: 490px
+        .like_buttons
+          +column(16)
+          width: 608px
+          margin-top: 10px
+          background-color: #fff
+          & > div
+            +inline-block
+            *
+              vertical-align: top
+        .a_new
+          margin-bottom: 20px
+          h2
+            margin-bottom: 0.3em
+          .actions
+            label
+              float: right
+            label.author
+              padding-right: 15px
+  .pagination
+    +column(16)
+    margin: 10px 0
+    text-align: center
+    span.last, span.first
+      display: none
+  .list_layout
+    .fix
+      +column(3.5)
+    +column(24, true)
+    .left, .right
+      margin-top: 0
+    .left
+      +column(3.5)
+    .middle
+      +column(17)
+      +push(0.3)
+    .right
+      +column(3.5, true)
+
+  #footer
+    background-color: #fff
+    .container
+      padding-top: 10px
+      div
+        +column(19, true)
+        margin: auto
+        float: none
+        display: block
+        a
+          +link-colors(#000, #666)
+    #vk_comments
+      min-height: 140px
+      margin: auto
+    .before
+      margin: auto
+      padding-bottom: 10px
+      width: 728px
+    #sub_footer
+      +column(12, true)
+      margin: auto
+      margin-top: 10px
+      display: block
+      float: none
+      .text
+        +column(9)
+        label
+          font-weight: bold
+        .last
+          margin-top: -20px
+      .counter
+        +column(3, true)
+        a
+          float: right
+          display: block

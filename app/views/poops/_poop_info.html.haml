@@ -1,0 +1,23 @@
+.rating
+  = poop.rating.to_s + ' ' + t(:'rating', :count => poop.rating.abs)
+.links
+  = link_to vote_positive_path(poop), :remote => true, :class => :button do
+    %span.kosar.icon
+    дать косарь
+  = link_to vote_negative_path(poop), :remote => true, :class => :button do
+    %span.xunta.icon
+    xynta
+  = comments_link poop
+  .admin_links
+    - if can?(:approve, poop) and !poop.approved?
+      = link_to approve_path(poop), :remote => true, :class => :button do
+        %span.check.icon
+        подтвердить
+    - if can?(:edit, poop)
+      = link_to [:edit, poop], :class => :button do
+        %span.pen.icon
+        редактировать
+    - if can?(:destroy, poop)
+      = link_to poop, :remote => true, :class => :button, :method => :delete, :confirm => 'Вы уверены?' do
+        %span.cross.icon
+        удалить

@@ -1,5 +1,5 @@
-User-agent: Googlebot
-Disallow: /*/bad$
+User-agent: *
+Disallow: /vote/
+Allow: /
 
-User-agent: Googlebot
-Disallow: /*/good$
+Sitemap: http://rytp.ru/sitemap.xml

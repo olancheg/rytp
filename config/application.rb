@@ -31,12 +31,18 @@ module Rytp
     config.i18n.default_locale = :ru
 
     # JavaScript files you want as :defaults (application.js is always included).
-    # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
+    config.action_view.javascript_expansions[:jquery] = %w(jquery.min jquery.jgrowl_compressed jquery_ujs jquery.tipsy jquery.scrollTo-min)
+    config.action_view.javascript_expansions[:app] = %w(placeholder application)
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    config.generators do |g|
+      g.stylesheets false
+      g.template_engine :haml
+    end
   end
 end

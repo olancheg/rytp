@@ -1,0 +1,154 @@
+xml.instruct! :xml, :version=>"1.0"
+xml.urlset(:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9") {
+  # RYTP
+  xml.url {
+    xml.loc(rfc_url root_path)
+    lastmod = @last_rytp.updated_at.strftime("%Y-%m-%d") if @last_rytp
+    lastmod = lastmod || Time.now.strftime("%Y-%m-%d")
+    xml.lastmod(lastmod)
+    xml.changefreq("hourly")
+    xml.priority(1)
+  }
+
+  # RYTPMV
+  xml.url {
+    xml.loc(rfc_url rytpmv_path)
+    lastmod = @last_rytpmv.updated_at.strftime("%Y-%m-%d") if @last_rytpmv
+    lastmod = lastmod || Time.now.strftime("%Y-%m-%d")
+    xml.lastmod(lastmod)
+    xml.changefreq("hourly")
+    xml.priority(1)
+  }
+
+  # ПРАВИЛА
+  xml.url {
+    xml.loc(rfc_url rules_path)
+    xml.lastmod(1.week.ago.strftime("%Y-%m-%d"))
+    xml.changefreq("weekly")
+    xml.priority(0.6)
+  }
+
+  # HOWTO
+  xml.url {
+    xml.loc(rfc_url howto_path)
+    xml.lastmod(1.week.ago.strftime("%Y-%m-%d"))
+    xml.changefreq("weekly")
+    xml.priority(0.6)
+  }
+
+  # WIKI
+  xml.url {
+    xml.loc(rfc_url wiki_path)
+    xml.lastmod(1.week.ago.strftime("%Y-%m-%d"))
+    xml.changefreq("weekly")
+    xml.priority(1)
+  }
+
+  # ФАЙЛЫ
+  xml.url {
+    xml.loc(rfc_url files_path)
+    xml.lastmod(1.week.ago.strftime("%Y-%m-%d"))
+    xml.changefreq("weekly")
+    xml.priority(1)
+  }
+
+  # ИНФО
+  xml.url {
+    xml.loc(rfc_url info_path)
+    xml.lastmod(1.week.ago.strftime("%Y-%m-%d"))
+    xml.changefreq("weekly")
+    xml.priority(1)
+  }
+
+  # ПОИСК
+  xml.url {
+    xml.loc(rfc_url search_path)
+    xml.lastmod(1.week.ago.strftime("%Y-%m-%d"))
+    xml.changefreq("weekly")
+    xml.priority(1)
+  }
+
+  # ЛЕНТА
+  @feed.each_pair do |category, feed|
+    xml.url {
+      xml.loc(rfc_url poops_feed_path(category))
+      lastmod = feed[:poops].first.updated_at.strftime("%Y-%m-%d") if feed[:poops]
+      lastmod = lastmod || Time.now.strftime("%Y-%m-%d")
+      xml.lastmod(lastmod)
+      xml.changefreq("daily")
+      xml.priority(0.9)
+    }
+    feed[:pages].times do |n|
+      xml.url {
+        xml.loc(rfc_url poops_feed_path(category)+'?page='+(n+1).to_s)
+        lastmod = feed[:poops].first.updated_at.strftime("%Y-%m-%d") if feed[:poops]
+        lastmod = lastmod || Time.now.strftime("%Y-%m-%d")
+        xml.lastmod(lastmod)
+        xml.changefreq("daily")
+        xml.priority(0.7)
+      }
+    end
+  end
+
+  # ТОП
+  @top.each_pair do |category, top|
+    top.each_pair do |period, poops|
+      xml.url {
+        xml.loc(rfc_url top_path(category, period))
+        lastmod = poops.first.updated_at.strftime("%Y-%m-%d") if poops
+        lastmod = lastmod || Time.now.strftime("%Y-%m-%d")
+        xml.lastmod(lastmod)
+        xml.changefreq("weekly")
+        xml.priority(0.9)
+      }
+      10.times do |n|
+        xml.url {
+          xml.loc(rfc_url top_path(category, period)+'?page='+(n+1).to_s)
+          lastmod = poops.first.updated_at.strftime("%Y-%m-%d") if poops
+          lastmod = lastmod || Time.now.strftime("%Y-%m-%d")
+          xml.lastmod(lastmod)
+          xml.changefreq("weekly")
+          xml.priority(0.8)
+        }
+      end
+    end
+  end
+
+  # НОВОСТИ
+  xml.url {
+    xml.loc(rfc_url news_index_path)
+    lastmod = @news.first.updated_at.strftime("%Y-%m-%d") if @news
+    lastmod = lastmod || Time.now.strftime("%Y-%m-%d")
+    xml.lastmod(lastmod)
+    xml.changefreq("weekly")
+    xml.priority(1)
+  }
+  @news_pages.times do |n|
+    xml.url {
+      xml.loc('http://rytp.ru' + news_index_path+'?page='+(n+1).to_s)
+      lastmod = @news.first.updated_at.strftime("%Y-%m-%d") if @news
+      lastmod = lastmod || Time.now.strftime("%Y-%m-%d")
+      xml.lastmod(lastmod)
+      xml.changefreq("weekly")
+      xml.priority(1)
+    }
+  end
+  for news in @news
+    xml.url {
+      xml.loc('http://rytp.ru' + news_path(news))
+      xml.lastmod(news.updated_at.strftime("%Y-%m-%d"))
+      xml.changefreq("weekly")
+      xml.priority(0.9)
+    }
+  end
+
+  # ПУПЫ ПО ОТДЕЛЬНОСТИ
+  for poop in @poops
+    xml.url {
+      xml.loc('http://rytp.ru' + watch_path(poop))
+      xml.lastmod(poop.updated_at.strftime("%Y-%m-%d"))
+      xml.changefreq("daily")
+      xml.priority(0.9)
+    }
+  end
+}

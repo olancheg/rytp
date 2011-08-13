@@ -1,0 +1,34 @@
+= form_for @user do |f|
+  - if @user.errors.any?
+    .error_explanation
+      %h2
+        = errors_count @user.errors.count
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :name
+  .field
+    = f.text_field :name
+  .field
+    = f.label :nickname
+  .field
+    = f.text_field :nickname
+  .field
+    = f.label :youtube_channel
+  .field
+    = f.text_field :youtube_channel
+  .field
+    = f.label :profile_url
+  .field
+    = f.text_field :profile_url
+  .field
+    = f.label :show_profile_url
+  .field
+    = f.check_box :show_profile_url
+  .field
+    = f.label :use_nickname_instead_of_name
+  .field
+    = f.check_box :use_nickname_instead_of_name
+  .actions
+    = f.submit 'сохранить'

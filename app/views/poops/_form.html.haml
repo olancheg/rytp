@@ -1,35 +1,27 @@
-= form_for(@poop) do |f|
+= form_for @poop, :html => {:class => 'poop_form'} do |f|
   - if @poop.errors.any?
-    #error_explanation
+    .error_explanation
       %h2
-        = @poop.errors.count
-        = Russian.p(@poop.errors.count, "ошибка", "ошибки", "ошибок")+":"
+        = errors_count @poop.errors.count
       %ul
         - @poop.errors.full_messages.each do |msg|
           %li= msg
   .field
-    = f.label :title
-    %br/
-    = f.text_field :title
-  .field
-    = f.label :author
-    %br/
-    = f.text_field :author
+    = f.text_field :title, :placeholder => t(:'poop.title'), :title => t(:'poop.title')
   .field.new_description
-    = f.label :description
-    %br/
-    = f.text_area :description
+    = f.text_area :description, :placeholder => t(:'poop.description'), :title => t(:'poop.description')
   .field.new_code
-    = f.label :code 
-    = link_to 'где его взять?', howto_path, :class => :code, :target => '_blank'
+    = link_to 'Как получить код видео?', howto_path, :target => '_blank'
     %br/
-    = f.text_area :code
+    = f.text_area :code, :placeholder => t(:'poop.code'), :title => t(:'poop.code')
   .field
-    = f.label :category_id
-    %br/
-    = collection_select(:poop, :category_id, Category.all, :id, :name, :prompt => 'Выберите из списка')
+    = f.collection_select :category_id, Category.all, :id, :name, :prompt => 'Выберите из списка'
+  - if can?(:approve, @poop)
+    .field
+      = f.label :approved
+      = f.check_box :approved
   .field
     Нажимая "Отправить", вы соглашаетесь с
     = link_to 'правилами', rules_path, :target => '_blank'
   .actions
-    = f.submit :value => 'Отправить'
+    = f.submit 'Отправить', :class => :button

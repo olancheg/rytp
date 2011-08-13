@@ -1,14 +1,16 @@
-# coding: utf-8
-
-require 'digest'
-
 class PoopsController < ApplicationController
-  before_filter :admin_or_policeman?, :only => [ :edit, :update ]
-  before_filter :admin?, :only => :destroy
-  before_filter :hacker?, :only => [ :vote, :vote_bad ]
+  before_filter :require_authentication, :except => [:index, :search, :top, :rytpmv, :show]
+  before_filter :find_poop, :except => [:index, :rytpmv, :not_approved, :top, :search]
+  before_filter :set_feed_class, :only => [:top, :search, :not_approved]
+
+  authorize_resource
 
   def index
-    poop = Poop.by_category('RYTP').approved.last
+    redirect_to watch_path(last_poop), :status => :found if last_poop
+  end
+
+  def rytpmv
+    poop = Poop.by_category('RYTPMV').approved.last
 
     if poop
       redirect_to watch_path(poop), :status => :found
@@ -17,79 +19,76 @@ class PoopsController < ApplicationController
     end
   end
 
-  def search
-    @poops = Poop.search(params[:search])
+  def not_approved
+    @poops = Poop.not_approved.ordered.page params[:page]
+
+    respond_to do |format|
+      format.html
+      format.js { render 'shared/update_page', :layout => false, :locals => {:poops => @poops} }
+    end
   end
 
-  def rytpmv
-    poop = Poop.by_category('RYTPMV').approved.last
+  def approve
+    @poop.approved = true
 
-    if poop
-      redirect_to watch_path(poop)
-    else
-      render 'poops/index'
+    flash[:success] = t(:'poop.approve') if @poop.save
+
+    @poops = Poop.not_approved.ordered.page params[:page]
+
+    respond_to do |format|
+      format.html { redirect_to not_approved_path }
+      format.js {
+        if request.referer =~ /[^=]\d+\-[^\/]*$/
+          render 'shared/update_poop', :layout => false, :locals => {:poop => @poop}
+        else
+          render 'shared/update_page', :layout => false, :locals => {:poops => @poops, :ajax => true}
+        end
+      }
+    end
+  end
+
+  def search
+    @poops = Poop.search(params[:search]).page params[:page]
+
+    respond_to do |format|
+      format.html
+      format.js { render 'shared/update_page', :layout => false, :locals => {:poops => @poops} }
     end
   end
 
   def top
-    @poops = Poop.popular.by_category(params[:category] || 'RYTP').paginate(:per_page => 5, :page => params[:page])
-  end
+    @poops = Poop.top(params[:category], params[:period], params[:page])
 
-  def vote
-    unless voted?(params[:id])
-      @poop = Poop.find(params[:id])
-
-      @poop.rate += 1
-      @poop.votes_count += 1 unless voted?(params[:id]) or voted_bad?(params[:id])
-      @poop.save
-
-      unvote @poop.id, :bad
-      vote_for @poop.id, :good
-    end
-  end
-
-  def vote_bad
-    unless voted_bad?(params[:id])
-      @poop = Poop.find(params[:id])
-      redirect_to root_path unless @poop
-
-      @poop.rate -= 1
-      @poop.votes_count += 1 unless voted?(params[:id]) or voted_bad?(params[:id])
-      @poop.save
-
-      unvote @poop.id, :good
-      vote_for @poop.id, :bad
+    respond_to do |format|
+      format.html
+      format.js { render 'shared/update_page', :layout => false, :locals => {:poops => @poops} }
     end
   end
 
   def show
-    @poop = Poop.find(params[:id])
-    
-    render_404 unless @poop and (@poop.is_approved or !session[:admin].nil?)
+    render_404 unless @poop.approved? or (current_user and current_user.has_role?(:admin))
   end
 
   def new
-    @poop = Poop.new
   end
 
   def edit
-    @poop = Poop.find(params[:id])
   end
 
   def create
-    @poop = Poop.new(params[:poop])
-    @poop.is_approved = false
+    @poop = current_user.poops.build
+    @poop.accessible = :all if can?(:manage, @poop)
+    @poop.attributes = params[:poop]
 
     if @poop.save
-      flash[:notice] = "Ваш пуп добавлен. Он появится после проверки администратором."
-      redirect_to add_poop_path
+      redirect_to watch_path(last_poop), :notice => t(:'poop.added')
     else
       render :new
     end
   end
 
   def update
-    @poop = Poop.find(params[:id])
+    @poop.accessible = :all if can?(:manage, @poop)
 
     if @poop.update_attributes(params[:poop])
       redirect_to watch_path(@poop)
@@ -99,23 +98,21 @@ class PoopsController < ApplicationController
   end
 
   def destroy
-    @poop = Poop.find(params[:id])
-    @poop.destroy
+    flash[:deleted] = t(:'poop.deleted') if @poop.destroy
 
-    if request.referer
-      redirect_to :back
-    else
-      redirect_to @poop.category.name == 'RYTP' ? root_path : rytpmv_path
+    respond_to do |format|
+      format.html { redirect_to request.referer }
+      format.js { render :text => "window.location.reload();" }
     end
   end
 
-private
-  def hacker?
-    render_404 if cookies[:good].empty? or cookies[:bad].empty? or params[:salt].nil? or salt != params[:salt] or !request.post?
-  end
+  private
 
-  def salt
-    Digest::MD5.hexdigest "#{request.remote_ip}_#{request.env['HTTP_REFERER']}"
+  def find_poop
+    @poop ||= if params[:id]
+      Poop.find(params[:id])
+    else
+      Poop.new(params[:poop])
+    end
   end
 end
-

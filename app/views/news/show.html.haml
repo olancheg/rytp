@@ -1,31 +1,24 @@
-%script $$('.menu_news_top').last().addClassName('active');
 = set_title :title => @news.title
-= set_description truncate(@news.content, :length => 100)
+= set_description @news.content.truncate(100)
+.news
+  .a_new
+    %h1.title
+      = @news.title
+    %p.content
+      :markdown
+        #{with_brs @news.content}
+    .actions
+      %label.date= short_date(@news.created_at)
+      %label.author= link_to @news.user, profile_path(@news.user) if @news.user
+      - if can?(:manage, @news)
+        = link_to 'изменить', edit_news_path(@news)
+        = link_to 'удалить', @news, :confirm => 'Вы уверены?', :method => :delete
+  = render 'like_buttons/all'
 
-#new
-  .image
-    = image_tag @news.photo
-  %h1.title
-    = @news.title
-  %p.content
-    :markdown
-      #{with_brs @news.content}
-  %p.date
-    = @news.created_at.strftime '%d.%m.%Y'
 = content_for :comments do
   #vk_comments
-    %a(name="comments")
-    %script(type="text/javascript")
+    :javascript
       VK.Widgets.Comments("vk_comments", {limit: 10, width: "496"});
 
-= content_for :left do
-  #previous_new
-    = link_to image_tag('/images/news_prev.png'), previous_new(@news), :title => 'Ctrl + стрелка влево', :class => :prev_page
-
-= content_for :right do
-  #next_new
-    = link_to image_tag('/images/news_next.png'), next_new(@news), :title => 'Ctrl + стрелка вправо', :class => :next_page
-
 = content_for :ad_block_1 do
-  = render :partial => '/ad/before_comments'
-
+  = render '/ad/before_comments'

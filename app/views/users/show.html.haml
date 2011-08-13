@@ -1,0 +1,42 @@
+= set_title :title => (@user == current_user ? "мой профиль" : "профиль #{@user}")
+
+.profile
+  .profile_left
+    %h2= @user
+    .statistics
+      .field
+        Баланс:
+        %label= @user.rating.to_s + ' ' + t(:rating, :count => @user.rating.abs)
+      .field
+        Косарей отдал:
+        %label= @user.rating_given_positive
+      .field
+        Косарей отнял:
+        %label= @user.rating_given_negative
+      .field
+        Пупов загрузил:
+        %label= @user.poops_count
+    .links
+      - if @user.youtube_channel.present?
+        .field.youtube_url
+          Канал на Youtube:
+          %label= link_to 'ссылка', @user.youtube_channel
+      - if @user.show_profile_url? and @user.profile_url.present?
+        .field.profile_url
+          Ссылка на профиль:
+          %label= link_to 'ссылка', @user.profile_url
+      - if @user == current_user
+        .edit_profile
+          %label= link_to 'редактировать профиль', [:edit, @user]
+
+  .profile_right
+    .actions
+      %ul.filters
+        %li.approved= link_to 'подтвержденные', url_for(:approved => 'true')
+        %li.notapproved= link_to 'неподтвержденные', url_for(:approved => 'false') if @user == current_user
+        / %li.contest= link_to 'конкурсные', url_for(:approved => nil, :contest => true)
+      %ul.orders
+        = render 'users/ordering'
+
+    .poops= render @poops
+    = paginate @poops

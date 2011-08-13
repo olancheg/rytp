@@ -1,0 +1,3 @@
+<%= render 'shared/update_flash' %>
+
+$('#poop_' + <%= poop.id %> + ' .info').html('<%= escape_javascript(render "poops/poop_info", :poop => poop) %>');

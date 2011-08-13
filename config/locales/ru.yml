@@ -1,40 +1,104 @@
 ru:
-  edit: "редактирование poop'a"
-  wrong_code: "содержит ошибки или недопустимые конструкции"
-  photo_validation: "должна быть указана"
-  description: "RYTP.ru является наилучшим источником RYTP и RYTPMV"
-  new: "добавить poop"
-  back: "назад"
-  kosar: "дать косарь"
-  menu:
-    rytp: "rytp"
-    rytpmv: "rytpmv"
-    feed: "Лента"
-    wiki: "Куда я попал?"
-    study: "учебка"
-    top: "ТОП50"
-    add: "добавить"
-    not_approved: "новые пупы"
-    all_admins: "администраторы"
-    news_control: "новости"
-    logout: "выйти"
-    news: "Новости"
-    files: "Файлы"
-    info: "Инфо"
+  must_login: 'Вы должны войти в систему, прежде чем выполнять это действие'
+  access_denied: 'Невозможно выполнить это действие'
+  page_not_found: 'Страница не найдена!'
+  comments: 'комментарии'
+  welcome: 'Добро пожаловать, '
+  by: 'Загрузил'
+  feed_by: 'загрузил'
+  wrong_code: 'содержит ошибки или недопустимые конструкции'
+  description: 'RYTP.ru является наилучшим источником RYTP и RYTPMV'
+  empty: 'Нет ни одного видео.'
+  back: 'назад'
+
+  arrow_up: '↑'
+  arrow_down: '↓'
+
+  poop: &poop
+    title: 'Название'
+    code: 'Код видео'
+    author: 'Загрузил'
+    approved: 'Подтверждено?'
+    category_id: 'Категория'
+    description: 'Описание (не обязательно)'
+    added: 'Ваш пуп добавлен. Он появится после проверки администратором.'
+    approve: 'Пуп подтвержден.'
+    deleted: 'Пуп удален.'
+
+  user: &user
+    name: 'Имя'
+    email: 'E-Mail'
+    nickname: 'Ник'
+    youtube_channel: 'Канал на Youtube'
+    use_nickname_instead_of_name: 'Показывать мой ник вместо имени'
+    show_profile_url: 'Показывать ссылку на профиль'
+    profile_url: 'Ссылка на профиль'
+    updated: 'Профиль успешно обновлен'
+
+  news: &news
+    title: 'Заголовок'
+    content: 'Содержимое новости'
+    created: 'Новость успешно создана.'
+    updated: 'Новость успешно обновлена.'
+
+  roles:
+    admin: 'Администратор'
+    news_maker: 'Редактор новостей'
+    policeman: 'Милиционер'
+    user: 'Обычный пользователь'
+
   activerecord:
     attributes:
-      admin:
-        login: "Логин"
-        password: "Пароль"
-        name: "Имя"
-        policeman: "Ты милиционер?"
+      user:
+        <<: *user
       news:
-        content: "Содержимое новости"
-        title: "Заголовок"
-        photo: "Фотография к новости"
+        <<: *news
       poop:
-        code: "Код видео"
-        author: "Автор"
-        title: "Заголовок"
-        category_id: "Категория"
-        description: "Описание (не обязательно)"
+        <<: *poop
+
+  rating:
+    one: 'косарь'
+    few: 'косаря'
+    many: 'косарей'
+
+  error:
+    one: 'ошибка'
+    few: 'ошибки'
+    many: 'ошибок'
+
+  sessions:
+    new: 'Войти'
+    destroy: 'Выйти'
+
+  voting:
+    success: 'Ваш голос учтен'
+    failure: 'Повторное голосование невозможно'
+
+  authentication:
+    success: 'Вы успешно вошли в систему.'
+    logout: 'Вы успешно вышли из системы.'
+    failure: 'Невозможно войти в систему!'
+
+  views:
+    pagination:
+      previous: 'Предыдущая'
+      next: 'Следующая'
+      first: 'Первая'
+      last: 'Последняя'
+      truncate: '...'
+
+  menu:
+    rytp: 'RYTP'
+    rytpmv: 'RYTPMV'
+    feed: 'Лента'
+    wiki: 'Куда я попал?'
+    study: 'учебка'
+    top: 'ТОП50'
+    add: 'Добавить'
+    not_approved: 'новые пупы'
+    all_admins: 'администраторы'
+    news_control: 'новости'
+    logout: 'выйти'
+    news: 'Новости'
+    files: 'Файлы'
+    info: 'Инфо'

@@ -1,22 +1,20 @@
-%script
-  = "$('menu_#{@poop.category.name.downcase}').addClassName('active');"
-= set_title :type => @poop.category.name, :title => @poop.title
-= set_description truncate(@poop.description, :length => 100)
-= render :partial => 'poops/poop', :object => @poop
+= set_title :type => @poop.category_name, :title => @poop.title
+= set_description @poop.description.truncate(100)
+.poop= render @poop
 
 = content_for :comments do
   #vk_comments
-    %script(type="text/javascript") VK.Widgets.Comments("vk_comments", {limit: 10, width: "496"});
+    :javascript
+      VK.Widgets.Comments("vk_comments", {limit: 10, width: "496", pageUrl: "http://rytp.ru/#{@poop.id}"});
 
 = content_for :left do
-  #nav_left
-    = link_to image_tag('/images/previous.png'), previous_poop(@poop), :title => 'Ctrl + стрелка влево', :class => :prev_page, :id => 'previous'
+  .nav_left
+    = link_to image_tag('controls/previous.png', :width => 19, :height => 22, :alt => 'предыдущий пуп'), watch_path(previous_poop @poop), :id => :previous
 
 = content_for :right do
-  #nav_right
-    = link_to image_tag('/images/next.png'), next_poop(@poop), :title => 'Ctrl + стрелка вправо', :class => :next_page, :id => 'next'
-    = link_to image_tag('/images/random.png'), random_poop(@poop), :title => 'Ctrl + стрелка вниз', :id => 'random'
+  .nav_right
+    = link_to image_tag('controls/next.png', :width => 19, :height => 22, :alt => 'следующий пуп'), watch_path(next_poop @poop), :id => :next
+    = link_to image_tag('controls/random.png', :width => 18, :height => 47, :alt => 'рандомный пуп'), watch_path(random_poop @poop), :id => :random
 
 = content_for :ad_block_1 do
-  = render :partial => '/ad/before_comments'
-
+  = render '/ad/before_comments'

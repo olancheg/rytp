@@ -5,8 +5,6 @@ class CreateCategories < ActiveRecord::Migration
 
       t.timestamps
     end
-    Category.create(:name => 'RYTP')
-    Category.create(:name => 'RYTPMV')
   end
 
   def self.down

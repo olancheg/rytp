@@ -1,9 +1,6 @@
-= set_title :title => t(:new)
+= set_title :title => 'добавить poop'
 %h1 Добавить Poop
-- if flash[:notice]
-  #notice #{flash[:notice]}
 = render 'form'
 
 = content_for :ad_block_1 do
-  = render :partial => '/ad/before_footer'
-
+  = render '/ad/before_footer'

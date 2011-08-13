@@ -1,14 +1,19 @@
 = set_title :title => 'файлы'
 .titor
-#info
-  Раздел пополнится в ближайшее время. Если вы можете оказать помощь по разделу файлы сообщите нам #{mail_to 'webmaster@rytp.ru'}
+.files
+  .file_info
+    Раздел пополнится в ближайшее время. Если вы можете оказать помощь по разделу файлы сообщите нам на почту #{mail_to 'webmaster@rytp.ru'}
+  %hr
+  .file_list
+    .file.file_1
+      .icon
+      mp3 pack
+      = link_to 'скачать', 'http://dl.dropbox.com/u/4558589/rytp/rytp_pack_1_0.zip'
 
-#file_list
-  #file_1
-    = image_tag('/images/mp3pack.png')
-    mp3 pack
-    = link_to 'скачать', 'http://dl.dropbox.com/u/4558589/rytp/rytp_pack_1_0.zip'
+    .file.file_2
+      .icon
+      игра TrapPoc
+      = link_to 'скачать', 'http://dl.dropbox.com/u/4558589/rytp/TrapPoc.rar'
 
 = content_for :ad_block_1 do
-  = render :partial => '/ad/before_footer'
-
+  = render '/ad/before_footer'

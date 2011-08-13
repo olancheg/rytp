@@ -8,10 +8,6 @@ class CreateAdmins < ActiveRecord::Migration
 
       t.timestamps
     end
-
-    admin = Admin.new(:name => 'Olancheg', :login => 'olancheg', :password => 'qweqwe')
-    admin.main = true
-    admin.save
   end
 
   def self.down

@@ -1,6 +1,6 @@
+= set_title :title => 'редактирование пупа'
 %h1 Редактирование Poop'a
-= set_title :title => t(:edit)
-= render 'edit_form'
-= link_to 'перейти к пупу', watch_path(@poop)
+= render 'form'
+= link_to 'перейти к просмотру', watch_path(@poop)
 |
-= link_to t(:back), (:back || index_path)
+= link_to t(:back), request.referer

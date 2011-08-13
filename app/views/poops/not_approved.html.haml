@@ -1,0 +1,15 @@
+= set_title :title => 'не подтвержденные'
+
+.poops= render @poops
+= paginate @poops
+- if @poops.empty?
+  = empty
+
+= content_for :left do
+  = render '/ad/left_skyscraper'
+
+= content_for :right do
+  = render '/ad/right_skyscraper'
+
+= content_for :ad_block_1 do
+  = render '/ad/before_footer'

@@ -1,4 +1,2 @@
-%script
-  = "$('menu_#{action_name == 'index' ? 'rytp' : 'rytpmv'}').addClassName('active');"
-= set_title :type => ('RYTPMV' if action_name=='rytpmv')
-.empty Нет ни одного видео.
+= set_title :type => ('RYTPMV' if current_page?(rytpmv_path))
+= empty
