@@ -1,0 +1,8 @@
+.container
+  .last_new
+    %label Последняя новость:
+    = link_to last_new.title, news_path(last_new) if last_new
+  .contest
+    конкурс (25 человек)
+  .auth
+    = render 'shared/auth_block'

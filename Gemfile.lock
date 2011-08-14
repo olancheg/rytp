@@ -38,7 +38,6 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
-    decent_exposure (1.0.1)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     faraday (0.6.1)
@@ -163,7 +162,6 @@ DEPENDENCIES
   bluecloth
   cancan
   compass
-  decent_exposure
   haml-rails
   hpricot
   html5-boilerplate

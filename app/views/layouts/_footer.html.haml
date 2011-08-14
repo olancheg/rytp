@@ -1,0 +1,14 @@
+.container
+  .before
+    = yield :ad_block_1
+  = yield :comments
+  #sub_footer
+    .text
+      %p
+        %label RYTP.ru
+        является наилучшим источником RYTP и RYTPMV.
+      %p.last
+        Сайт для любителей пупов, от
+        = link_to 'letsweb.ru', 'http://letsweb.ru', :target => '_blank'
+    .counter
+      = render 'shared/counter'

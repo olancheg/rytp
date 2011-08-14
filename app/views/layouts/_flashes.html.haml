@@ -1,0 +1,4 @@
+#flash.hide
+  - flash.each do |key, value|
+    .message{ :class => key }
+      %p= value

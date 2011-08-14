@@ -1,73 +1,37 @@
-!!!
-%html
+!!! 5
+-# http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+-ie_html :class => 'no-js', :lang => 'en' do
   %head
-    %title= title
-    %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")
-    %link(rel="shortcut icon" href="/favicon.ico")
-    %link(rel="apple-touch-icon" href="/apple-touch-icon.png")
-    %meta(name="description" content="#{description}")
-    %meta(name="keywords" content="rytp, rytpmv, poop, youtube poop, russian youtube poop")
-    = auto_discovery_link_tag(:rss, rss_feed_path+'.rss')
+    -# To render a different stylesheet partial inside the head (i.e. for admin layout)
+    -# just copy _stylesheets.html.haml, and point to that partial instead.
+    = render "layouts/head", :stylesheet_partial => "layouts/stylesheets"
 
-    = stylesheet_link_tag 'screen.css', 'jquery.jgrowl.css', 'css3buttons.css', 'tipsy', :media => 'screen, projection'
-    = stylesheet_link_tag 'print.css', :media => 'print'
-    /[if lt IE 8]
-      = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
+    -# RSS feed
+    = auto_discovery_link_tag(:rss, rss_feed_url+'.rss')
 
-    %script(type="text/javascript" src="http://userapi.com/js/api/openapi.js" charset="windows-1251")
-    :javascript
-      VK.init({ apiId: 2021578, onlyWidgets: true })
-    = yield :javascripts
+  %body{ :class => "#{controller.controller_name}" }
+    #container
+      = render "shared/admin_panel"
+      = render "layouts/flashes"
 
-    = csrf_meta_tag
-  %body.bp
-    = render 'shared/admin_panel'
-    #flash.hide
-      = render 'shared/flash_messages'
-    #main
-      #header
-        .container
-          .last_new
-            %label Последняя новость:
-            = link_to last_new.title, news_path(last_new) if last_new
-          .contest
-            25 users participated in contest
-          .auth
-            = render 'shared/auth_block'
-      .container
-        #sub_header
-          #logo= link_to image_tag('logo.png', :width => 74, :height => 81, :title => 'RYTP.ru'), root_path
-          = render 'shared/menu'
-          .search_box
-            = form_tag search_path, :method => :get do
-              = search_field_tag :search, params[:search], :class => 'search', :placeholder => "Что тебе нужно..."
-          = render 'shared/social'
-          = render 'shared/small_menu'
-      .container.triangle
-        %div{:class => [:content, @feed_class] * ' '}
-          .left
-            = yield :left
-            .fix &nbsp;
-          .middle
-            = yield
-          .right
-            = yield :right
-            .fix &nbsp;
-      #footer
-        .container
-          .before
-            = yield :ad_block_1
-          = yield :comments
-          #sub_footer
-            .text
-              %p
-                %label RYTP.ru
-                является наилучшим источником RYTP и RYTPMV.
-              %p.last
-                Сайт для любителей пупов, от
-                = link_to 'letsweb.ru', 'http://letsweb.ru', :target => '_blank'
-            .counter
-              = render 'shared/counter'
+      #main{ :role => 'main' }
+        %header#header
+          = render "layouts/header"
+        = render "layouts/navigation"
 
-    = javascript_include_tag :jquery, :cache => 'jquery_libs'
-    = javascript_include_tag :app, :cache => 'app'
+        .container.triangle
+          %div{:class => [:content, @feed_class] * ' '}
+            .left
+              = yield :left
+              .fix &nbsp;
+            .middle
+              = yield
+            .right
+              = yield :right
+              .fix &nbsp;
+
+        %footer#footer
+          = render "layouts/footer"
+
+    -# Javascript at the bottom for fast page loading
+    = render "layouts/javascripts"

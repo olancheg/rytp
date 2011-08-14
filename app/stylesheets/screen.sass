@@ -1,14 +1,11 @@
 // This import applies a global reset to any page that imports this stylesheet.
-@import "blueprint/reset"
-
-// To configure blueprint, edit the partials/base.sass file.
-@import "partials/base"
+//@import "blueprint/reset"
 
 // Import all the default blueprint modules so that we can access their mixins.
 @import "blueprint"
 
 // Import the non-default scaffolding module.
-@import "blueprint/scaffolding"
+//@import "blueprint/scaffolding"
 
 // Import sprites
 @import "compass/utilities/sprites"
@@ -31,7 +28,7 @@
 // If you are doing a lot of stylesheet concatenation, it is suggested
 // that you scope your blueprint styles, so that you can better control
 // what pages use blueprint when stylesheets are concatenated together.
-body.bp
+body
   +blueprint-typography(true)
   +blueprint-utilities
   +blueprint-debug
@@ -42,7 +39,7 @@ body.bp
 form
   +blueprint-form
   // You'll probably want to remove the scaffolding once you start styling your site.
-  +blueprint-scaffolding
+//  +blueprint-scaffolding
 
 .error_explanation
   +error
@@ -99,23 +96,24 @@ img:not([width]):not([height])
     padding: 10px 0 5px
     background-color: #000
     .last_new
-      +column(6)
+      +column(7)
       +prepend(3)
       padding-top: 6px
       label
         padding-right: 5px
     .contest
-      +column(6)
-      padding-top: 6px
+      +column(4)
+      padding-top: 5px
     .auth
-      +column(8, true)
+      +column(9, true)
       vertical-align: middle
-      label
+      label.auth
         +column(1)
-        margin-top: 5px
-        margin-right: 15px
+        margin: 5px 15px 0 30px
       label.welcome
-        +column(3)
+        +column(4)
+        width: 115px
+        margin-top: 5px
       .auth-links
         margin-bottom: 10px
         padding: 0
@@ -149,6 +147,11 @@ img:not([width]):not([height])
     margin-top: 20px
     #logo
       +column(3)
+      a
+        display: block
+        +icons-sprite(logo)
+        width: 74px
+        height: 81px
     #social
       margin-top: 10px
       +column(5, true)
@@ -178,8 +181,9 @@ img:not([width]):not([height])
       +column(5, true)
       .search
         +column(5, true)
+        width: 190px
         margin-left: -3px
-        padding: 4px 5px
+        padding: 4px 5px 4px 10px
         outline: none
         color: #000
         border: 0
@@ -319,8 +323,7 @@ img:not([width]):not([height])
           a
             +link-colors(#000, #fff)
             text-decoration: none
-            span
-              margin-right: 3px
+            margin-right: 3px
         .admin_links
           padding-top: 5px
           padding-bottom: 0

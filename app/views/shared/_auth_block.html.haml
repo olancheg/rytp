@@ -1,14 +1,13 @@
 - if current_user
+  %label.welcome= t(:'welcome')
   %ul.auth-links
-    %li
-      %label.welcome= t(:'welcome')
     %li
       = link_to current_user, profile_path(current_user)
     %li
       = link_to t(:'sessions.destroy'), logout_path
 
 -else
-  %label= t(:'sessions.new') + ':'
+  %label.auth= t(:'sessions.new') + ':'
   %ul.auth-links.sign_in
     %li
       = link_to "Вконтакте", "/auth/vkontakte", :class => :vkontakte, :title => 'Войти через ВКонтакте'

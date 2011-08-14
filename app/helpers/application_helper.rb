@@ -43,7 +43,7 @@ module ApplicationHelper
   def comments_link(poop)
     path = classes = ''
 
-    if (request.xhr? and (request.referer !~ /[^=]\d+$/ or request.referer !~ /users/)) or (!request.xhr? and !current_page?(watch_path poop))
+    if (request.xhr? and (request.referer !~ /[^=]\d+(#.*)?$/ or request.referer !~ /users/)) or (!request.xhr? and !current_page?(watch_path poop))
       path = watch_path(poop)
     else
       classes = 'comments_button'

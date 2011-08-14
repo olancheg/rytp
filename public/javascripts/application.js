@@ -1,5 +1,5 @@
 function showFlash() {
-  $('#flash .flash_message').each(function() {
+  $('#flash .message').each(function() {
     $.jGrowl($(this).html());
   });
 }
