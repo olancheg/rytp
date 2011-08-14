@@ -1,5 +1,0 @@
-page.replace_html "votes_#{@poop.id}", @poop.rate.to_s+' '+Russian.p(@poop.rate.abs, "косарь", "косаря", "косарей")
-page.replace_html "vote_btn_#{@poop.id}", link_to('дать косарь', '#', :onclick => "vote('kosar', #{@poop.id}); return false;")
-page.replace_html "vote_bad_btn_#{@poop.id}", 'ХУNТА'
-page << "$('vote_btn_#{@poop.id}').addClassName('kosar').removeClassName('kosar_g');"
-page << "$('vote_bad_btn_#{@poop.id}').removeClassName('xunta').addClassName('xunta_g');"
