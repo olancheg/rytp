@@ -1,4 +1,3 @@
-if RUBY_VERSION == '1.9.2'
+if defined? YAML::ENGINE
   YAML::ENGINE.yamler = 'syck'
 end
-

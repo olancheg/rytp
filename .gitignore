@@ -6,15 +6,13 @@
 *.rbc
 *.sassc
 **.orig
-/config/database.yml
 db/*.sqlite3
 log/*
 tmp/*
-capybara-*.html
 vendor/bundle
 public/system/*
 coverage/
 spec/tmp/*
 rerun.txt
-pickle-email-*.html
+/*.html
 

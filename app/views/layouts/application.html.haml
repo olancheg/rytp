@@ -9,7 +9,7 @@
     -# RSS feed
     = auto_discovery_link_tag(:rss, rss_feed_url+'.rss')
 
-  %body{ :class => "#{controller.controller_name}" }
+  %body
     #container
       = render "shared/admin_panel"
       = render "layouts/flashes"

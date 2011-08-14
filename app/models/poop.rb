@@ -76,7 +76,7 @@ class Poop < ActiveRecord::Base
             end
 
     select('poops.*, count(votes.id) as vc').
-    joins('LEFT OUTER JOIN votes ON votes.poop_id = poops.id').
+    joins(:votes).
     where(:votes => {:created_at => start..Time.now}).
     group(Poop.columns.map{|c| "poops.#{c.name}"} * ', ').
     order('poops.rating DESC, vc DESC')

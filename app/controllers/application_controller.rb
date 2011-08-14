@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  helper :all
+
   rescue_from ActionController::RedirectBackError, :with => :redirect_to_root
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
   rescue_from CanCan::AccessDenied, :with => :access_denied

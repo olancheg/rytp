@@ -8,13 +8,11 @@ function scrollToComments() {
   var anchor_value;
   var stripped_url = document.location.toString().split("#");
 
-  if (stripped_url.length > 1) {
+  if (stripped_url.length > 1)
     anchor_value = stripped_url[1];
-  }
 
-  if (anchor_value == 'comments') {
+  if (anchor_value == 'comments')
     $.scrollTo( $('#vk_comments'), 800 );
-  }
 }
 
 // OnLoad
