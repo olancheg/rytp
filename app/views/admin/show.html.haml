@@ -1,0 +1,13 @@
+= set_title :title => 'администрирование пользователя'
+
+.admin
+  = render 'form'
+
+  .delete
+    %h4 Удалить
+    .field
+      = link_to "пользователя", admin_path(@user), :method => :delete, :confirm => 'Вы уверены?'
+    .field
+      = link_to "пупы пользователя (#{@user.poops.count})", poops_admin_path(@user), :method => :delete, :confirm => 'Вы уверены?'
+    .field
+      = link_to "косари отданные пользователем (#{@user.votes.count})", votes_admin_path(@user), :method => :delete, :confirm => 'Вы уверены?'

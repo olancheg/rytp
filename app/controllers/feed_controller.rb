@@ -26,11 +26,21 @@ class FeedController < ApplicationController
 
     @poops = Poop.approved.ordered
 
+    @users = User.all
+    @user_pages = []
+
+    @users.each do |user|
+      @user_pages[user.id] = {}
+      %w{approved favourites}.each do |filter|
+        @user_pages[user.id][filter] = (user.filters_and_orders({:filter => filter}).count / Poop::PAGINATES_PER.to_f).ceil
+      end
+    end
+
     @top = {}
     [:RYTP, :RYTPMV].each do |category|
       @top[category] = {}
       [nil, 'by_month', 'all_time'].each do |period|
-        @top[category][period] = Poop.top_by_category_and_period(category, period)
+        @top[category][period] = Poop.top_by_category_and_period(category, period).to_a
       end
     end
 

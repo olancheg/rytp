@@ -1,10 +1,11 @@
 .a_new
   %h2= news.title
-  .description= news.content.truncate(300)
+  %time= short_date(news.created_at)
+  .description= sanitize(news.content, :tags=>[]).truncate(300)
   .actions
-    %label.date= short_date(news.created_at)
-    %label.author= link_to news.user, profile_path(news.user) if news.user
-    = link_to 'перейти к просмотру', news
     - if can?(:manage, news)
       = link_to 'изменить', [:edit, news]
       = link_to 'удалить', news, :confirm => 'Вы уверены?', :method => :delete
+    = link_to 'перейти к просмотру', news, :class => 'cut'
+    %label.author= link_to news.user, profile_path(news.user) if news.user
+  .clear

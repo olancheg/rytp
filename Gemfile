@@ -8,8 +8,6 @@ gem 'kaminari'
 gem 'russian'
 gem 'hpricot'
 
-gem 'bluecloth'
-
 gem 'jquery-rails', :group => :development
 gem 'compass'
 gem "html5-boilerplate"

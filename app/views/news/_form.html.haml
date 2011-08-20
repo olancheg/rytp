@@ -7,8 +7,10 @@
         - @news.errors.full_messages.each do |msg|
           %li= msg
   .field
-    = f.text_field :title, :class => :title, :placeholder => t(:'news.title'), :title => t(:'news.title')
+    = f.text_field :title, :class => :title, :placeholder => t(:'news.title')
   .field
-    = f.text_area :content, :placeholder => t(:'news.content'), :title => t(:'news.content')
+    - redactor("#news_body")
+    - redactor_css
+    = f.text_area :content, :id => :news_body
   .actions
     = f.submit 'сохранить'

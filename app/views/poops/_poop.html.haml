@@ -1,12 +1,12 @@
 .poop{ :id => ["poop", poop.id] }
-  %h1.title(title="#{poop.title} | #{poop.category_name}")
+  %h1.title{ :title => "#{poop.title} | #{poop.category_name}" }
     = poop.title.truncate 30
   .video
-    = video(poop.code)
+    = video poop.code
   .info
     = render 'poops/poop_info', :poop => poop
   .wrapper
-    .author
+    .author{ :rel => :author }
       = t(:by) + ': '
       = poop.user ? link_to(poop.user, profile_path(poop.user)) : 'noname'
     .description_link
@@ -17,5 +17,5 @@
       - else
         &nbsp;
     .description.hide
-      = with_brs(poop.description)
-    = render 'like_buttons/all' if current_page?(watch_path(poop))
+      = with_brs poop.description
+    = render 'like_buttons/all' if current_page?(watch_path poop)

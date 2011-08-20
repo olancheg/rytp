@@ -26,9 +26,30 @@ module LinkHelper
   end
 
   def link_to_sort(text, sort_by, options={})
-    link_to url_for(:approved => params[:approved], :sort_by => sort_by, :page => params[:page],
+    link_to url_for(:filter => params[:filter], :sort_by => sort_by, :page => params[:page],
                     :order => (params[:order] == 'asc' || (params[:order_by] and params[:order_by] != 'rating') ? 'desc' : 'asc')), options do
       arrow(sort_by) + text
     end
+  end
+
+  def active?(options={})
+    result = false
+
+    if options[:object] and options[:object].category
+      result ||= options[:object].category_name == options[:type].to_s
+    end
+
+    if options[:path]
+      result ||= case options[:path]
+      when Array
+        options[:path].to_a.flatten.any? { |p| current_page?(p) }
+      when String
+        current_page?(options[:path])
+      end
+    end
+
+    result ||= options[:boolean]
+
+    'active' if result
   end
 end

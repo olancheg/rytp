@@ -1,9 +1,5 @@
 = set_title :title => 'новости'
-.news
-  %h1 Новости
+.all_news
   .news_list= render @news
-
-  - if can?(:create, News)
-    = link_to 'Добавить новость', new_news_path
 
   = paginate @news

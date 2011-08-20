@@ -1,9 +1,9 @@
 .container
   #sub_header
     #logo= link_to 'RYTP.RU', root_path, :class => :ir
-    = render 'shared/menu'
+    = render 'layouts/menu'
     .search_box
       = form_tag search_path, :method => :get do
         = search_field_tag :search, params[:search], :class => 'search', :placeholder => "Что тебе нужно..."
-    = render 'shared/social'
-    = render 'shared/small_menu'
+    = render 'layouts/social'
+    = render 'layouts/small_menu'

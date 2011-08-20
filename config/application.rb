@@ -31,7 +31,7 @@ module Rytp
     config.i18n.default_locale = :ru
 
     # JavaScript files you want as :defaults (application.js is always included).
-    config.action_view.javascript_expansions[:jquery_libs] = %w(safety jquery.jgrowl_compressed jquery_ujs jquery.tipsy jquery.scrollTo-min)
+    config.action_view.javascript_expansions[:jquery_libs] = %w(safety jquery.jgrowl_compressed jquery_ujs jquery.tipsy jquery.scrollTo-min jquery.observe_field)
     config.action_view.javascript_expansions[:app] = %w(placeholder application)
 
     # Configure the default encoding used in templates for Ruby 1.9.

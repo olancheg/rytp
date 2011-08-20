@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @poops = @user.poops.filters_and_orders(params).page params[:page]
+    @poops = @user.filters_and_orders(params).page params[:page]
 
     respond_to do |format|
       format.html

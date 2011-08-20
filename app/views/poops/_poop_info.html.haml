@@ -1,6 +1,14 @@
 .rating
   = poop.rating.to_s + ' ' + t(:'rating', :count => poop.rating.abs)
 .links
+  - if current_user and current_user.favoured?(poop)
+    = link_to remove_from_favourites_path(poop), :remote => true, :class => :button do
+      %span.cross.icon
+      удалить из избранного
+  - else
+    = link_to add_to_favourites_path(poop), :remote => true, :class => :button do
+      %span.heart.icon
+      добавить в избранное
   = link_to vote_positive_path(poop), :remote => true, :class => :button do
     %span.kosar.icon
     дать косарь

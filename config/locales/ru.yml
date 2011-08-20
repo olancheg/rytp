@@ -14,6 +14,11 @@ ru:
   arrow_up: '↑'
   arrow_down: '↓'
 
+  favourites:
+    added: 'Пуп добавлен в избранное'
+    removed: 'Пуп удален из избранного'
+    failed: 'Невозможно добавить в избранное'
+
   poop: &poop
     title: 'Название'
     code: 'Код видео'
@@ -25,6 +30,15 @@ ru:
     approve: 'Пуп подтвержден.'
     deleted: 'Пуп удален.'
 
+  contest: &contest
+    name: 'Название'
+    description: 'Описание'
+    start_at: 'Дата начала'
+    end_at: 'Дата окончания'
+    updated: 'Конкурс обновлен'
+    deleted: 'Конкурс удален'
+    wrong_dates: 'не может быть раньше даты начала'
+
   user: &user
     name: 'Имя'
     email: 'E-Mail'
@@ -34,6 +48,8 @@ ru:
     show_profile_url: 'Показывать ссылку на профиль'
     profile_url: 'Ссылка на профиль'
     updated: 'Профиль успешно обновлен'
+    deleted: 'Информация успешно удалена'
+    role: 'Права пользователя'
 
   news: &news
     title: 'Заголовок'
@@ -55,6 +71,8 @@ ru:
         <<: *news
       poop:
         <<: *poop
+      contest:
+        <<: *contest
 
   rating:
     one: 'косарь'
@@ -94,6 +112,7 @@ ru:
     wiki: 'Куда я попал?'
     study: 'учебка'
     top: 'ТОП50'
+    contest: 'конкурсы'
     add: 'Добавить'
     not_approved: 'новые пупы'
     all_admins: 'администраторы'

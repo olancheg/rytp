@@ -1,5 +1,6 @@
 User-agent: *
 Disallow: /vote/
 Allow: /
+Disallow: /favourites/
 
 Sitemap: http://rytp.ru/sitemap.xml

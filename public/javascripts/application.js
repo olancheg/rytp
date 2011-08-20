@@ -15,6 +15,13 @@ function scrollToComments() {
     $.scrollTo( $('#vk_comments'), 800 );
 }
 
+// Imperavi Redactor
+var redactor = {
+  focus: true,
+  path: '/redactor/',
+  image_upload: '/manage/photos'
+}
+
 // OnLoad
 $(function() {
 
@@ -49,6 +56,11 @@ $(function() {
       });
     }
   }
+
+  // Observing user search field
+  $("#user_search").observe_field(0.5, function( ) {
+    $(this).parent().submit();
+  });
 
   // With #comments anchor scroll to comments box
   scrollToComments();

@@ -1,0 +1,4 @@
+.user
+  = link_to admin_path(user) do
+    = user.name
+    = '(' + user.nickname + ')' if user.nickname?

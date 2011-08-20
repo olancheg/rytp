@@ -11,11 +11,14 @@ class Poop < ActiveRecord::Base
   paginates_per PAGINATES_PER
 
   belongs_to :category
+  belongs_to :contest
   belongs_to :user, :counter_cache => true
 
   has_many :positive_votes, :class_name => "Vote", :conditions => {:positive => true}
   has_many :negative_votes, :class_name => "Vote", :conditions => {:positive => false}
   has_many :votes, :dependent => :destroy
+
+  has_many :favourites, :dependent => :destroy
 
   validates_presence_of :title
   validates_inclusion_of :category_id, :in => Category.ids
@@ -37,8 +40,6 @@ class Poop < ActiveRecord::Base
         src =~ /^http\:\/\/(www\.)?(vk\.com|vkontakte\.ru|youtube\.com)/ and iframes.size == 1
   end
 
-  default_scope includes(:category, :user)
-
   scope :by_category, lambda { |category| where(:category_id => Category.find_all_by_name(category)) }
   scope :by_category_id, lambda { |category_id| where(:category_id => category_id) }
   scope :ordered, order('created_at DESC')
@@ -49,11 +50,10 @@ class Poop < ActiveRecord::Base
   scope :popular, approved.rated
   scope :feed, lambda { |category| ordered.approved.by_category(category || 'RYTP') }
   scope :top_by_category_and_period, lambda { |category, period| by_category(category || 'RYTP').by_period(period || '').popular }
+  scope :not_participating_now, joins('LEFT OUTER JOIN contests ON contests.id = poops.contest_id').
+                                where('poops.contest_id IS NULL OR contests.end_at < ?', Date.today)
 
-  scope :filters_and_orders, lambda { |params|
-                                      order((params[:sort_by] == 'date' ? 'created_at' : 'rating') + ' ' + (params[:order] || 'desc')).
-                                      where(:approved => (params[:approved] != 'false'))
-                                    }
+  default_scope includes(:category, :user).not_participating_now
 
   delegate :name, :to => :category, :prefix => true
 
@@ -63,6 +63,10 @@ class Poop < ActiveRecord::Base
 
   def self.top(category, period, page)
     Kaminari.paginate_array(Poop.top_by_category_and_period(category, period).to_a).page(page).per(PAGINATES_PER)
+  end
+
+  def self.fetch_last
+    by_category('RYTP').approved.limit(1).last
   end
 
   def self.by_period(period)

@@ -1,29 +1,39 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :nickname, :youtube_channel, :use_nickname_instead_of_name,
-                  :show_profile_url, :profile_url, :roles_attributes
+  attr_accessible :name, :email, :nickname, :use_nickname_instead_of_name,
+                  :show_profile_url, :profile_url, :youtube_channel
 
   PAGINATES_PER = 10
 
   include PgSearch
-  pg_search_scope :search, :against => [:name, :email, :nickname]
+  pg_search_scope :search,
+                  :against => [:name, :nickname],
+                  :using => { :tsearch => { :prefix => true } }
 
   paginates_per PAGINATES_PER
 
-  has_many :authentications
+  has_many :authentications, :dependent => :destroy
   has_many :poops
   has_many :news
-  has_many :roles
+
+  has_many :role_associations, :dependent => :destroy
+  has_many :roles, :through => :role_associations
 
   has_many :votes, :dependent => :destroy
   has_many :positive_votes, :class_name => "Vote", :conditions => {:positive => true}
   has_many :negative_votes, :class_name => "Vote", :conditions => {:positive => false}
 
+  has_many :favourites, :dependent => :destroy
+  has_many :favoured_poops, :source => :poop, :through => :favourites
+
   validates_presence_of :name
-  validates_presence_of :nickname, :if => proc { use_nickname_instead_of_name? }
+  validates_presence_of :nickname, :if => lambda { use_nickname_instead_of_name? }
 
-  after_save :create_default_role, :on => :create
+  validates_format_of :youtube_channel, :with => URI::regexp(%w(http https)), :if => lambda { youtube_channel? }
+  validates_format_of :profile_url, :with => URI::regexp(%w(http https)), :if => lambda { profile_url? }
 
-  accepts_nested_attributes_for :roles, :allow_destroy => true, :reject_if => proc { |obj| obj.blank? }
+  default_scope includes(:roles)
+
+  after_create :create_default_role
 
   def self.create_from_hash!(hash)
     instance = new( :name => hash['user_info']['name'],
@@ -59,8 +69,16 @@ class User < ActiveRecord::Base
     @rating_given_negative ||= negative_votes.count
   end
 
-  def has_role?(role)
-    roles.any? { |r| r.mask == Role::LIST[role.to_sym] }
+  def has_role?(name)
+    cached_roles.any? {|role| role.name.to_sym == name.to_sym}
+  end
+
+  def cached_roles
+    @roles ||= roles
+  end
+
+  def favoured?(poop)
+    favoured_poops.include? poop
   end
 
   def set_default_profile_url(hash)
@@ -80,7 +98,22 @@ class User < ActiveRecord::Base
     end
   end
 
+  def filters_and_orders(params)
+    result = Poop.where(:user_id => self)
+
+    case params[:filter]
+    when 'favourites'
+      result = favoured_poops
+    when 'not_approved'
+      result = result.not_approved
+    else
+      result = result.approved
+    end
+
+    result.order((params[:sort_by] == 'date' ? 'created_at' : 'rating') + ' ' + (params[:order] || 'desc'))
+  end
+
   def create_default_role
-    roles.create(:mask => Role::LIST[:user])
+    roles << Role.find_by_mask(Role::LIST[:user])
   end
 end

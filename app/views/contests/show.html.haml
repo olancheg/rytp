@@ -1,0 +1,26 @@
+= set_title :title => @contest.name
+= set_description sanitize(@contest.description, :tags => []).truncate(100)
+.contests
+  .contest
+    %h1.title
+      = @contest.name
+    .content.redactor
+      %article= raw @contest.description
+    .actions
+      - if can?(:manage, @contest)
+        = link_to 'изменить', [:edit, @contest]
+        = link_to 'удалить', @contest, :confirm => 'Вы уверены?', :method => :delete
+    .dates
+      %label Конкурс проходит:
+      %time.start_at= short_date(@contest.start_at)
+      %label &mdash;
+      %time.end_at= short_date(@contest.end_at)
+  = render 'like_buttons/all'
+
+= content_for :comments do
+  #vk_comments
+    :javascript
+      VK.Widgets.Comments("vk_comments", {limit: 10, width: "496"});
+
+= content_for :ad_block_1 do
+  = render '/ad/before_comments'

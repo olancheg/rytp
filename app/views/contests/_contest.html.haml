@@ -1,0 +1,10 @@
+.contest
+  %h2= contest.name
+  %time= short_date(contest.start_at) + '—' + short_date(contest.end_at)
+  .description= sanitize(contest.description, :tags=>[]).truncate(300)
+  .actions
+    - if can?(:manage, contest)
+      = link_to 'изменить', [:edit, contest]
+      = link_to 'удалить', contest, :confirm => 'Вы уверены?', :method => :delete
+    = link_to 'перейти к просмотру', contest, :class => 'cut'
+  .clear

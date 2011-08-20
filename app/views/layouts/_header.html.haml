@@ -1,8 +1,12 @@
 .container
   .last_new
     %label Последняя новость:
-    = link_to last_new.title, news_path(last_new) if last_new
+    = link_to last_new.title.truncate(35), news_path(last_new) if last_new
   .contest
-    конкурс (25 человек)
+    - if last_contest
+      = link_to last_contest do
+        конкурс (#{last_contest.poops.count})
+    - else
+      конкурс еще не начался
   .auth
-    = render 'shared/auth_block'
+    = render 'layouts/auth_block'

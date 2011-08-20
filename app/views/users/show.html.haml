@@ -17,11 +17,11 @@
         Пупов загрузил:
         %label= @user.poops_count
     .links
-      - if @user.youtube_channel.present?
+      - if @user.youtube_channel?
         .field.youtube_url
           Канал на Youtube:
           %label= link_to 'ссылка', @user.youtube_channel
-      - if @user.show_profile_url? and @user.profile_url.present?
+      - if @user.show_profile_url? and @user.profile_url?
         .field.profile_url
           Ссылка на профиль:
           %label= link_to 'ссылка', @user.profile_url
@@ -32,11 +32,13 @@
   .profile_right
     .actions
       %ul.filters
-        %li.approved= link_to 'подтвержденные', url_for(:approved => 'true')
-        %li.notapproved= link_to 'неподтвержденные', url_for(:approved => 'false') if @user == current_user
+        %li.approved= link_to 'подтвержденные', url_for(:filter => 'approved')
+        %li.notapproved= link_to 'неподтвержденные', url_for(:filter => 'not_approved') if @user == current_user
+        %li.favourites= link_to 'избранное', url_for(:filter => 'favourites')
         / %li.contest= link_to 'конкурсные', url_for(:approved => nil, :contest => true)
       %ul.orders
-        = render 'users/ordering'
+        = render 'ordering'
+
 
     .poops= render @poops
     = paginate @poops

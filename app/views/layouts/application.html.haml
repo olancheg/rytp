@@ -6,12 +6,9 @@
     -# just copy _stylesheets.html.haml, and point to that partial instead.
     = render "layouts/head", :stylesheet_partial => "layouts/stylesheets"
 
-    -# RSS feed
-    = auto_discovery_link_tag(:rss, rss_feed_url+'.rss')
-
   %body
     #container
-      = render "shared/admin_panel"
+      = render "layouts/admin_panel"
       = render "layouts/flashes"
 
       #main{ :role => 'main' }

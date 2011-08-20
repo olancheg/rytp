@@ -15,4 +15,10 @@ module TextHelper
   def short_date(date)
     Russian::strftime date, '%d %B %Y'
   end
+
+  def redactor(element)
+    content_for :bottom_javascript do
+      content_tag :script, "$(function() { $('#{element}').redactor(redactor); });", :type => "text/javascript"
+    end
+  end
 end

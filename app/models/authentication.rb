@@ -10,7 +10,9 @@ class Authentication < ActiveRecord::Base
   end
 
   def self.create_from_hash(hash, user = nil)
-    user ||= User.create_from_hash!(hash)
-    Authentication.create(:user_id => user.id, :uid => hash['uid'], :provider => hash['provider'])
+    user = User.create_from_hash!(hash)
+    auth = Authentication.create(:user_id => user.id, :uid => hash['uid'], :provider => hash['provider'])
+    user.destroy unless auth.persisted?
+    auth
   end
 end

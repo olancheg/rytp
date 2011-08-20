@@ -9,12 +9,12 @@
 
 = content_for :left do
   .nav_left
-    = link_to image_tag('controls/previous.png', :width => 19, :height => 22, :alt => 'предыдущий пуп'), watch_path(previous_poop @poop), :id => :previous
+    = link_to image_tag('controls/previous.png', :width => 19, :height => 22, :alt => '<'), watch_path(previous_poop @poop), :id => :previous, :rel => :prefetch
 
 = content_for :right do
   .nav_right
-    = link_to image_tag('controls/next.png', :width => 19, :height => 22, :alt => 'следующий пуп'), watch_path(next_poop @poop), :id => :next
-    = link_to image_tag('controls/random.png', :width => 18, :height => 47, :alt => 'рандомный пуп'), watch_path(random_poop @poop), :id => :random
+    = link_to image_tag('controls/next.png', :width => 19, :height => 22, :alt => '>'), watch_path(next_poop @poop), :id => :next, :rel => :prefetch
+    = link_to image_tag('controls/random.png', :width => 18, :height => 47, :alt => 'R'), watch_path(random_poop @poop), :id => :random
 
 = content_for :ad_block_1 do
   = render '/ad/before_comments'

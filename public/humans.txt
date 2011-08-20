@@ -3,9 +3,9 @@
 
 
 /* TEAM */
-  Made by: Alan [olancheg]
-  Site: http://vkontakte.ru/olancheg
-  Twitter: http://twitter.com/olancheg
+  Made by: Alan [olancheg], Alexander [shizboy]
+  Site: http://letsweb.ru
+  Twitter: http://twitter.com/olancheg, http://twitter.com/LetsWeb
   Location: Russia, Saint-Petersburg
 
 /* THANKS */
@@ -13,7 +13,7 @@
 
 /* SITE */
   Standards: HTML5, CSS3
-  Components: Modernizr, jQuery, jGrowl, jQuery.scrollTo, jQuery.Tipsy
+  Components: Modernizr, jQuery, jGrowl, jQuery.Tipsy, Imperavi Redactor
   Software: Ruby on Rails
 
 

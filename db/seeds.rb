@@ -7,3 +7,7 @@
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
 Category.create [ { :name => 'RYTP' }, { :name => 'RYTPMV' } ] unless Category.any?
+
+Role::LIST.each_pair do |name, mask|
+  Role.create :mask => mask, :name => name
+end

@@ -72,7 +72,7 @@ xml.urlset(:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9") {
   @feed.each_pair do |category, feed|
     xml.url {
       xml.loc(rfc_url poops_feed_path(category))
-      lastmod = feed[:poops].first.updated_at.strftime("%Y-%m-%d") if feed[:poops]
+      lastmod = feed[:poops].first.updated_at.strftime("%Y-%m-%d") if feed[:poops].count > 0
       lastmod = lastmod || Time.now.strftime("%Y-%m-%d")
       xml.lastmod(lastmod)
       xml.changefreq("daily")
@@ -81,7 +81,7 @@ xml.urlset(:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9") {
     feed[:pages].times do |n|
       xml.url {
         xml.loc(rfc_url poops_feed_path(category)+'?page='+(n+1).to_s)
-        lastmod = feed[:poops].first.updated_at.strftime("%Y-%m-%d") if feed[:poops]
+        lastmod = feed[:poops].first.updated_at.strftime("%Y-%m-%d") if feed[:poops].count > 0
         lastmod = lastmod || Time.now.strftime("%Y-%m-%d")
         xml.lastmod(lastmod)
         xml.changefreq("daily")
@@ -95,7 +95,7 @@ xml.urlset(:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9") {
     top.each_pair do |period, poops|
       xml.url {
         xml.loc(rfc_url top_path(category, period))
-        lastmod = poops.first.updated_at.strftime("%Y-%m-%d") if poops
+        lastmod = poops.first.updated_at.strftime("%Y-%m-%d") if poops.count > 0
         lastmod = lastmod || Time.now.strftime("%Y-%m-%d")
         xml.lastmod(lastmod)
         xml.changefreq("weekly")
@@ -104,7 +104,7 @@ xml.urlset(:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9") {
       10.times do |n|
         xml.url {
           xml.loc(rfc_url top_path(category, period)+'?page='+(n+1).to_s)
-          lastmod = poops.first.updated_at.strftime("%Y-%m-%d") if poops
+          lastmod = poops.first.updated_at.strftime("%Y-%m-%d") if poops.count > 0
           lastmod = lastmod || Time.now.strftime("%Y-%m-%d")
           xml.lastmod(lastmod)
           xml.changefreq("weekly")
@@ -125,7 +125,7 @@ xml.urlset(:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9") {
   }
   @news_pages.times do |n|
     xml.url {
-      xml.loc('http://rytp.ru' + news_index_path+'?page='+(n+1).to_s)
+      xml.loc(rfc_url news_index_path+'?page='+(n+1).to_s)
       lastmod = @news.first.updated_at.strftime("%Y-%m-%d") if @news
       lastmod = lastmod || Time.now.strftime("%Y-%m-%d")
       xml.lastmod(lastmod)
@@ -135,7 +135,7 @@ xml.urlset(:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9") {
   end
   for news in @news
     xml.url {
-      xml.loc('http://rytp.ru' + news_path(news))
+      xml.loc(rfc_url news_path(news))
       xml.lastmod(news.updated_at.strftime("%Y-%m-%d"))
       xml.changefreq("weekly")
       xml.priority(0.9)
@@ -145,10 +145,55 @@ xml.urlset(:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9") {
   # ПУПЫ ПО ОТДЕЛЬНОСТИ
   for poop in @poops
     xml.url {
-      xml.loc('http://rytp.ru' + watch_path(poop))
+      xml.loc(rfc_url watch_path(poop))
       xml.lastmod(poop.updated_at.strftime("%Y-%m-%d"))
       xml.changefreq("daily")
       xml.priority(0.9)
     }
+  end
+
+  # ПРОФИЛИ ПОЛЬЗОВАТЕЛЕЙ
+  @users.each do |user|
+    xml.url {
+      xml.loc(rfc_url profile_path(user))
+      lastmod = user.updated_at.strftime("%Y-%m-%d")
+      lastmod = lastmod || Time.now.strftime("%Y-%m-%d")
+      xml.lastmod(lastmod)
+      xml.changefreq("weekly")
+      xml.priority(0.8)
+    }
+
+    @user_pages[user.id]['approved'].times do |n|
+      xml.url {
+        xml.loc(rfc_url profile_path(user)+"?page=#{(n+1)}")
+        lastmod = user.updated_at.strftime("%Y-%m-%d")
+        lastmod = lastmod || Time.now.strftime("%Y-%m-%d")
+        xml.lastmod(lastmod)
+        xml.changefreq("daily")
+        xml.priority(0.7)
+      }
+    end
+
+    %w{approved favourites}.each do |filter|
+      xml.url {
+        xml.loc(rfc_url profile_path(user)+"?filter=#{filter}")
+        lastmod = user.updated_at.strftime("%Y-%m-%d")
+        lastmod = lastmod || Time.now.strftime("%Y-%m-%d")
+        xml.lastmod(lastmod)
+        xml.changefreq("weekly")
+        xml.priority(0.9)
+      }
+
+      @user_pages[user.id][filter].times do |n|
+        xml.url {
+          xml.loc(rfc_url profile_path(user)+"?filter=#{filter}&page=#{(n+1)}")
+          lastmod = user.updated_at.strftime("%Y-%m-%d")
+          lastmod = lastmod || Time.now.strftime("%Y-%m-%d")
+          xml.lastmod(lastmod)
+          xml.changefreq("daily")
+          xml.priority(0.7)
+        }
+      end
+    end
   end
 }

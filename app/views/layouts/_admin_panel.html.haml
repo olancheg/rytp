@@ -1,0 +1,11 @@
+- if current_user and current_user.cached_roles.count > 1
+  .admin_panel
+    %ul.links
+      - if can?(:manage, User)
+        %li= link_to "админка", admin_index_path
+      - if can?(:approve, Poop)
+        %li= link_to "новых пупов (#{Poop.new_unapproved})", not_approved_path
+      - if can?(:create, News)
+        %li= link_to "добавить новость", new_news_path
+      - if can?(:manage, Contest)
+        %li= link_to "добавить конкурс", new_contest_path

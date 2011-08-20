@@ -1,0 +1,44 @@
+= form_for @user, :url => admin_path(@user), :html => { :method => :put } do |f|
+  - if @user.errors.any?
+    .error_explanation
+      %h2
+        = errors_count @user.errors.count
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :name
+  .field
+    = f.text_field :name
+  .field
+    = f.label :nickname
+  .field
+    = f.text_field :nickname
+  .field
+    = f.label :youtube_channel
+  .field
+    = f.text_field :youtube_channel
+  .field
+    = f.label :profile_url
+  .field
+    = f.text_field :profile_url
+  .field
+    = f.label :show_profile_url
+  .field
+    = f.check_box :show_profile_url
+  .field
+    = f.label :use_nickname_instead_of_name
+  .field
+    = f.check_box :use_nickname_instead_of_name
+
+  - if current_user and current_user.has_role?(:admin)
+    .rules
+      %h4= t(:'user.role')
+      - Role.all.each do |role|
+        .field
+          = check_box_tag 'user[role_ids][]', role.id, @user.has_role?(role.name), :id => "user_roles_#{role.name}"
+          = label_tag "user_roles_#{role.name}", t(:"roles.#{role.name}")
+      = hidden_field_tag 'user[role_ids][]', ''
+
+  .actions
+    = f.submit 'сохранить'

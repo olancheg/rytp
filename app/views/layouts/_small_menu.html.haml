@@ -1,0 +1,11 @@
+%ul#small_menu
+  %li
+    = link_to t(:'menu.news'), news_index_path, :class => active?(:boolean => (controller_name == 'news'))
+  %li
+    = link_to t(:'menu.wiki'), wiki_path, :class => active?(:path => wiki_path)
+  %li
+    = link_to t(:'menu.files'), files_path, :class => active?(:path => files_path)
+  %li
+    = link_to t(:'menu.info'), info_path, :class => active?(:path => info_path)
+  %li
+    = link_to t(:'menu.add'), add_poop_path, :class => active?(:path => add_poop_path)

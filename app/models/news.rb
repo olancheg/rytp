@@ -11,4 +11,8 @@ class News < ActiveRecord::Base
   scope :back_ordered, order('created_at ASC')
 
   paginates_per PAGINATES_PER
+
+  def self.fetch_last
+    ordered.limit(1).first
+  end
 end

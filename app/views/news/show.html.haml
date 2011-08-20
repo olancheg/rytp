@@ -1,14 +1,13 @@
 = set_title :title => @news.title
-= set_description @news.content.truncate(100)
+= set_description sanitize(@news.content, :tags => []).truncate(100)
 .news
   .a_new
     %h1.title
       = @news.title
-    %p.content
-      :markdown
-        #{with_brs @news.content}
+    .content.redactor
+      %article= raw @news.content
     .actions
-      %label.date= short_date(@news.created_at)
+      %time.date= short_date(@news.created_at)
       %label.author= link_to @news.user, profile_path(@news.user) if @news.user
       - if can?(:manage, @news)
         = link_to 'изменить', edit_news_path(@news)

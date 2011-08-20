@@ -1,13 +1,11 @@
 %ul#menu
   %li
-    = link_to t(:'menu.rytp'), root_path, :id => 'menu_rytp'
+    = link_to t(:'menu.rytp'), root_path, :class => active?(:object => @poop, :type => :RYTP)
   %li
-    = link_to t(:'menu.rytpmv'), rytpmv_path, :id => 'menu_rytpmv'
+    = link_to t(:'menu.rytpmv'), rytpmv_path, :class => active?(:object => @poop, :type => :RYTPMV)
   %li
-    = link_to t(:'menu.feed'), poops_feed_path(:RYTP), :class => ['white', active?('poops')].join(' ')
+    = link_to t(:'menu.feed'), poops_feed_path(:RYTP), :class => active?(:path => [poops_feed_path(:RYTP), poops_feed_path(:RYTPMV)])
   %li
-    = link_to t(:'menu.news'), last_new_path, :class => ['white', 'menu_news_top'].join(' ')
+    = link_to t(:'menu.top'), top_path(:RYTP), :class => active?(:path => [nil, 'by_month', 'all_time'].map{|period| [top_path(:RYTP, period), top_path(:RYTPMV, period)] })
   %li
-    = link_to t(:'menu.top'), top_path(:RYTP), :class => ['white', active?('top')].join(' ')
-  %li
-    = link_to t(:'menu.add'), add_poop_path, :class => ['add_button', active?('new', 'create')].join(' ')
+    = link_to t(:'menu.contest'), contests_path, :class => active?(:boolean => (@contest or @contests))

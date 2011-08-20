@@ -6,7 +6,6 @@
   $('.poops').html('<%= escape_javascript(render poops)%>');
 <% end %>
 
-// $.scrollTo( $('body'), 1500 );
 $('.pagination').replaceWith('<%= escape_javascript(paginate poops) %>');
 
 $('ul.orders').html('<%= escape_javascript(render "users/ordering") %>');

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110812152310) do
+ActiveRecord::Schema.define(:version => 20110820060646) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -27,6 +27,28 @@ ActiveRecord::Schema.define(:version => 20110812152310) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "contests", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.date     "start_at"
+    t.date     "end_at"
+    t.integer  "first_place"
+    t.integer  "second_place"
+    t.integer  "third_place"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "favourites", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "poop_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favourites", ["poop_id"], :name => "index_favourites_on_poop_id"
+  add_index "favourites", ["user_id"], :name => "index_favourites_on_user_id"
 
   create_table "news", :force => true do |t|
     t.string   "title"
@@ -49,19 +71,31 @@ ActiveRecord::Schema.define(:version => 20110812152310) do
     t.integer  "rating",      :default => 0
     t.integer  "votes_count", :default => 0
     t.integer  "user_id"
+    t.integer  "contest_id"
   end
 
   add_index "poops", ["category_id"], :name => "index_poops_on_category_id"
+  add_index "poops", ["contest_id"], :name => "index_poops_on_contest_id"
   add_index "poops", ["user_id"], :name => "index_poops_on_user_id"
 
-  create_table "roles", :force => true do |t|
-    t.integer  "mask",       :default => 0, :null => false
+  create_table "role_associations", :force => true do |t|
     t.integer  "user_id"
+    t.integer  "role_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "roles", ["user_id"], :name => "index_roles_on_user_id"
+  add_index "role_associations", ["role_id"], :name => "index_role_associations_on_role_id"
+  add_index "role_associations", ["user_id"], :name => "index_role_associations_on_user_id"
+
+  create_table "roles", :force => true do |t|
+    t.integer  "mask",       :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name",                      :null => false
+  end
+
+  add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "users", :force => true do |t|
     t.string   "name"

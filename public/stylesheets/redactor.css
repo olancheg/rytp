@@ -1,0 +1,698 @@
+/* line 1, ../../app/stylesheets/redactor.sass */
+.redactor {
+  /* =Tables */
+  /* =Forms */
+  /* =Misc */
+  /* =Backgrounds */
+  /* =Sizes */
+  /* =Styles */
+  /* =Colors */
+  /* =Dashed */
+  /* =Errors */
+  /* =Width */
+  /* =Aligns */
+  /* =Grid */
+  /* =Icons */
+}
+/* line 2, ../../app/stylesheets/redactor.sass */
+.redactor article {
+  background: white;
+  color: black;
+  font: 14px/1.5em Arial, "Helvetica Neue", Helvetica, Verdana, sans-serif;
+}
+/* line 7, ../../app/stylesheets/redactor.sass */
+.redactor h1 {
+  font-size: 2.6em;
+  line-height: 1;
+  margin-bottom: 0.45em;
+}
+/* line 12, ../../app/stylesheets/redactor.sass */
+.redactor h2 {
+  font-size: 2.1em;
+  line-height: 1;
+  margin-bottom: 0.5em;
+}
+/* line 17, ../../app/stylesheets/redactor.sass */
+.redactor h3 {
+  font-size: 1.7em;
+  line-height: 1;
+  margin-bottom: 0.7em;
+}
+/* line 22, ../../app/stylesheets/redactor.sass */
+.redactor h4 {
+  font-size: 1.3em;
+  line-height: 1;
+  margin-bottom: 1em;
+}
+/* line 27, ../../app/stylesheets/redactor.sass */
+.redactor h5 {
+  font-size: 1em;
+  line-height: 1.1em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+/* line 33, ../../app/stylesheets/redactor.sass */
+.redactor h6 {
+  font-size: 1em;
+  line-height: 1;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+/* line 40, ../../app/stylesheets/redactor.sass */
+.redactor p, .redactor ul, .redactor ol, .redactor dl, .redactor dd, .redactor dt, .redactor blockquote, .redactor table td {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+/* line 44, ../../app/stylesheets/redactor.sass */
+.redactor p {
+  margin: 0 0 1.5em 0;
+}
+/* line 46, ../../app/stylesheets/redactor.sass */
+.redactor p.pause {
+  margin-bottom: 0.5em;
+}
+/* line 48, ../../app/stylesheets/redactor.sass */
+.redactor p.last {
+  margin-bottom: 0;
+}
+/* line 51, ../../app/stylesheets/redactor.sass */
+.redactor ul, .redactor ol {
+  margin: 0 0 1.5em 1.5em;
+}
+/* line 54, ../../app/stylesheets/redactor.sass */
+.redactor ul li ul, .redactor ol li ol, .redactor ul li ol, .redactor ol li ul {
+  font-size: 1em;
+  margin: 0.5em 0 0.5em 1.5em;
+}
+/* line 58, ../../app/stylesheets/redactor.sass */
+.redactor ul {
+  list-style-type: disc;
+}
+/* line 61, ../../app/stylesheets/redactor.sass */
+.redactor ol {
+  list-style-type: decimal;
+  margin-left: 2em;
+}
+/* line 65, ../../app/stylesheets/redactor.sass */
+.redactor dl {
+  margin: 0 0 1.5em 0;
+}
+/* line 67, ../../app/stylesheets/redactor.sass */
+.redactor dl dt {
+  font-weight: bold;
+}
+/* line 70, ../../app/stylesheets/redactor.sass */
+.redactor dd {
+  margin-left: 1.5em;
+}
+/* line 73, ../../app/stylesheets/redactor.sass */
+.redactor blockquote {
+  margin: 1.5em;
+  color: #444444;
+  font-style: italic;
+}
+/* line 78, ../../app/stylesheets/redactor.sass */
+.redactor hr {
+  background: #dddddd;
+  color: #dddddd;
+  clear: both;
+  float: none;
+  width: 100%;
+  height: 1px;
+  margin: 0 0 1.5em;
+  border: none;
+}
+/* line 87, ../../app/stylesheets/redactor.sass */
+.redactor hr.space {
+  background: none;
+  color: white;
+  visibility: hidden;
+}
+/* line 91, ../../app/stylesheets/redactor.sass */
+.redactor hr.black {
+  background-color: #191919;
+}
+/* line 93, ../../app/stylesheets/redactor.sass */
+.redactor hr.soft {
+  background-color: #eeeeee;
+  color: #eeeeee;
+}
+/* line 96, ../../app/stylesheets/redactor.sass */
+.redactor hr.h2 {
+  height: 2px;
+}
+/* line 98, ../../app/stylesheets/redactor.sass */
+.redactor hr.h3 {
+  height: 3px;
+}
+/* line 100, ../../app/stylesheets/redactor.sass */
+.redactor hr.h4 {
+  height: 4px;
+}
+/* line 102, ../../app/stylesheets/redactor.sass */
+.redactor hr.h5 {
+  height: 5px;
+}
+/* line 105, ../../app/stylesheets/redactor.sass */
+.redactor abbr, .redactor acronym {
+  border-bottom: 1px dotted #666666;
+}
+/* line 108, ../../app/stylesheets/redactor.sass */
+.redactor del {
+  color: #666666;
+}
+/* line 111, ../../app/stylesheets/redactor.sass */
+.redactor big {
+  font-size: 125%;
+  line-height: 80%;
+}
+/* line 115, ../../app/stylesheets/redactor.sass */
+.redactor small, .redactor sup, .redactor sub {
+  font-size: 0.8em;
+}
+/* line 118, ../../app/stylesheets/redactor.sass */
+.redactor cite {
+  font-style: italic;
+}
+/* line 121, ../../app/stylesheets/redactor.sass */
+.redactor strong, .redactor b {
+  font-weight: bold;
+}
+/* line 124, ../../app/stylesheets/redactor.sass */
+.redactor em, .redactor dfn, .redactor i {
+  font-style: italic;
+}
+/* line 127, ../../app/stylesheets/redactor.sass */
+.redactor dfn {
+  font-weight: bold;
+}
+/* line 130, ../../app/stylesheets/redactor.sass */
+.redactor pre, .redactor code, .redactor tt, .redactor var {
+  font: 0.9em "andale mono", "lucida console", monospace;
+  line-height: 1.5em;
+}
+/* line 134, ../../app/stylesheets/redactor.sass */
+.redactor pre, .redactor code {
+  margin: 1.5em 0;
+  white-space: pre;
+  overflow: auto;
+  padding: 1em;
+  border: 1px dashed #dddddd;
+}
+/* line 141, ../../app/stylesheets/redactor.sass */
+.redactor tt {
+  display: block;
+  margin: 1.5em 0;
+  line-height: 1.5em;
+}
+/* line 146, ../../app/stylesheets/redactor.sass */
+.redactor sup, .redactor sub {
+  vertical-align: baseline;
+  position: relative;
+}
+/* line 150, ../../app/stylesheets/redactor.sass */
+.redactor sup {
+  top: -0.4em;
+}
+/* line 153, ../../app/stylesheets/redactor.sass */
+.redactor sub {
+  bottom: -0.3em;
+}
+/* line 156, ../../app/stylesheets/redactor.sass */
+.redactor kbd {
+  background-color: #eeeeee;
+  padding: 0 2px;
+  border-bottom: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+}
+/* line 164, ../../app/stylesheets/redactor.sass */
+.redactor table {
+  margin-bottom: 1.5em;
+  font-size: 96%;
+  border-collapse: collapse;
+}
+/* line 170, ../../app/stylesheets/redactor.sass */
+.redactor thead td, .redactor thead th {
+  border: 2px solid #d4d4d4;
+  font-weight: bold;
+  font-size: 1em;
+  line-height: 1;
+}
+/* line 176, ../../app/stylesheets/redactor.sass */
+.redactor td {
+  border: 1px solid #eeeeee;
+}
+/* line 179, ../../app/stylesheets/redactor.sass */
+.redactor th, .redactor td {
+  padding: 4px 10px 4px 0;
+}
+/* line 182, ../../app/stylesheets/redactor.sass */
+.redactor tfoot {
+  font-style: italic;
+}
+/* line 185, ../../app/stylesheets/redactor.sass */
+.redactor caption {
+  background: #ffffcc;
+}
+/* line 189, ../../app/stylesheets/redactor.sass */
+.redactor table.simple td {
+  border: none;
+}
+/* line 193, ../../app/stylesheets/redactor.sass */
+.redactor table.ruler thead td, .redactor table.ruler thead th {
+  padding: 4px 7px;
+}
+/* line 195, ../../app/stylesheets/redactor.sass */
+.redactor table.ruler td {
+  padding: 4px 7px;
+}
+/* line 197, ../../app/stylesheets/redactor.sass */
+.redactor table.ruler thead td {
+  padding: 7px;
+  border-bottom: 2px solid black !important;
+}
+/* line 200, ../../app/stylesheets/redactor.sass */
+.redactor table.ruler.border td {
+  border: 1px solid #dddddd;
+}
+/* line 202, ../../app/stylesheets/redactor.sass */
+.redactor table.ruler.stroke td {
+  border-bottom: 1px solid #dddddd;
+}
+/* line 204, ../../app/stylesheets/redactor.sass */
+.redactor table.ruler.pads tbody td {
+  padding: 10px 5px;
+}
+/* line 206, ../../app/stylesheets/redactor.sass */
+.redactor table .last {
+  padding-right: 0;
+}
+/* line 208, ../../app/stylesheets/redactor.sass */
+.redactor table .end td {
+  border-bottom: none;
+}
+/* line 210, ../../app/stylesheets/redactor.sass */
+.redactor table.forms {
+  margin: 0;
+}
+/* line 212, ../../app/stylesheets/redactor.sass */
+.redactor table.forms td {
+  border: none;
+}
+/* line 215, ../../app/stylesheets/redactor.sass */
+.redactor table tr.labels td {
+  font-weight: bold;
+  font-size: 1em;
+  padding-bottom: 0;
+}
+/* line 219, ../../app/stylesheets/redactor.sass */
+.redactor table tr.descr td {
+  font-size: 0.9em;
+  line-height: 1.3em;
+  color: #777777;
+  padding-top: 0 !important;
+  padding-bottom: 10px !important;
+  vertical-align: top;
+}
+/* line 227, ../../app/stylesheets/redactor.sass */
+.redactor tfoot td {
+  border-top: 2px solid #dddddd;
+  font-size: 0.9em;
+  padding-top: 7px !important;
+  border-bottom: none !important;
+}
+/* line 235, ../../app/stylesheets/redactor.sass */
+.redactor fieldset {
+  padding: 1.4em;
+  padding-bottom: 0;
+  margin: 0 0 1.5em 0;
+  border: 1px solid #dddddd;
+}
+/* line 241, ../../app/stylesheets/redactor.sass */
+.redactor legend {
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 0 0.5em;
+}
+/* line 246, ../../app/stylesheets/redactor.sass */
+.redactor textarea, .redactor input {
+  padding: 0.1em 0;
+  font-size: 13px;
+}
+/* line 250, ../../app/stylesheets/redactor.sass */
+.redactor select {
+  font-size: 13px;
+}
+/* line 252, ../../app/stylesheets/redactor.sass */
+.redactor select[multiple] {
+  margin-bottom: 0.8em;
+}
+/* line 255, ../../app/stylesheets/redactor.sass */
+.redactor button {
+  padding: 0.3em 0.5em;
+}
+/* line 259, ../../app/stylesheets/redactor.sass */
+.redactor input[type="submit"], .redactor input[type="button"] {
+  padding: 0.1em 0.2em;
+}
+/* line 264, ../../app/stylesheets/redactor.sass */
+.redactor .handle {
+  cursor: move;
+}
+/* line 267, ../../app/stylesheets/redactor.sass */
+.redactor .nowrap {
+  white-space: nowrap;
+}
+/* line 270, ../../app/stylesheets/redactor.sass */
+.redactor .clear {
+  clear: both;
+}
+/* line 275, ../../app/stylesheets/redactor.sass */
+.redactor .odd {
+  background-color: white;
+}
+/* line 278, ../../app/stylesheets/redactor.sass */
+.redactor .even {
+  background-color: #eeeeee;
+}
+/* line 281, ../../app/stylesheets/redactor.sass */
+.redactor .disabled {
+  background-color: #eeeeee !important;
+  color: #999999 !important;
+}
+/* line 285, ../../app/stylesheets/redactor.sass */
+.redactor .highlight {
+  background-color: #fcf4cd !important;
+}
+/* line 290, ../../app/stylesheets/redactor.sass */
+.redactor .small {
+  font-size: 0.8em;
+  line-height: 1.2em !important;
+}
+/* line 294, ../../app/stylesheets/redactor.sass */
+.redactor .mini {
+  font-size: 0.9em;
+  line-height: 1.2em;
+}
+/* line 298, ../../app/stylesheets/redactor.sass */
+.redactor .big {
+  font-size: 125%;
+  line-height: 80%;
+}
+/* line 304, ../../app/stylesheets/redactor.sass */
+.redactor .normal {
+  font-weight: normal !important;
+}
+/* line 307, ../../app/stylesheets/redactor.sass */
+.redactor .bold {
+  font-weight: bold !important;
+}
+/* line 312, ../../app/stylesheets/redactor.sass */
+.redactor .soft {
+  color: #888888 !important;
+}
+/* line 315, ../../app/stylesheets/redactor.sass */
+.redactor .gray {
+  color: #333333;
+}
+/* line 318, ../../app/stylesheets/redactor.sass */
+.redactor .dark {
+  color: #666666 !important;
+}
+/* line 321, ../../app/stylesheets/redactor.sass */
+.redactor .red {
+  color: #c43d48 !important;
+}
+/* line 324, ../../app/stylesheets/redactor.sass */
+.redactor .req {
+  color: #c43d48 !important;
+  font-weight: normal !important;
+}
+/* line 328, ../../app/stylesheets/redactor.sass */
+.redactor .black {
+  color: black;
+}
+/* line 333, ../../app/stylesheets/redactor.sass */
+.redactor .dashed {
+  color: #0083d6;
+  text-decoration: none;
+  border-bottom: 1px dashed #0083d6;
+  line-height: 1em !important;
+}
+/* line 338, ../../app/stylesheets/redactor.sass */
+.redactor .dashed:hover {
+  color: #990000;
+  text-decoration: none;
+  border-bottom: 1px dashed #990000;
+}
+/* line 343, ../../app/stylesheets/redactor.sass */
+.redactor .soft.dashed {
+  color: #777777;
+  border-bottom: 1px dashed #999999 !important;
+}
+/* line 346, ../../app/stylesheets/redactor.sass */
+.redactor .soft.dashed:hover {
+  color: #990000 !important;
+  border-bottom: 1px dashed #990000 !important;
+}
+/* line 350, ../../app/stylesheets/redactor.sass */
+.redactor .gray.dashed {
+  color: #555555;
+  border-bottom: 1px dashed #777777 !important;
+}
+/* line 353, ../../app/stylesheets/redactor.sass */
+.redactor .gray.dashed:hover {
+  color: #990000 !important;
+  border-bottom: 1px dashed #990000 !important;
+}
+/* line 357, ../../app/stylesheets/redactor.sass */
+.redactor .black.dashed {
+  color: black;
+  border-bottom: 1px dashed black;
+}
+/* line 360, ../../app/stylesheets/redactor.sass */
+.redactor .black.dashed:hover {
+  color: #990000;
+  border-bottom: 1px dashed #990000;
+}
+/* line 366, ../../app/stylesheets/redactor.sass */
+.redactor .error {
+  color: #a40000 !important;
+  font-weight: normal !important;
+  font-size: 0.9em !important;
+}
+/* line 371, ../../app/stylesheets/redactor.sass */
+.redactor .error_ins {
+  border: 3px solid #c21a1a !important;
+  background-color: #f7d6d6 !important;
+}
+/* line 377, ../../app/stylesheets/redactor.sass */
+.redactor .w50 {
+  width: 50%;
+}
+/* line 380, ../../app/stylesheets/redactor.sass */
+.redactor .w100 {
+  width: 100%;
+}
+/* line 383, ../../app/stylesheets/redactor.sass */
+.redactor input.w100 {
+  width: 99.4%;
+}
+/* line 386, ../../app/stylesheets/redactor.sass */
+.redactor textarea.w100 {
+  width: 99.6%;
+}
+/* line 389, ../../app/stylesheets/redactor.sass */
+.redactor select.w100 {
+  width: 99.8%;
+}
+/* line 394, ../../app/stylesheets/redactor.sass */
+.redactor .taright {
+  text-align: right !important;
+}
+/* line 397, ../../app/stylesheets/redactor.sass */
+.redactor .taleft {
+  text-align: left !important;
+}
+/* line 400, ../../app/stylesheets/redactor.sass */
+.redactor .tacenter {
+  text-align: center !important;
+}
+/* line 403, ../../app/stylesheets/redactor.sass */
+.redactor .vatop {
+  vertical-align: top !important;
+}
+/* line 406, ../../app/stylesheets/redactor.sass */
+.redactor .vabottom {
+  vertical-align: bottom !important;
+}
+/* line 409, ../../app/stylesheets/redactor.sass */
+.redactor .vamiddle {
+  vertical-align: middle !important;
+}
+/* line 411, ../../app/stylesheets/redactor.sass */
+.redactor .vamiddle img {
+  vertical-align: middle !important;
+}
+/* line 416, ../../app/stylesheets/redactor.sass */
+.redactor .container {
+  overflow: hidden;
+}
+/* line 419, ../../app/stylesheets/redactor.sass */
+.redactor .alpha {
+  margin-left: 0;
+}
+/* line 422, ../../app/stylesheets/redactor.sass */
+.redactor .omega {
+  margin-right: 0;
+}
+/* line 427, ../../app/stylesheets/redactor.sass */
+.redactor .ico {
+  display: -moz-inline-box;
+  display: inline-block;
+  text-decoration: none;
+  background-repeat: no-repeat;
+}
+/* line 432, ../../app/stylesheets/redactor.sass */
+.redactor .ico:hover {
+  text-decoration: none !important;
+}
+/* line 435, ../../app/stylesheets/redactor.sass */
+.redactor .ico9 {
+  height: 9px;
+  width: 9px;
+  line-height: 9px;
+}
+/* line 439, ../../app/stylesheets/redactor.sass */
+.redactor .ico9:hover {
+  background-position: -9px;
+}
+/* line 442, ../../app/stylesheets/redactor.sass */
+.redactor .ico10 {
+  height: 10px;
+  width: 10px;
+  line-height: 10px;
+}
+/* line 446, ../../app/stylesheets/redactor.sass */
+.redactor .ico10:hover {
+  background-position: -10px;
+}
+/* line 449, ../../app/stylesheets/redactor.sass */
+.redactor .ico11 {
+  height: 11px;
+  width: 11px;
+  line-height: 11px;
+}
+/* line 453, ../../app/stylesheets/redactor.sass */
+.redactor .ico11:hover {
+  background-position: -11px;
+}
+/* line 456, ../../app/stylesheets/redactor.sass */
+.redactor .ico12 {
+  height: 12px;
+  width: 12px;
+  line-height: 12px;
+}
+/* line 460, ../../app/stylesheets/redactor.sass */
+.redactor .ico12:hover {
+  background-position: -12px;
+}
+/* line 463, ../../app/stylesheets/redactor.sass */
+.redactor .ico13 {
+  height: 13px;
+  width: 13px;
+  line-height: 13px;
+}
+/* line 467, ../../app/stylesheets/redactor.sass */
+.redactor .ico13:hover {
+  background-position: -13px;
+}
+/* line 470, ../../app/stylesheets/redactor.sass */
+.redactor .ico14 {
+  height: 14px;
+  width: 14px;
+  line-height: 14px;
+}
+/* line 474, ../../app/stylesheets/redactor.sass */
+.redactor .ico14:hover {
+  background-position: -14px;
+}
+/* line 477, ../../app/stylesheets/redactor.sass */
+.redactor .ico15 {
+  height: 15px;
+  width: 15px;
+  line-height: 15px;
+}
+/* line 481, ../../app/stylesheets/redactor.sass */
+.redactor .ico15:hover {
+  background-position: -15px;
+}
+/* line 484, ../../app/stylesheets/redactor.sass */
+.redactor .ico16 {
+  height: 16px;
+  width: 16px;
+  line-height: 16px;
+}
+/* line 488, ../../app/stylesheets/redactor.sass */
+.redactor .ico16:hover {
+  background-position: -16px !important;
+}
+/* line 491, ../../app/stylesheets/redactor.sass */
+.redactor .ico18 {
+  height: 18px;
+  width: 18px;
+  line-height: 18px;
+}
+/* line 495, ../../app/stylesheets/redactor.sass */
+.redactor .ico18:hover {
+  background-position: -18px;
+}
+/* line 498, ../../app/stylesheets/redactor.sass */
+.redactor .ico20 {
+  height: 20px;
+  width: 20px;
+  line-height: 20px;
+}
+/* line 502, ../../app/stylesheets/redactor.sass */
+.redactor .ico20:hover {
+  background-position: -20px;
+}
+/* line 505, ../../app/stylesheets/redactor.sass */
+.redactor .ico24 {
+  height: 24px;
+  width: 24px;
+  line-height: 24px;
+}
+/* line 509, ../../app/stylesheets/redactor.sass */
+.redactor .ico24:hover {
+  background-position: -24px;
+}
+/* line 512, ../../app/stylesheets/redactor.sass */
+.redactor .ico32 {
+  height: 32px;
+  width: 32px;
+  line-height: 32px;
+}
+/* line 516, ../../app/stylesheets/redactor.sass */
+.redactor .ico32:hover {
+  background-position: -32px;
+}
+/* line 519, ../../app/stylesheets/redactor.sass */
+.redactor .ico36 {
+  height: 36px;
+  width: 36px;
+  line-height: 36px;
+}
+/* line 523, ../../app/stylesheets/redactor.sass */
+.redactor .ico36:hover {
+  background-position: -36px;
+}
+/* line 526, ../../app/stylesheets/redactor.sass */
+.redactor .ico_no_hover {
+  background-position: 0% !important;
+}
+/* line 528, ../../app/stylesheets/redactor.sass */
+.redactor .ico_no_hover:hover {
+  background-position: 0% !important;
+}

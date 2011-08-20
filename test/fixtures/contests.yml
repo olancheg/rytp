@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  description: MyString
+  start_at: 2011-08-20
+  end_at: 2011-08-20
+  first_place: 1
+  second_place: 1
+  third_place: 1
+
+two:
+  name: MyString
+  description: MyString
+  start_at: 2011-08-20
+  end_at: 2011-08-20
+  first_place: 1
+  second_place: 1
+  third_place: 1
