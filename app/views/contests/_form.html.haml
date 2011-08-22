@@ -8,7 +8,7 @@
           %li= msg
 
   .field
-    = f.text_field :name, :placeholder => t(:'contest.name'), :class => :title
+    = f.text_field :name, :placeholder => t(:'contest.name'), :class => :title, :required => true
   .field
     - redactor("#contest_body")
     - redactor_css

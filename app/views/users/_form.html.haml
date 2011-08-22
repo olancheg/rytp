@@ -9,7 +9,7 @@
   .field
     = f.label :name
   .field
-    = f.text_field :name
+    = f.text_field :name, :required => true
   .field
     = f.label :nickname
   .field
@@ -17,11 +17,11 @@
   .field
     = f.label :youtube_channel
   .field
-    = f.text_field :youtube_channel
+    = f.url_field :youtube_channel
   .field
     = f.label :profile_url
   .field
-    = f.text_field :profile_url
+    = f.url_field :profile_url
   .field
     = f.label :show_profile_url
   .field
