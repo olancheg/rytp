@@ -3,12 +3,20 @@
     = yield :ad_block_1
   = yield :comments
   #sub_footer
+    .icons
+      .letsweb
+        = link_to "letsweb.ru", "http://letsweb.ru", :class => :ir, :title => "letsweb.ru", :target => '_blank'
+      .rytp
+        = link_to "rytp.ru", "http://rytp.ru", :class => :ir, :title => "rytp.ru"
     .text
       %p
         %label RYTP.ru
         является наилучшим источником RYTP и RYTPMV.
       %p.last
         Сайт для любителей пупов, от
-        = link_to 'letsweb.ru', 'http://letsweb.ru', :target => '_blank'
+        = link_to "letsweb.ru", 'http://letsweb.ru', :target => '_blank'
+      %p.established
+        Основан в октябре 2010 года
     .counter
       = render 'layouts/counter'
+    .clear

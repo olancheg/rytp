@@ -16,9 +16,7 @@ module TextHelper
     Russian::strftime date, '%d %B %Y'
   end
 
-  def redactor(element)
-    content_for :bottom_javascript do
-      content_tag :script, "$(function() { $('#{element}').redactor(redactor); });", :type => "text/javascript"
-    end
+  def russian_date(date)
+    Russian::strftime date, '%d.%m.%Y'
   end
 end

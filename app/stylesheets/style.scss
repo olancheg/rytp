@@ -26,5 +26,8 @@
 
 @import "screen";
 
+// IE specific fixes
+@import "partials/ie";
+
 // Media should come last
 @import "partials/media";

@@ -1,7 +1,7 @@
 require 'hpricot'
 
 class Poop < ActiveRecord::Base
-  attr_accessible :title, :description, :code, :approved, :category_id, :user_id
+  attr_accessible :title, :description, :code, :category_id, :contest_id
 
   PAGINATES_PER = 5
 
@@ -40,20 +40,23 @@ class Poop < ActiveRecord::Base
         src =~ /^http\:\/\/(www\.)?(vk\.com|vkontakte\.ru|youtube\.com)/ and iframes.size == 1
   end
 
+  scope :not_participating_now, joins('LEFT OUTER JOIN contests ON contests.id = poops.contest_id').
+                                where('poops.contest_id IS NULL OR contests.end_at < ?', Date.today)
   scope :by_category, lambda { |category| where(:category_id => Category.find_all_by_name(category)) }
   scope :by_category_id, lambda { |category_id| where(:category_id => category_id) }
+  scope :without_contest, where(:contest_id => nil)
+  scope :with_contest, where('contest_id > 0')
   scope :ordered, order('created_at DESC')
   scope :back_ordered, order('created_at ASC')
-  scope :approved, where(:approved => true)
+  scope :only_approved, where(:approved => true)
+  scope :approved, only_approved.not_participating_now
   scope :not_approved, where(:approved => false)
   scope :rated, limit(50)
   scope :popular, approved.rated
   scope :feed, lambda { |category| ordered.approved.by_category(category || 'RYTP') }
-  scope :top_by_category_and_period, lambda { |category, period| by_category(category || 'RYTP').by_period(period || '').popular }
-  scope :not_participating_now, joins('LEFT OUTER JOIN contests ON contests.id = poops.contest_id').
-                                where('poops.contest_id IS NULL OR contests.end_at < ?', Date.today)
+  scope :top_by_category_and_period, lambda { |category, period| by_category(category || 'RYTP').by_period(period || '').popular.not_participating_now }
 
-  default_scope includes(:category, :user).not_participating_now
+  default_scope includes(:category, :user)
 
   delegate :name, :to => :category, :prefix => true
 
@@ -92,5 +95,9 @@ class Poop < ActiveRecord::Base
 
   def self.new_unapproved
     not_approved.count
+  end
+
+  def name
+    "#{id} - #{title}"
   end
 end

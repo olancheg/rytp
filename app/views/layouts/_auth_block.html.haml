@@ -1,6 +1,6 @@
 - if current_user
   %label.welcome= t(:'welcome')
-  %ul.auth-links
+  %ul.auth-links.welcome
     %li
       = link_to current_user, profile_path(current_user)
     %li
@@ -10,10 +10,10 @@
   %label.auth= t(:'sessions.new') + ':'
   %ul.auth-links.sign_in
     %li
-      = link_to "Вконтакте", "/auth/vkontakte", :class => :vkontakte, :title => 'Войти через ВКонтакте'
+      = link_to "Вконтакте", "/auth/vkontakte", :class => 'ir vkontakte', :title => 'Войти через ВКонтакте'
     %li
-      = link_to "Twitter", "/auth/twitter", :class => :twitter, :title => 'Войти через Twitter'
+      = link_to "Twitter", "/auth/twitter", :class => 'ir twitter', :title => 'Войти через Twitter'
     %li
-      = link_to "Facebook", "/auth/facebook", :class => :facebook, :title => 'Войти через Facebook'
-    %li
-      = link_to "Google", "/auth/google", :class => :google, :title => 'Войти через Google'
+      = link_to "Facebook", "/auth/facebook", :class => 'ir facebook', :title => 'Войти через Facebook'
+    %li.last
+      = link_to "Google", "/auth/google", :class => 'ir google', :title => 'Войти через Google'

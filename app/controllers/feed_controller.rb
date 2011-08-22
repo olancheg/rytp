@@ -31,8 +31,8 @@ class FeedController < ApplicationController
 
     @users.each do |user|
       @user_pages[user.id] = {}
-      %w{approved favourites}.each do |filter|
-        @user_pages[user.id][filter] = (user.filters_and_orders({:filter => filter}).count / Poop::PAGINATES_PER.to_f).ceil
+      %w{approved favourites contest}.each do |filter|
+        @user_pages[user.id][filter] = pages_count user.filters_and_orders({:filter => filter}).count, Poop
       end
     end
 
@@ -44,6 +44,14 @@ class FeedController < ApplicationController
       end
     end
 
+    @contests = Contest.active
+    @contests_pages = pages_count @contests.count, Contest
+
+    @contest = []
+    @contests.each do |contest|
+      @contest[contest.id] = pages_count contest.approved_poops.count, Poop
+    end
+
     @rytps = @poops.by_category(:RYTP)
     @last_rytp = @rytps.last
     @rytpmvs = @poops.by_category(:RYTPMV)
@@ -51,15 +59,21 @@ class FeedController < ApplicationController
 
     @feed = { :RYTP => {}, :RYTPMV => {} }
     @feed[:RYTP][:poops] = @rytps
-    @feed[:RYTP][:pages] = (@rytps.count / Poop::PAGINATES_PER.to_f).ceil
+    @feed[:RYTP][:pages] = pages_count @rytps.count, Poop
     @feed[:RYTPMV][:poops] = @rytpmvs
-    @feed[:RYTPMV][:pages] = (@rytpmvs.count / Poop::PAGINATES_PER.to_f).ceil
+    @feed[:RYTPMV][:pages] = pages_count @rytpmvs.count, Poop
 
     @news = News.all
-    @news_pages = (@news.count / News::PAGINATES_PER.to_f).ceil
+    @news_pages = pages_count @news.count, News
 
     respond_to do |format|
       format.xml
     end
+  end
+
+  private
+
+  def pages_count(count, model)
+    (count / model::PAGINATES_PER.to_f).ceil
   end
 end

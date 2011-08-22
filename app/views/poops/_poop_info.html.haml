@@ -15,8 +15,13 @@
   = link_to vote_negative_path(poop), :remote => true, :class => :button do
     %span.xunta.icon
     xynta
-  = comments_link poop
+  - if poop.contest_id.nil? or !poop.contest.try(:active?)
+    = comments_link poop
   .admin_links
+    - if can?(:reject, poop) and poop.contest_id.present?
+      = link_to reject_path(poop), :remote => true, :class => :button do
+        %span.cross.icon
+        отменить участие в конкурсе (#{poop.contest})
     - if can?(:approve, poop) and !poop.approved?
       = link_to approve_path(poop), :remote => true, :class => :button do
         %span.check.icon

@@ -57,11 +57,6 @@ $(function() {
     }
   }
 
-  // Observing user search field
-  $("#user_search").observe_field(0.5, function( ) {
-    $(this).parent().submit();
-  });
-
   // With #comments anchor scroll to comments box
   scrollToComments();
   $('.comments_button').live('click', function() {

@@ -29,6 +29,9 @@ Rytp::Application.routes.draw do
   # approve path
   match ':id/approve' => 'poops#approve', :as => :approve
 
+  # reject path
+  match ':id/reject' => 'poops#reject', :as => :reject
+
   # default watch path
   match ':id' => 'poops#show', :as => :watch, :constraints => { :id => /\d+.*/ }
 

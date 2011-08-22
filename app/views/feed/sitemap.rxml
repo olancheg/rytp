@@ -25,7 +25,15 @@ xml.urlset(:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9") {
     xml.loc(rfc_url rules_path)
     xml.lastmod(1.week.ago.strftime("%Y-%m-%d"))
     xml.changefreq("weekly")
-    xml.priority(0.6)
+    xml.priority(1)
+  }
+
+  # КОНКУРСЫ
+  xml.url {
+    xml.loc(rfc_url contests_path)
+    xml.lastmod(1.day.ago.strftime("%Y-%m-%d"))
+    xml.changefreq("weekly")
+    xml.priority(1)
   }
 
   # HOWTO
@@ -33,7 +41,7 @@ xml.urlset(:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9") {
     xml.loc(rfc_url howto_path)
     xml.lastmod(1.week.ago.strftime("%Y-%m-%d"))
     xml.changefreq("weekly")
-    xml.priority(0.6)
+    xml.priority(1)
   }
 
   # WIKI
@@ -174,14 +182,14 @@ xml.urlset(:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9") {
       }
     end
 
-    %w{approved favourites}.each do |filter|
+    %w{approved favourites contest}.each do |filter|
       xml.url {
         xml.loc(rfc_url profile_path(user)+"?filter=#{filter}")
         lastmod = user.updated_at.strftime("%Y-%m-%d")
         lastmod = lastmod || Time.now.strftime("%Y-%m-%d")
         xml.lastmod(lastmod)
         xml.changefreq("weekly")
-        xml.priority(0.9)
+        xml.priority(0.8)
       }
 
       @user_pages[user.id][filter].times do |n|
@@ -195,5 +203,33 @@ xml.urlset(:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9") {
         }
       end
     end
+  end
+
+  # КОНКУРСЫ
+  @contests.each do |contest|
+    xml.url {
+      xml.loc(rfc_url contest_path(contest))
+      xml.lastmod(contest.updated_at.strftime("%Y-%m-%d"))
+      xml.changefreq("weekly")
+      xml.priority(0.8)
+    }
+
+    @contest[contest.id].times do |n|
+      xml.url {
+        xml.loc(rfc_url contest_path(contest)+"?page=#{(n+1)}")
+        xml.lastmod(1.week.ago.strftime("%Y-%m-%d"))
+        xml.changefreq("weekly")
+        xml.priority(0.8)
+      }
+    end
+  end
+
+  @contests_pages.times do |n|
+    xml.url {
+      xml.loc(rfc_url contests_path+"?page=#{(n+1)}")
+      xml.lastmod(1.week.ago.strftime("%Y-%m-%d"))
+      xml.changefreq("weekly")
+      xml.priority(0.7)
+    }
   end
 }

@@ -18,10 +18,4 @@ module ApplicationHelper
   def set_description(text)
     content_for :description, text
   end
-
-  def redactor_css
-    content_for :stylesheets do
-      stylesheet_link_tag '/redactor/css/redactor.css'
-    end
-  end
 end

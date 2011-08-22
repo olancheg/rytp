@@ -5,8 +5,8 @@
   .contest
     - if last_contest
       = link_to last_contest do
-        конкурс (#{last_contest.poops.count})
+        конкурс (#{last_contest.approved_poops(can?(:reject, Poop)).count})
     - else
-      конкурс еще не начался
+      конкурсов пока нет
   .auth
     = render 'layouts/auth_block'

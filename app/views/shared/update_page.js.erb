@@ -7,4 +7,4 @@
 <% end %>
 
 // $.scrollTo( $('body'), 1500 );
-$('.pagination').replaceWith('<%= escape_javascript(paginate poops, :params => {:id => nil, :action => (defined?(ajax) ? "not_approved" : controller.action_name)} ) %>');
+$('.pagination').replaceWith('<%= escape_javascript(paginate poops, :params => {:id => (defined?(id) ? id : nil), :action => (defined?(ajax) ? "not_approved" : controller.action_name)} ) %>');

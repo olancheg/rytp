@@ -51,7 +51,6 @@ img:not([width]):not([height])
   display: none
 
 .no-js #flash
-  display: block
   +column(4)
   position: fixed
   background-color: #262626
@@ -78,10 +77,22 @@ img:not([width]):not([height])
 .container, .content
   +container
 
+.like_buttons
+  +column(16)
+  width: 608px
+  background-color: #fff
+  & > div
+    +column(3)
+  .facebook
+    +column(3.9)
+  *
+    vertical-align: top
+
 .button
   .icon
     margin: auto !important
   .icon.kosar
+    height: 12px
     +icons-sprite(kosar)
   &:hover .icon.kosar
     +icons-sprite(kosar_hover)
@@ -118,7 +129,7 @@ img:not([width]):not([height])
     +link-colors(#009AFF, #0ADDFF)
   #header
     color: #fff
-    padding: 10px 0 5px
+    padding: 10px 0
     background-color: #000
     .last_new
       +column(7)
@@ -132,6 +143,8 @@ img:not([width]):not([height])
     .auth
       +column(9, true)
       vertical-align: middle
+      label
+        cursor: default
       label.auth
         +column(1)
         margin: 5px 15px 0 30px
@@ -144,12 +157,12 @@ img:not([width]):not([height])
         padding: 0
         vertical-align: top
         list-style-type: none
-        +inline-block
         li
-          +inline-block
+          float: left
+          margin-right: 5px
         a
+          display: block
           margin-top: 5px
-          +inline-block
         &.sign_in
           margin-bottom: 1px
           +column(4)
@@ -163,7 +176,6 @@ img:not([width]):not([height])
             +icons-sprite(google)
           a
             margin: 0
-            text-indent: -1000px
             width: 32px
             height: 32px
   #sub_header
@@ -181,6 +193,8 @@ img:not([width]):not([height])
     #social
       margin-top: 10px
       +column(5, true)
+      float: right
+      margin-right: 30px
       a
         padding-right: 8px
     #menu
@@ -220,7 +234,7 @@ img:not([width]):not([height])
         +border-radius(25px)
     #small_menu
       +column(9)
-      margin-top: -40px
+      margin-top: -25px
       padding-left: 0
       color: #000
   .content
@@ -253,11 +267,13 @@ img:not([width]):not([height])
           clear: both
           label
             float: right
+            cursor: default
             color: #fff
       .profile_right
         +column(16, true)
         .actions
           width: 100%
+          padding: 5px 0
           background-color: #000
           margin-bottom: 10px
           +border-radius(10px)
@@ -265,10 +281,10 @@ img:not([width]):not([height])
             padding-left: 1em
             margin-bottom: 0
             list-style-type: none
-            +inline-block
+            display: inline
             li
-              +inline-block
-              padding: 5px 5px 5px 0
+              display: inline
+              padding-left: 5px
           ul.orders
             float: right
 
@@ -377,15 +393,7 @@ img:not([width]):not([height])
           &.hide
             display: none
         .like_buttons
-          +column(16)
-          width: 608px
           padding: 10px
-          background-color: #fff
-          *
-            vertical-align: top
-          & > div
-            +inline-block
-            vertical-align: top
       .wrapper
         margin-bottom: 30px
         +column(18)
@@ -504,14 +512,7 @@ img:not([width]):not([height])
           #imp_redactor_box_news_body
             margin-bottom: 10px
         .like_buttons
-          +column(16)
-          width: 608px
           margin-top: 10px
-          background-color: #fff
-          & > div
-            +inline-block
-            *
-              vertical-align: top
         .a_new
           margin-bottom: 10px
           & > h2
@@ -525,26 +526,61 @@ img:not([width]):not([height])
               float: right
             label.author
               padding-right: 15px
-      .contests
+      .contests, .all_contests
         form
           #imp_redactor_box_contest_body
             margin-bottom: 10px
           .actions
             margin: 10px 0
         .contest
+          position: relative
+          margin-bottom: 20px
           article
             width: 620px
             margin: 0
             padding: 0
+          h1.title, h2.title
+            +column(11)
           .actions
             +column(4)
           .dates
-            text-align: right
-            +column(10)
+            width: 164px
+            height: 40px
+            padding: 10px 0 0 25px
             float: right
-            label
+            position: absolute
+            top: 0
+            right: -74px
+            +column(5)
+            +icons-sprite(letter_long)
+            &.active
+              +icons-sprite(letter_green)
+            label, time
+              color: #fff
               cursor: default
-              padding: 0 5px
+              padding: 0
+          .statistics
+            width: 100%
+            clear: both
+            padding: 10px 0
+            text-align: center
+            +blueprint-typography-body(40px)
+      .all_contests
+        background: transparent
+        border: 0
+        margin-top: 20px
+        .contest
+          border-left: 3px #5B5B5B solid
+          padding: 15px
+          background: #fff
+          margin-bottom: 20px
+          .dates
+            top: 10px
+            right: -53px
+          .cut
+            float: right
+          .poop h1.title
+            +column(15)
   .pagination
     +column(16)
     margin: 10px 0
@@ -584,19 +620,42 @@ img:not([width]):not([height])
       padding-bottom: 10px
       width: 728px
     #sub_footer
-      +column(12, true)
+      +column(16.5, true)
       margin: auto
       margin-top: 10px
       display: block
       float: none
+      .icons
+        +column(5, true)
+        width: 160px
+        margin-right: 20px
+        .letsweb, .rytp
+          +column(2)
+          a
+            display: block
+        .letsweb
+          a
+            +icons-sprite(letsweb_footer)
+            width: 62px
+            height: 62px
+        .rytp
+          a
+            +icons-sprite(rytp_footer)
+            width: 70px
+            height: 60px
       .text
         +column(9)
+        padding-top: 5px
         label
           font-weight: bold
-        .last
+        .last, .established
           margin-top: -20px
+        .established
+          font-size: 1.1em
       .counter
         +column(3, true)
+        width: 90px
+        padding-top: 15px
         a
           float: right
           display: block

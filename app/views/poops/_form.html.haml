@@ -16,6 +16,10 @@
     = f.text_area :code, :placeholder => t(:'poop.code'), :title => t(:'poop.code')
   .field
     = f.collection_select :category_id, Category.all, :id, :name, :prompt => 'Выберите из списка'
+  .field
+    = f.label :contest_id
+  .field
+    = f.collection_select :contest_id, Contest.active_now, :id, :name, {:include_blank => 'Выберите из списка'}
   - if can?(:approve, @poop)
     .field
       = f.label :approved

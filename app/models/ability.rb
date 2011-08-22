@@ -19,6 +19,7 @@ class Ability
           poop.user == user and !poop.approved
         end
         cannot :approve, Poop
+        cannot :reject, Poop
 
         if user.has_role? :news_maker
           can :manage, News

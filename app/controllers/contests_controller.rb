@@ -5,14 +5,30 @@ class ContestsController < ApplicationController
   authorize_resource
 
   def index
-    @contests = if cannot?(:manage, Contest)
-      Contest.active
-    else
+    @contests = if can?(:manage, Contest)
       Contest.scoped
+    else
+      Contest.active
     end.page params[:page]
+
+    respond_to do |format|
+      format.html
+      format.js { render :layout => false }
+    end
   end
 
   def show
+    @poops = Poop.unscoped do
+      @contest.poops.order('created_at DESC')
+    end
+
+    @poops = @poops.only_approved if cannot?(:reject, Poop)
+    @poops = @poops.page params[:page]
+
+    respond_to do |format|
+      format.html
+      format.js { render 'shared/update_page', :layout => false, :locals => { :poops => @poops, :id => params[:id] } }
+    end
   end
 
   def new
@@ -23,7 +39,7 @@ class ContestsController < ApplicationController
 
   def create
     if @contest.save
-      redirect_to @contest, :notice => 'Contest was successfully created.'
+      redirect_to @contest, :notice => t(:'contest.created')
     else
       render :new
     end
@@ -31,7 +47,7 @@ class ContestsController < ApplicationController
 
   def update
     if @contest.update_attributes(params[:contest])
-      redirect_to @contest, :notice => 'Contest was successfully updated.'
+      redirect_to @contest, :notice => t(:'contest.updated')
     else
       render :edit
     end
@@ -39,6 +55,8 @@ class ContestsController < ApplicationController
 
   def destroy
     @contest.destroy
+
+    redirect_to contests_path, :notice => t(:'contest.deleted')
   end
 
   private

@@ -104,10 +104,14 @@ class User < ActiveRecord::Base
     case params[:filter]
     when 'favourites'
       result = favoured_poops
+      result = result.approved if params[:id].to_i != id
     when 'not_approved'
       result = result.not_approved
+    when 'contest'
+      result = result.with_contest
+      result = result.approved if params[:id].to_i != id
     else
-      result = result.approved
+      result = result.approved.without_contest
     end
 
     result.order((params[:sort_by] == 'date' ? 'created_at' : 'rating') + ' ' + (params[:order] || 'desc'))

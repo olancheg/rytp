@@ -47,8 +47,20 @@ class PoopsController < ApplicationController
     end
   end
 
+  def reject
+    @poop.contest_id = nil
+    @poop.save
+
+    flash[:notice] = t(:'contest.poop_rejected')
+
+    respond_to do |format|
+      format.html { redirect_to request.referer }
+      format.js { render 'shared/update_poop', :layout => false, :locals => { :poop => @poop } }
+    end
+  end
+
   def search
-    @poops = Poop.search(params[:search]).page params[:page]
+    @poops = Poop.approved.search(params[:search]).page params[:page]
 
     respond_to do |format|
       format.html
@@ -66,7 +78,7 @@ class PoopsController < ApplicationController
   end
 
   def show
-    render_404 unless @poop.approved? or (current_user and current_user.has_role?(:admin))
+    render_404 if (!@poop.approved? or @poop.contest.try(:active?)) and cannot?(:approve, @poop)
   end
 
   def new

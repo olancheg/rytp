@@ -6,3 +6,10 @@
   .users
     = render @users
   = paginate @users
+
+- content_for :bottom_javascript do
+  = javascript_include_tag 'jquery.observe_field'
+  :javascript
+    $("#user_search").observe_field(0.5, function( ) {
+      $(this).parent().submit();
+    });

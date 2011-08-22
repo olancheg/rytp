@@ -15,4 +15,8 @@ class News < ActiveRecord::Base
   def self.fetch_last
     ordered.limit(1).first
   end
+
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
 end

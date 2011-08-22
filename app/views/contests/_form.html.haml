@@ -21,5 +21,18 @@
     = f.label :end_at
   .field
     = f.date_select :end_at
+  - if @contest.poops.count > 0 and @contest.end_at < Date.today
+    .field
+      = f.label :first_place
+    .field
+      = f.collection_select :first_place, @contest.poops, :id, :name, {:include_blank => 'Выберите из списка'}
+    .field
+      = f.label :second_place
+    .field
+      = f.collection_select :second_place, @contest.poops, :id, :name, {:include_blank => 'Выберите из списка'}
+    .field
+      = f.label :third_place
+    .field
+      = f.collection_select :third_place, @contest.poops, :id, :name, {:include_blank => 'Выберите из списка'}
   .actions
     = f.submit 'сохранить'
