@@ -15,8 +15,32 @@
       %label &mdash;
       %time.end_at= russian_date(@contest.end_at)
     = render 'like_buttons/all'
-    .statistics
-      Участвует #{@contest.approved_poops(can?(:reject, Poop)).count} #{t :poops, :count => @contest.approved_poops(can?(:reject, Poop)).count}
+    - if @contest.active?
+      .statistics
+        Участвует #{@contest.approved_poops(can?(:reject, Poop)).count} #{t :poops, :count => @contest.approved_poops(can?(:reject, Poop)).count}
+    - elsif @contest.start_at > Date.today
+      .statistics
+        Конкурс еще не начался
+    - else
+      .statistics
+        Конкурс завершен
+      - if @contest.has_winners?
+        .winners
+          %h2 Победители:
+          .list
+            - if @contest.first_place
+              %h3 Первое место: #{link_to @contest.first_winner.user, profile_path(@contest.first_winner.user)}
+              .poop
+                .video= video @contest.first_winner.code
+            - if @contest.second_place
+              %h3 Второе место: #{link_to @contest.second_winner.user, profile_path(@contest.second_winner.user)}
+              .poop
+                .video= video @contest.second_winner.code
+            - if @contest.third_place
+              %h3 Третье место: #{link_to @contest.third_winner.user, profile_path(@contest.third_winner.user)}
+              .poop
+                .video= video @contest.third_winner.code
+        .clear
     .poops
       = render @poops
     = paginate @poops

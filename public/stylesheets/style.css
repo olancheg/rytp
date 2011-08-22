@@ -1927,28 +1927,37 @@ img:not([width]):not([height]) {
   font-size: 250%;
 }
 /* line 568, ../../app/stylesheets/screen.sass */
+#main .content .middle .contests .contest .winners, #main .content .middle .all_contests .contest .winners {
+  border-bottom: 2px black dashed;
+  margin: 10px 0;
+}
+/* line 572, ../../app/stylesheets/screen.sass */
+#main .content .middle .contests .contest .winners .list .poop, #main .content .middle .all_contests .contest .winners .list .poop {
+  margin-bottom: 20px;
+}
+/* line 574, ../../app/stylesheets/screen.sass */
 #main .content .middle .all_contests {
   background: transparent;
   border: 0;
   margin-top: 20px;
 }
-/* line 572, ../../app/stylesheets/screen.sass */
+/* line 578, ../../app/stylesheets/screen.sass */
 #main .content .middle .all_contests .contest {
   border-left: 3px #5b5b5b solid;
   padding: 15px;
   background: white;
   margin-bottom: 20px;
 }
-/* line 577, ../../app/stylesheets/screen.sass */
+/* line 583, ../../app/stylesheets/screen.sass */
 #main .content .middle .all_contests .contest .dates {
   top: 10px;
   right: -53px;
 }
-/* line 580, ../../app/stylesheets/screen.sass */
+/* line 586, ../../app/stylesheets/screen.sass */
 #main .content .middle .all_contests .contest .cut {
   float: right;
 }
-/* line 582, ../../app/stylesheets/screen.sass */
+/* line 588, ../../app/stylesheets/screen.sass */
 #main .content .middle .all_contests .contest .poop h1.title {
   display: inline;
   float: left;
@@ -1959,7 +1968,7 @@ img:not([width]):not([height]) {
 * html #main .content .middle .all_contests .contest .poop h1.title {
   overflow-x: hidden;
 }
-/* line 584, ../../app/stylesheets/screen.sass */
+/* line 590, ../../app/stylesheets/screen.sass */
 #main .pagination {
   display: inline;
   float: left;
@@ -1972,18 +1981,18 @@ img:not([width]):not([height]) {
 * html #main .pagination {
   overflow-x: hidden;
 }
-/* line 588, ../../app/stylesheets/screen.sass */
+/* line 594, ../../app/stylesheets/screen.sass */
 #main .pagination span.last, #main .pagination span.first {
   display: none;
 }
-/* line 590, ../../app/stylesheets/screen.sass */
+/* line 596, ../../app/stylesheets/screen.sass */
 #main .list_layout {
   display: inline;
   float: left;
   margin-right: 0;
   width: 950px;
 }
-/* line 591, ../../app/stylesheets/screen.sass */
+/* line 597, ../../app/stylesheets/screen.sass */
 #main .list_layout .fix {
   display: inline;
   float: left;
@@ -1998,11 +2007,11 @@ img:not([width]):not([height]) {
 * html #main .list_layout {
   overflow-x: hidden;
 }
-/* line 594, ../../app/stylesheets/screen.sass */
+/* line 600, ../../app/stylesheets/screen.sass */
 #main .list_layout .left, #main .list_layout .right {
   margin-top: 0;
 }
-/* line 596, ../../app/stylesheets/screen.sass */
+/* line 602, ../../app/stylesheets/screen.sass */
 #main .list_layout .left {
   display: inline;
   float: left;
@@ -2013,7 +2022,7 @@ img:not([width]):not([height]) {
 * html #main .list_layout .left {
   overflow-x: hidden;
 }
-/* line 598, ../../app/stylesheets/screen.sass */
+/* line 604, ../../app/stylesheets/screen.sass */
 #main .list_layout .middle {
   display: inline;
   float: left;
@@ -2028,7 +2037,7 @@ img:not([width]):not([height]) {
 * html #main .list_layout .middle {
   overflow-x: hidden;
 }
-/* line 601, ../../app/stylesheets/screen.sass */
+/* line 607, ../../app/stylesheets/screen.sass */
 #main .list_layout .right {
   display: inline;
   float: left;
@@ -2039,15 +2048,15 @@ img:not([width]):not([height]) {
 * html #main .list_layout .right {
   overflow-x: hidden;
 }
-/* line 604, ../../app/stylesheets/screen.sass */
+/* line 610, ../../app/stylesheets/screen.sass */
 #main #footer {
   background-color: white;
 }
-/* line 606, ../../app/stylesheets/screen.sass */
+/* line 612, ../../app/stylesheets/screen.sass */
 #main #footer .container {
   padding-top: 10px;
 }
-/* line 608, ../../app/stylesheets/screen.sass */
+/* line 614, ../../app/stylesheets/screen.sass */
 #main #footer .container div {
   display: inline;
   float: left;
@@ -2061,7 +2070,7 @@ img:not([width]):not([height]) {
 * html #main #footer .container div {
   overflow-x: hidden;
 }
-/* line 613, ../../app/stylesheets/screen.sass */
+/* line 619, ../../app/stylesheets/screen.sass */
 #main #footer .container div a {
   color: black;
 }
@@ -2069,18 +2078,18 @@ img:not([width]):not([height]) {
 #main #footer .container div a:hover {
   color: #666666;
 }
-/* line 615, ../../app/stylesheets/screen.sass */
+/* line 621, ../../app/stylesheets/screen.sass */
 #main #footer #vk_comments {
   min-height: 140px;
   margin: auto;
 }
-/* line 618, ../../app/stylesheets/screen.sass */
+/* line 624, ../../app/stylesheets/screen.sass */
 #main #footer .before {
   margin: auto;
   padding-bottom: 10px;
   width: 728px;
 }
-/* line 622, ../../app/stylesheets/screen.sass */
+/* line 628, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer {
   display: inline;
   float: left;
@@ -2095,7 +2104,7 @@ img:not([width]):not([height]) {
 * html #main #footer #sub_footer {
   overflow-x: hidden;
 }
-/* line 628, ../../app/stylesheets/screen.sass */
+/* line 634, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .icons {
   display: inline;
   float: left;
@@ -2108,7 +2117,7 @@ img:not([width]):not([height]) {
 * html #main #footer #sub_footer .icons {
   overflow-x: hidden;
 }
-/* line 632, ../../app/stylesheets/screen.sass */
+/* line 638, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .icons .letsweb, #main #footer #sub_footer .icons .rytp {
   display: inline;
   float: left;
@@ -2119,23 +2128,23 @@ img:not([width]):not([height]) {
 * html #main #footer #sub_footer .icons .letsweb, * html #main #footer #sub_footer .icons .rytp {
   overflow-x: hidden;
 }
-/* line 634, ../../app/stylesheets/screen.sass */
+/* line 640, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .icons .letsweb a, #main #footer #sub_footer .icons .rytp a {
   display: block;
 }
-/* line 637, ../../app/stylesheets/screen.sass */
+/* line 643, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .icons .letsweb a {
   background-position: 0 -86px;
   width: 62px;
   height: 62px;
 }
-/* line 642, ../../app/stylesheets/screen.sass */
+/* line 648, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .icons .rytp a {
   background-position: 0 -479px;
   width: 70px;
   height: 60px;
 }
-/* line 646, ../../app/stylesheets/screen.sass */
+/* line 652, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .text {
   display: inline;
   float: left;
@@ -2147,19 +2156,19 @@ img:not([width]):not([height]) {
 * html #main #footer #sub_footer .text {
   overflow-x: hidden;
 }
-/* line 649, ../../app/stylesheets/screen.sass */
+/* line 655, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .text label {
   font-weight: bold;
 }
-/* line 651, ../../app/stylesheets/screen.sass */
+/* line 657, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .text .last, #main #footer #sub_footer .text .established {
   margin-top: -20px;
 }
-/* line 653, ../../app/stylesheets/screen.sass */
+/* line 659, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .text .established {
   font-size: 1.1em;
 }
-/* line 655, ../../app/stylesheets/screen.sass */
+/* line 661, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .counter {
   display: inline;
   float: left;
@@ -2172,7 +2181,7 @@ img:not([width]):not([height]) {
 * html #main #footer #sub_footer .counter {
   overflow-x: hidden;
 }
-/* line 659, ../../app/stylesheets/screen.sass */
+/* line 665, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .counter a {
   float: right;
   display: block;

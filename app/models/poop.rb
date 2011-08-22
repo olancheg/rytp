@@ -98,6 +98,6 @@ class Poop < ActiveRecord::Base
   end
 
   def name
-    "#{id} - #{title}"
+    "#{rating} - #{title}"
   end
 end

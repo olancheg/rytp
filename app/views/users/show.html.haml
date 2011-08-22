@@ -35,7 +35,7 @@
         %li.approved= link_to 'подтвержденные', url_for(:filter => 'approved')
         %li.notapproved= link_to 'неподтвержденные', url_for(:filter => 'not_approved') if @user == current_user
         %li.favourites= link_to 'избранное', url_for(:filter => 'favourites')
-        %li.favourites= link_to 'конкурсные', url_for(:filter => 'contest')
+        %li.contestz= link_to 'конкурсные', url_for(:filter => 'contest')
       %ul.orders
         = render 'ordering'
 

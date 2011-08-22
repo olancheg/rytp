@@ -1,5 +1,5 @@
 class Contest < ActiveRecord::Base
-  attr_accessible :name, :description, :start_at, :end_at
+  attr_accessible :name, :description, :start_at, :end_at, :first_place, :second_place, :third_place
 
   PAGINATES_PER = 5
 
@@ -37,11 +37,27 @@ class Contest < ActiveRecord::Base
     end
   end
 
+  def first_winner
+    Poop.find first_place if first_place?
+  end
+
+  def second_winner
+    Poop.find second_place if second_place?
+  end
+
+  def third_winner
+    Poop.find third_place if third_place?
+  end
+
   def to_param
     "#{id}-#{name.parameterize}"
   end
 
   def active?
     start_at <= Date.today and end_at >= Date.today
+  end
+
+  def has_winners?
+    %w{first_place second_place third_place}.any? {|e| eval("#{e}?") }
   end
 end
