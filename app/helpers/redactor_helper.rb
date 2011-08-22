@@ -1,8 +1,6 @@
 module RedactorHelper
   def redactor_css
-    content_for :stylesheets do
-      stylesheet_link_tag '/redactor/css/redactor.css'
-    end
+    content_for :stylesheets, stylesheet_link_tag('/redactor/css/redactor.css')
   end
 
   def redactor(element)

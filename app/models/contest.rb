@@ -8,7 +8,7 @@ class Contest < ActiveRecord::Base
   has_many :poops
 
   validates_presence_of :name, :description
-  validate :dates
+  validate :validate_dates
 
   scope :active, where('contests.start_at <= ?', Date.today)
   scope :active_now, active.where('contests.end_at >= ?', Date.today)
@@ -19,7 +19,11 @@ class Contest < ActiveRecord::Base
     name
   end
 
-  def dates
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
+
+  def validate_dates
     errors.add(:end_at, I18n.t(:'contest.wrong_dates')) if start_at >= end_at
   end
 
@@ -47,10 +51,6 @@ class Contest < ActiveRecord::Base
 
   def third_winner
     Poop.find third_place if third_place?
-  end
-
-  def to_param
-    "#{id}-#{name.parameterize}"
   end
 
   def active?

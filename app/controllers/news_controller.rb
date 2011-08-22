@@ -1,6 +1,7 @@
 class NewsController < ApplicationController
   before_filter :require_authentication, :except => [:index, :show]
   before_filter :find_new
+
   authorize_resource
 
   def index

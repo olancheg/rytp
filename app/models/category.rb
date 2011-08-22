@@ -1,6 +1,4 @@
 class Category < ActiveRecord::Base
-  extend ActiveSupport::Memoizable
-
   has_many :poops
 
   validates_presence_of :name

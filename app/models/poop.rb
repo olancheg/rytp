@@ -22,7 +22,7 @@ class Poop < ActiveRecord::Base
 
   validates_presence_of :title
   validates_inclusion_of :category_id, :in => Category.ids
-  validate :is_code_safe?
+  validate :code_safe?
 
   before_validation :prepare_code
   before_save 'self.code = self.code.to_html'
@@ -32,7 +32,7 @@ class Poop < ActiveRecord::Base
     self.code.search("*").collect!{ |node| node if node.name !~ /^iframe$/ }.compact.remove
   end
 
-  def is_code_safe?
+  def code_safe?
     iframes = (self.code/"iframe")
     src = iframes.first[:src] unless iframes.empty?
 

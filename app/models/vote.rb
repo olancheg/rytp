@@ -9,7 +9,7 @@ class Vote < ActiveRecord::Base
   scope :positive, where(:positive => true)
   scope :negative, where(:positive => false)
 
-  after_save :update_poop_rating, :on => :create
+  after_create :update_poop_rating
 
   def update_poop_rating
     if positive?
