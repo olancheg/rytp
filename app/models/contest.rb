@@ -57,6 +57,14 @@ class Contest < ActiveRecord::Base
     start_at <= Date.today and end_at >= Date.today
   end
 
+  def has_poops?
+    poops.count > 0
+  end
+
+  def completed?
+    end_at < Date.today
+  end
+
   def has_winners?
     %w{first_place second_place third_place}.any? {|e| eval("#{e}?") }
   end

@@ -6,7 +6,7 @@
   .info
     = render 'poops/poop_info', :poop => poop
   .wrapper
-    .author{ :rel => :author }
+    .author
       - if poop.contest_id.nil? or !poop.contest.try(:active?)
         = t(:by) + ': '
         = poop.user ? link_to(poop.user, profile_path(poop.user)) : 'noname'

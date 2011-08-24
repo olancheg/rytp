@@ -48,7 +48,7 @@ class PoopsController < ApplicationController
   end
 
   def reject
-    @poop.contest_id = nil
+    @poop.contest = nil
     @poop.save
 
     flash[:notice] = t(:'contest.poop_rejected')

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110822080120) do
+ActiveRecord::Schema.define(:version => 20110824121945) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20110822080120) do
 
   create_table "contests", :force => true do |t|
     t.string   "name"
-    t.string   "description"
+    t.text     "description"
     t.date     "start_at"
     t.date     "end_at"
     t.integer  "first_place"

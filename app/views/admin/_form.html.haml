@@ -30,15 +30,9 @@
     = f.label :use_nickname_instead_of_name
   .field
     = f.check_box :use_nickname_instead_of_name
-
-  - if current_user and current_user.has_role?(:admin)
-    .rules
-      %h4= t(:'user.role')
-      - Role.all.each do |role|
-        .field
-          = check_box_tag 'user[role_ids][]', role.id, @user.has_role?(role.name), :id => "user_roles_#{role.name}"
-          = label_tag "user_roles_#{role.name}", t(:"roles.#{role.name}")
-      = hidden_field_tag 'user[role_ids][]', ''
+  .rules
+    %h4= t(:'user.role')
+    = role_selection(@user)
 
   .actions
     = f.submit 'сохранить'

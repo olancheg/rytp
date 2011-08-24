@@ -29,6 +29,21 @@ protected
   end
   helper_method :current_user
 
+  def all_roles
+    @all_roles ||= Role.all
+  end
+  helper_method :all_roles
+
+  def all_categories
+    @all_categories ||= Category.all
+  end
+  helper_method :all_categories
+
+  def active_contests
+    @active_contests ||= Contest.active_now
+  end
+  helper_method :active_contests
+
   def current_user=(user)
     @current_user = user
     # if user is 'nil', it means that we logging him out

@@ -21,7 +21,7 @@
     = f.label :end_at
   .field
     = f.date_select :end_at
-  - if @contest.poops.count > 0 and @contest.end_at < Date.today
+  - if @contest.has_poops? and @contest.completed?
     .field
       = f.label :first_place
     .field
