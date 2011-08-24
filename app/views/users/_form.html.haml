@@ -1,10 +1,10 @@
-= form_for @user do |f|
-  - if @user.errors.any?
+= form_for user do |f|
+  - if user.errors.any?
     .error_explanation
       %h2
-        = errors_count @user.errors.count
+        = errors_count user.errors.count
       %ul
-        - @user.errors.full_messages.each do |msg|
+        - user.errors.full_messages.each do |msg|
           %li= msg
   .field
     = f.label :name
