@@ -6,8 +6,8 @@
   .delete
     %h4 Удалить
     .field
-      = link_to "пользователя", admin_path(@user), :method => :delete, :confirm => 'Вы уверены?'
+      = link_to "пользователя", admin_path(user), :method => :delete, :confirm => 'Вы уверены?'
     .field
-      = link_to "пупы пользователя (#{@user.poops.count})", poops_admin_path(@user), :method => :delete, :confirm => 'Вы уверены?'
+      = link_to "пупы пользователя (#{user.poops.count})", poops_admin_path(user), :method => :delete, :confirm => 'Вы уверены?'
     .field
-      = link_to "косари отданные пользователем (#{@user.votes.count})", votes_admin_path(@user), :method => :delete, :confirm => 'Вы уверены?'
+      = link_to "косари отданные пользователем (#{user.votes.count})", votes_admin_path(user), :method => :delete, :confirm => 'Вы уверены?'

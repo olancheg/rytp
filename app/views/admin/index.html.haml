@@ -4,8 +4,8 @@
   = form_tag admin_index_path, :remote => true do
     = text_field_tag 'search', params[:search], :class => :title, :id => :user_search
   .users
-    = render @users
-  = paginate @users
+    = render users
+  = paginate users
 
 - content_for :bottom_javascript do
   = javascript_include_tag 'jquery.observe_field'

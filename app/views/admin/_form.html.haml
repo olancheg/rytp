@@ -1,10 +1,10 @@
-= form_for @user, :url => admin_path(@user), :html => { :method => :put } do |f|
-  - if @user.errors.any?
+= form_for user, :url => admin_path(user), :html => { :method => :put } do |f|
+  - if user.errors.any?
     .error_explanation
       %h2
-        = errors_count @user.errors.count
+        = errors_count user.errors.count
       %ul
-        - @user.errors.full_messages.each do |msg|
+        - user.errors.full_messages.each do |msg|
           %li= msg
   .field
     = f.label :name
@@ -32,7 +32,7 @@
     = f.check_box :use_nickname_instead_of_name
   .rules
     %h4= t(:'user.role')
-    = role_selection(@user)
+    = role_selection(user)
 
   .actions
     = f.submit 'сохранить'
