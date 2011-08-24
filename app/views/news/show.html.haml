@@ -1,23 +1,23 @@
-= set_title :title => @news.title
-= set_description sanitize(@news.content, :tags => []).truncate(100)
+= set_title :title => news.title
+= set_description sanitize(news.content, :tags => []).truncate(100)
 .news
   .a_new
     %h1.title
-      = @news.title
+      = news.title
     .content.redactor
-      %article= raw @news.content
+      %article= raw news.content
     .actions
-      %time.date= short_date(@news.created_at)
-      %label.author= link_to @news.user, profile_path(@news.user) if @news.user
-      - if can?(:manage, @news)
-        = link_to 'изменить', edit_news_path(@news)
-        = link_to 'удалить', @news, :confirm => 'Вы уверены?', :method => :delete
+      %time.date= short_date(news.created_at)
+      %label.author= link_to news.user, profile_path(news.user) if news.user
+      - if can?(:manage, news)
+        = link_to 'изменить', edit_news_path(news)
+        = link_to 'удалить', news, :confirm => 'Вы уверены?', :method => :delete
   = render 'like_buttons/all'
 
 = content_for :comments do
   #vk_comments
     :javascript
-      VK.Widgets.Comments("vk_comments", {limit: 10, width: "496", pageUrl: "http://rytp.ru/news/#{@news.id}"});
+      VK.Widgets.Comments("vk_comments", {limit: 10, width: "496", pageUrl: "http://rytp.ru/news/#{news.id}"});
 
 = content_for :ad_block_1 do
   = render '/ad/before_comments'
