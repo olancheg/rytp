@@ -609,6 +609,10 @@ input[type="url"] {
   background-color: black;
 }
 /* line 142, ../../app/stylesheets/screen.sass */
+#main #header label {
+  cursor: text;
+}
+/* line 144, ../../app/stylesheets/screen.sass */
 #main #header .last_new {
   display: inline;
   float: left;
@@ -621,11 +625,11 @@ input[type="url"] {
 * html #main #header .last_new {
   overflow-x: hidden;
 }
-/* line 146, ../../app/stylesheets/screen.sass */
+/* line 148, ../../app/stylesheets/screen.sass */
 #main #header .last_new label {
   padding-right: 5px;
 }
-/* line 148, ../../app/stylesheets/screen.sass */
+/* line 150, ../../app/stylesheets/screen.sass */
 #main #header .contest {
   display: inline;
   float: left;
@@ -637,7 +641,7 @@ input[type="url"] {
 * html #main #header .contest {
   overflow-x: hidden;
 }
-/* line 151, ../../app/stylesheets/screen.sass */
+/* line 153, ../../app/stylesheets/screen.sass */
 #main #header .auth {
   display: inline;
   float: left;
@@ -648,10 +652,6 @@ input[type="url"] {
 /* line 147, ../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #main #header .auth {
   overflow-x: hidden;
-}
-/* line 154, ../../app/stylesheets/screen.sass */
-#main #header .auth label {
-  cursor: text;
 }
 /* line 156, ../../app/stylesheets/screen.sass */
 #main #header .auth label.auth {
