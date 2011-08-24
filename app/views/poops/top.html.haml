@@ -8,9 +8,9 @@
   = link_to_active 'за месяц', top_path(params[:category], 'by_month'), :class => 'by_month'
   = link_to_active 'за все время', top_path(params[:category], 'all_time'), :class => 'all_time'
 
-.poops= render @poops
-= paginate @poops
-- if @poops.empty?
+.poops= render poops
+= paginate poops
+- if poops.empty?
   = empty
 
 = content_for :left do

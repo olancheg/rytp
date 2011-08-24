@@ -1,8 +1,8 @@
 = set_title :title => 'не подтвержденные'
 
-.poops= render @poops
-= paginate @poops
-- if @poops.empty?
+.poops= render poops
+= paginate poops
+- if poops.empty?
   = empty
 
 = content_for :left do

@@ -1,11 +1,11 @@
 %ul#menu
   %li
-    = link_to t(:'menu.rytp'), root_path, :class => active?(:object => @poop, :type => :RYTP)
+    = link_to t(:'menu.rytp'), root_path, :class => active?(:boolean => (defined?(poop) and poop.category_name.try(:to_sym) == :RYTP))
   %li
-    = link_to t(:'menu.rytpmv'), rytpmv_path, :class => active?(:object => @poop, :type => :RYTPMV)
+    = link_to t(:'menu.rytpmv'), rytpmv_path, :class => active?(:boolean => (defined?(poop) and poop.category_name.try(:to_sym) == :RYTPMV))
   %li
     = link_to t(:'menu.feed'), poops_feed_path(:RYTP), :class => active?(:path => [poops_feed_path(:RYTP), poops_feed_path(:RYTPMV)])
   %li
     = link_to t(:'menu.top'), top_path(:RYTP), :class => active?(:path => [nil, 'by_month', 'all_time'].map{|period| [top_path(:RYTP, period), top_path(:RYTPMV, period)] })
   %li
-    = link_to t(:'menu.contest'), contests_path, :class => active?(:boolean => (@contest or @contests))
+    = link_to t(:'menu.contest'), contests_path, :class => active?(:boolean => ( defined?(contest) or defined?(contests) ))

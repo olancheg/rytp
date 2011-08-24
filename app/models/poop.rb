@@ -58,7 +58,7 @@ class Poop < ActiveRecord::Base
 
   default_scope includes(:category, :user)
 
-  delegate :name, :to => :category, :prefix => true
+  delegate :name, :to => :category, :prefix => true, :allow_nil => true
 
   def to_param
     "#{id}-#{title.parameterize}"

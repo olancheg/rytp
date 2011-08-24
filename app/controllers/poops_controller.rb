@@ -127,4 +127,14 @@ class PoopsController < ApplicationController
       Poop.new(params[:poop])
     end
   end
+
+  def poop
+    @poop
+  end
+  helper_method :poop
+
+  def poops
+    @poops
+  end
+  helper_method :poops
 end
