@@ -2,8 +2,8 @@
 
 .all_contests
   .contests_list
-    - if @contests.any?
-      = render @contests
+    - if contests.any?
+      = render contests
     - else
       Пока нет ни одного конкурса
-  = paginate @contests
+  = paginate contests
