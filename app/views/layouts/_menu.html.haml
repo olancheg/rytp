@@ -1,8 +1,8 @@
 %ul#menu
   %li
-    = link_to t(:'menu.rytp'), root_path, :class => active?(:boolean => (defined?(poop) and poop.category_name.try(:to_sym) == :RYTP))
+    = link_to t(:'menu.rytp'), root_path, :class => active?(:boolean => (defined?(poop) and poop and poop.category_name.try(:to_sym) == :RYTP))
   %li
-    = link_to t(:'menu.rytpmv'), rytpmv_path, :class => active?(:boolean => (defined?(poop) and poop.category_name.try(:to_sym) == :RYTPMV))
+    = link_to t(:'menu.rytpmv'), rytpmv_path, :class => active?(:boolean => (defined?(poop) and poop and poop.category_name.try(:to_sym) == :RYTPMV))
   %li
     = link_to t(:'menu.feed'), poops_feed_path(:RYTP), :class => active?(:path => [poops_feed_path(:RYTP), poops_feed_path(:RYTPMV)])
   %li

@@ -6,5 +6,4 @@
   $('.poops').html('<%= escape_javascript(render poops)%>');
 <% end %>
 
-// $.scrollTo( $('body'), 1500 );
 $('.pagination').replaceWith('<%= escape_javascript(paginate poops, :params => {:id => (defined?(id) ? id : nil), :action => (defined?(ajax) ? "not_approved" : controller.action_name)} ) %>');

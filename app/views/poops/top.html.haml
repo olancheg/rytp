@@ -10,8 +10,7 @@
 
 .poops= render poops
 = paginate poops
-- if poops.empty?
-  = empty
+= empty if poops.empty?
 
 = content_for :left do
   = render '/ad/left_skyscraper'
