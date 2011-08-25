@@ -4,15 +4,9 @@ module LinkHelper
   end
 
   def comments_link(poop)
-    path = classes = ''
+    classes = 'comments_button' if current_page?(watch_path poop) or request.referer =~ /^#{watch_url(poop)}(#.*)?/
 
-    if (request.xhr? and (request.referer !~ /[^=]\d+(#.*)?$/ or request.referer !~ /users/)) or (!request.xhr? and !current_page?(watch_path poop))
-      path = watch_path(poop)
-    else
-      classes = 'comments_button'
-    end
-
-    link_to path + '#comments', :class => ['button', classes].join(' ') do
+    link_to watch_path(poop) + '#comments', :class => ['button', classes].join(' ') do
       content_tag(:span, '', :class => 'comment icon') + t(:comments)
     end
   end
