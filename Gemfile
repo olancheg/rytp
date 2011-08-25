@@ -16,6 +16,8 @@ gem 'pg'
 gem 'silent-postgres'
 gem 'pg_search'
 
+gem 'exception_notification'
+
 gem 'omniauth'
 gem 'cancan'
 
