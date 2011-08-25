@@ -57,6 +57,22 @@ $(function() {
     }
   }
 
+  // Wikipoop links
+  $('a.wikipoop_link').click(function() {
+    $(this).parent().find('.text').slideToggle();
+    $(this).toggleClass('active');
+    return false;
+  });
+
+  $("a.wikipoop_video").fancybox({
+    'width'       : 640,
+    'height'      : 480,
+    'autoScale'     : false,
+    'transitionIn'    : 'elastic',
+    'transitionOut'   : 'elastic',
+    'type'        : 'iframe'
+  });
+
   // With #comments anchor scroll to comments box
   scrollToComments();
   $('.comments_button').live('click', function() {

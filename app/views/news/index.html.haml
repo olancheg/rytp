@@ -3,3 +3,6 @@
   .news_list= render all_news
 
   = paginate all_news
+
+= content_for :ad_block_1 do
+  = render '/ad/before_footer'

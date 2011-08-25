@@ -1,6 +1,6 @@
-/* line 111, icons */
-.icons-sprite, .button .icon.kosar, .button:hover .icon.kosar, .button .icon.xunta, .button:hover .icon.xunta, #main #header .auth .auth-links.sign_in .facebook, #main #header .auth .auth-links.sign_in .vkontakte, #main #header .auth .auth-links.sign_in .twitter, #main #header .auth .auth-links.sign_in .google, #main #sub_header #logo a, #main .content .middle .all_news .a_new time, #main .content .middle .files .file_list .file_1 .icon, #main .content .middle .files .file_list .file_2 .icon, #main .content .middle .contests .contest .dates, #main .content .middle .all_contests .contest .dates, #main .content .middle .contests .contest .dates.active, #main .content .middle .all_contests .contest .dates.active, #main #footer #sub_footer .icons .letsweb a, #main #footer #sub_footer .icons .rytp a {
-  background: url('/images/icons-sb69381e83d.png') no-repeat;
+/* line 117, icons */
+.icons-sprite, .button .icon.kosar, .button:hover .icon.kosar, .button .icon.xunta, .button:hover .icon.xunta, #main #header .auth .auth-links.sign_in .facebook, #main #header .auth .auth-links.sign_in .vkontakte, #main #header .auth .auth-links.sign_in .twitter, #main #header .auth .auth-links.sign_in .google, #main #sub_header #logo a, #main .content .middle .all_news .a_new time, #main .content .middle .files .file_list .file_1 .icon, #main .content .middle .files .file_list .file_2 .icon, #main .content .middle .contests .contest .dates, #main .content .middle .all_contests .contest .dates, #main .content .middle .contests .contest .dates.active, #main .content .middle .all_contests .contest .dates.active, #main .wikipoop h1, #main #footer #sub_footer .icons .letsweb a, #main #footer #sub_footer .icons .rytp a {
+  background: url('/images/icons-s0ce2999af4.png') no-repeat;
 }
 
 /* line 31, ../../app/stylesheets/screen.sass */
@@ -533,15 +533,15 @@ input[type="url"] {
 }
 /* line 107, ../../app/stylesheets/screen.sass */
 .button .icon.xunta {
-  background-position: 0 -603px;
+  background-position: 0 -681px;
 }
 /* line 43, ../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .button .icon.xunta:hover, .button .icon.xunta.xunta_hover, .button .icon.xunta.xunta-hover {
-  background-position: 0 -614px;
+  background-position: 0 -692px;
 }
 /* line 109, ../../app/stylesheets/screen.sass */
 .button:hover .icon.xunta {
-  background-position: 0 -614px;
+  background-position: 0 -692px;
 }
 
 /* line 112, ../../app/stylesheets/screen.sass */
@@ -555,9 +555,9 @@ input[type="url"] {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 124px;
+  width: 126px;
   position: fixed;
-  padding: 10px;
+  padding: 8px;
   background-color: #262626;
   left: 50%;
   top: 100px;
@@ -1754,14 +1754,61 @@ input[type="url"] {
   overflow-x: hidden;
 }
 /* line 619, ../../app/stylesheets/screen.sass */
+#main .wikipoop h1 {
+  width: 82px;
+  height: 78px;
+  margin: auto;
+  margin-bottom: 20px;
+  display: block;
+  background-position: 0 -603px;
+}
+/* line 626, ../../app/stylesheets/screen.sass */
+#main .wikipoop .hidden_by_default {
+  display: none;
+}
+/* line 628, ../../app/stylesheets/screen.sass */
+#main .wikipoop a.wikipoop_link {
+  text-decoration: none;
+  margin-bottom: 10px;
+  padding: 5px;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  color: white;
+  background-color: #ababab;
+}
+/* line 7, ../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+#main .wikipoop a.wikipoop_link {
+  *display: inline;
+}
+/* line 24, ../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+#main .wikipoop a.wikipoop_link:hover {
+  color: #ebebeb;
+}
+/* line 635, ../../app/stylesheets/screen.sass */
+#main .wikipoop a.wikipoop_link:after {
+  content: "+";
+  padding: 5px;
+}
+/* line 638, ../../app/stylesheets/screen.sass */
+#main .wikipoop a.wikipoop_link.active:after {
+  content: "-";
+}
+/* line 640, ../../app/stylesheets/screen.sass */
+#main .wikipoop .thanks_to {
+  text-align: center;
+}
+/* line 643, ../../app/stylesheets/screen.sass */
 #main #footer {
   background-color: white;
 }
-/* line 621, ../../app/stylesheets/screen.sass */
+/* line 645, ../../app/stylesheets/screen.sass */
 #main #footer .container {
   padding-top: 10px;
 }
-/* line 623, ../../app/stylesheets/screen.sass */
+/* line 647, ../../app/stylesheets/screen.sass */
 #main #footer .container div {
   display: inline;
   float: left;
@@ -1775,7 +1822,7 @@ input[type="url"] {
 * html #main #footer .container div {
   overflow-x: hidden;
 }
-/* line 628, ../../app/stylesheets/screen.sass */
+/* line 652, ../../app/stylesheets/screen.sass */
 #main #footer .container div a {
   color: black;
 }
@@ -1783,18 +1830,18 @@ input[type="url"] {
 #main #footer .container div a:hover {
   color: #666666;
 }
-/* line 630, ../../app/stylesheets/screen.sass */
+/* line 654, ../../app/stylesheets/screen.sass */
 #main #footer #vk_comments {
   min-height: 140px;
   margin: auto;
 }
-/* line 633, ../../app/stylesheets/screen.sass */
+/* line 657, ../../app/stylesheets/screen.sass */
 #main #footer .before {
   margin: auto;
   padding-bottom: 10px;
   width: 728px;
 }
-/* line 637, ../../app/stylesheets/screen.sass */
+/* line 661, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer {
   display: inline;
   float: left;
@@ -1809,7 +1856,7 @@ input[type="url"] {
 * html #main #footer #sub_footer {
   overflow-x: hidden;
 }
-/* line 643, ../../app/stylesheets/screen.sass */
+/* line 667, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .icons {
   display: inline;
   float: left;
@@ -1822,7 +1869,7 @@ input[type="url"] {
 * html #main #footer #sub_footer .icons {
   overflow-x: hidden;
 }
-/* line 647, ../../app/stylesheets/screen.sass */
+/* line 671, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .icons .letsweb, #main #footer #sub_footer .icons .rytp {
   display: inline;
   float: left;
@@ -1833,23 +1880,23 @@ input[type="url"] {
 * html #main #footer #sub_footer .icons .letsweb, * html #main #footer #sub_footer .icons .rytp {
   overflow-x: hidden;
 }
-/* line 649, ../../app/stylesheets/screen.sass */
+/* line 673, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .icons .letsweb a, #main #footer #sub_footer .icons .rytp a {
   display: block;
 }
-/* line 652, ../../app/stylesheets/screen.sass */
+/* line 676, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .icons .letsweb a {
   background-position: 0 -86px;
   width: 62px;
   height: 62px;
 }
-/* line 657, ../../app/stylesheets/screen.sass */
+/* line 681, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .icons .rytp a {
   background-position: 0 -479px;
   width: 70px;
   height: 60px;
 }
-/* line 661, ../../app/stylesheets/screen.sass */
+/* line 685, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .text {
   display: inline;
   float: left;
@@ -1861,20 +1908,20 @@ input[type="url"] {
 * html #main #footer #sub_footer .text {
   overflow-x: hidden;
 }
-/* line 664, ../../app/stylesheets/screen.sass */
+/* line 688, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .text label {
   font-weight: bold;
   cursor: text;
 }
-/* line 667, ../../app/stylesheets/screen.sass */
+/* line 691, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .text .last, #main #footer #sub_footer .text .established {
   margin-top: -20px;
 }
-/* line 669, ../../app/stylesheets/screen.sass */
+/* line 693, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .text .established {
   font-size: 1.1em;
 }
-/* line 671, ../../app/stylesheets/screen.sass */
+/* line 695, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .counter {
   display: inline;
   float: left;
@@ -1887,7 +1934,7 @@ input[type="url"] {
 * html #main #footer #sub_footer .counter {
   overflow-x: hidden;
 }
-/* line 675, ../../app/stylesheets/screen.sass */
+/* line 699, ../../app/stylesheets/screen.sass */
 #main #footer #sub_footer .counter a {
   float: right;
   display: block;

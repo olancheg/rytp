@@ -52,4 +52,8 @@ module LinkHelper
 
     'active' if result
   end
+
+  def link_to_video(name, url, options={})
+    link_to name, url, options.merge(:class => [options[:class], :wikipoop_video].join(' '))
+  end
 end
