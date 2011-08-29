@@ -6,6 +6,8 @@ class AlterNewsTable < ActiveRecord::Migration
   end
 
   def self.down
-    raise ActiveRecord::IrreversibleMigration
+    add_column :news, :photo, :string
+    remove_index :news, :user_id
+    remove_column :news, :user_id
   end
 end

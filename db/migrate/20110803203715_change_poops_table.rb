@@ -10,6 +10,12 @@ class ChangePoopsTable < ActiveRecord::Migration
   end
 
   def self.down
-    raise ActiveRecord::IrreversibleMigration
+    rename_column :poops, :approved, :is_approved
+    rename_column :poops, :rating, :rate
+
+    add_column :poops, :author, :string
+
+    remove_index :poops, :user_id
+    remove_column :poops, :user_id
   end
 end

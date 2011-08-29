@@ -10,12 +10,12 @@ module PoopsHelper
 
   def previous_poop(poop)
     poops = poops_from_category(poop.category_id)
-    poops ? poops.at((poops.index(poop.id) || 0) - 1) : last_poop
+    poops.any? ? poops.at((poops.index(poop) || 0) - 1) : last_poop
   end
 
   def next_poop(poop)
     poops = poops_from_category(poop.category_id)
-    pos = poops.index(poop.id) || 0
-    poops ? poops.at(pos == (poops.count - 1) ? 0 : pos + 1) : last_poop
+    pos = poops.index(poop) || 0
+    poops.any? ? poops.at(pos == (poops.count - 1) ? 0 : pos + 1) : last_poop
   end
 end
