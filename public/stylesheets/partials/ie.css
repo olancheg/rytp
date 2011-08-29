@@ -1,15 +1,1 @@
-/* line 2, ../../../app/stylesheets/partials/ie.sass */
-.ie7 .search_box, .ie8 .search_box {
-  margin-top: 0 !important;
-}
-/* line 5, ../../../app/stylesheets/partials/ie.sass */
-.ie7 .ir, .ie8 .ir {
-  font-size: 0px;
-  display: block !important;
-  line-height: 0px;
-}
-
-/* line 11, ../../../app/stylesheets/partials/ie.sass */
-.ie7 #main .container.triangle {
-  padding-bottom: 70px !important;
-}
+.ie7 .search_box,.ie8 .search_box{margin-top:0 !important}.ie7 .ir,.ie8 .ir{font-size:0px;display:block !important;line-height:0px}.ie7 #main .container.triangle{padding-bottom:70px !important}
