@@ -707,11 +707,6 @@ form textarea {
   color: #8a1f11;
 }
 
-/* line 47, ../../app/stylesheets/screen.sass */
-img:not([width]):not([height]) {
-  border: 2px solid red !important;
-}
-
 /* line 50, ../../app/stylesheets/screen.sass */
 input[type="url"] {
   margin: 0.5em 0;
