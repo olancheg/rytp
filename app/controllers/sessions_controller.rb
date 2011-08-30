@@ -12,18 +12,18 @@ class SessionsController < ApplicationController
       self.current_user = @auth.user
       flash[:success] = t(:'authentication.success')
     end
-    redirect_to watch_path(last_poop)
+    redirect_to_root
   end
 
   def destroy
     flash[:notice] = t(:'authentication.logout', :name => current_user)
     reset_session
     self.current_user = nil
-    redirect_to watch_path(last_poop)
+    redirect_to_root
   end
 
   def failure
     flash[:error] = t(:'authentication.failure')
-    redirect_to watch_path(last_poop)
+    redirect_to_root
   end
 end

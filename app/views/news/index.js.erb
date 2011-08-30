@@ -1,2 +1,2 @@
-$('.news_list').html('<%= escape_javascript(render all_news) %>');
-$('.pagination').replaceWith('<%= paginate(all_news).gsub(/\n/, '').html_safe %>');
+$('.news_list').html("<%= escape_javascript(render all_news) %>");
+$('.pagination').replaceWith("<%= escape_javascript(paginate all_news) %>");

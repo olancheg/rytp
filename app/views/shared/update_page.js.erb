@@ -1,9 +1,9 @@
 <%= render 'shared/update_flash' %>
 
 <% if poops.empty? %>
-  $('.poops').html('<%= empty %>');
+  $('.poops').html("<%= empty %>");
 <% else %>
-  $('.poops').html('<%= escape_javascript(render poops)%>');
+  $('.poops').html("<%= escape_javascript(render poops)%>");
 <% end %>
 
-$('.pagination').replaceWith('<%= escape_javascript(paginate poops, :params => {:id => (defined?(id) ? id : nil), :action => (defined?(ajax) ? "not_approved" : controller.action_name)} ) %>');
+$('.pagination').replaceWith("<%= escape_javascript(paginate poops, :params => {:id => (defined?(id) ? id : nil), :action => (defined?(ajax) ? 'not_approved' : controller.action_name)} ) %>");
