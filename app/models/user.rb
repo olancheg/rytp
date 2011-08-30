@@ -4,11 +4,6 @@ class User < ActiveRecord::Base
 
   PAGINATES_PER = 10
 
-  include PgSearch
-  pg_search_scope :search,
-                  :against => [:name, :nickname],
-                  :using => { :tsearch => { :prefix => true } }
-
   paginates_per PAGINATES_PER
 
   has_many :authentications, :dependent => :destroy
@@ -34,6 +29,10 @@ class User < ActiveRecord::Base
   default_scope includes(:roles)
 
   after_create :create_default_role
+
+  def self.search(text)
+    where 'name ILIKE ? or nickname ILIKE ?', *[text, text].map{|t| "%#{t}%"}
+  end
 
   def self.create_from_hash!(hash)
     instance = new( :name => hash['user_info']['name'],
