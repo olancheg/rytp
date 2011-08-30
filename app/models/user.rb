@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   after_create :create_default_role
 
   def self.search(text)
-    where 'name ILIKE ? or nickname ILIKE ?', *[text, text].map{|t| "%#{t}%"}
+    where 'users.name ILIKE ? or users.nickname ILIKE ?', *[text, text].map{|t| "%#{t}%"}
   end
 
   def self.create_from_hash!(hash)

@@ -14,7 +14,6 @@ gem "html5-boilerplate"
 
 gem 'pg'
 gem 'silent-postgres'
-gem 'pg_search'
 
 gem 'exception_notification'
 

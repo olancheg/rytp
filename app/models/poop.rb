@@ -5,9 +5,6 @@ class Poop < ActiveRecord::Base
 
   PAGINATES_PER = 5
 
-  include PgSearch
-  pg_search_scope :search, :against => [:title, :description]
-
   paginates_per PAGINATES_PER
 
   belongs_to :category
@@ -66,6 +63,10 @@ class Poop < ActiveRecord::Base
 
   def self.top(category, period, page)
     Kaminari.paginate_array(Poop.top_by_category_and_period(category, period).to_a).page(page).per(PAGINATES_PER)
+  end
+
+  def self.search(text)
+    where 'poops.title ILIKE ? or poops.description ILIKE ?', *[text, text].map{|t| "%#{t}%"}
   end
 
   def self.fetch_last
