@@ -66,7 +66,14 @@ class Poop < ActiveRecord::Base
   end
 
   def self.search(text)
-    where 'poops.title ILIKE ? or poops.description ILIKE ?', *[text, text].map{|t| "%#{t}%"}
+    t = build_search_conditions(text, :title)
+    d = build_search_conditions(text, :description)
+    where((t[:query] + d[:query]) * ' OR ', *[t[:values] + d[:values]].flatten)
+  end
+
+  def self.build_search_conditions(text, field)
+    words = text.split(/[,\.\/\\ \|\[\]-_={}\?]/).compact
+    { :query => Array.new(words.size).fill("poops.#{field} ILIKE ?"), :values => words.map{|t| "%#{t}%"} }
   end
 
   def self.fetch_last
