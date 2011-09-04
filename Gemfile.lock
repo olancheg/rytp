@@ -135,7 +135,7 @@ GEM
       rdoc (~> 3.4)
       thor (~> 0.14.4)
     raindrops (0.7.0)
-    rake (0.8.7)
+    rake (0.9.2)
     rdoc (3.9.1)
     rest-client (1.6.3)
       mime-types (>= 1.16)
@@ -171,7 +171,6 @@ DEPENDENCIES
   omniauth
   pg
   rails (= 3.0.9)
-  rake (= 0.8.7)
   russian
   silent-postgres
   unicorn
