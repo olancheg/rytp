@@ -1,7 +1,7 @@
 <%= render 'shared/update_flash' %>
 
 <% if poops.empty? %>
-  $('.poops').html("<%= empty %>");
+  $('.poops').html("<%= escape_javascript empty %>");
 <% else %>
   $('.poops').html("<%= escape_javascript(render poops)%>");
 <% end %>

@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
   rescue_from CanCan::AccessDenied, :with => :access_denied
 
+  after_filter :set_back_path
+
 protected
 
   def last_new
@@ -67,7 +69,11 @@ protected
   end
 
   def redirect_to_back_or(path)
-    redirect_to (request.referer == '/' or flash[:deleted]) ? path : :back
+    if !cookies[:back] or cookies[:back] == '/' or cookies[:back] == request.path
+      redirect_to path
+    else
+      redirect_to cookies[:back]
+    end
   end
 
   def redirect_to_root
@@ -79,13 +85,13 @@ protected
   end
 
   def render_404
-    flash[:page_not_found] = t(:page_not_found)
+    flash[:error] = t(:page_not_found)
     redirect_to_back_or_root
   end
 
   def access_denied
-    flash[:access_denied] = t(:access_denied)
-    redirect_to_root
+    flash[:error] = t(:access_denied)
+    redirect_to_back_or_root
   end
 
   def set_feed_class
@@ -96,4 +102,10 @@ protected
     @poops_from_category ||= Poop.poops_from_category(category_id)
   end
   helper_method :poops_from_category
+
+  def set_back_path
+    cookies[:back] = request.path if request.path !~ /^\/?auth\// and
+                                     request.method.to_s =~ /get/i and
+                                     !flash.keys.any?{ |k| [:error, :deleted].include? k.to_sym }
+  end
 end

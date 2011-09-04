@@ -2,7 +2,7 @@ Rytp::Application.routes.draw do
   # authorization
   match 'auth/:provider/callback', :to => 'sessions#create'
   match 'auth/failure', :to => 'sessions#failure'
-  match 'logout', :to => 'sessions#destroy'
+  match 'auth/logout', :to => 'sessions#destroy', :as => :logout
 
   # admin resources
   resources :admin, :except => [:new, :create] do
@@ -27,10 +27,10 @@ Rytp::Application.routes.draw do
   match 'top/:category(/:period)' => 'poops#top', :as => :top
 
   # approve path
-  match ':id/approve' => 'poops#approve', :as => :approve
+  post ':id/approve' => 'poops#approve', :as => :approve
 
   # reject path
-  match ':id/reject' => 'poops#reject', :as => :reject
+  post ':id/reject' => 'poops#reject', :as => :reject
 
   # default watch path
   match ':id' => 'poops#show', :as => :watch, :constraints => { :id => /\d+.*/ }
@@ -40,12 +40,12 @@ Rytp::Application.routes.draw do
   match 'not_approved' => 'poops#not_approved', :as => :not_approved
 
   # voting path
-  match 'vote/positive/:id', :to => 'votes#positive', :as => :vote_positive
-  match 'vote/negative/:id', :to => 'votes#negative', :as => :vote_negative
+  post 'vote/positive/:id', :to => 'votes#positive', :as => :vote_positive
+  post 'vote/negative/:id', :to => 'votes#negative', :as => :vote_negative
 
   # favourites path
-  match 'favourites/add/:id', :to => 'favourites#add', :as => :add_to_favourites
-  match 'favourites/remove/:id', :to => 'favourites#remove', :as => :remove_from_favourites
+  post 'favourites/add/:id', :to => 'favourites#add', :as => :add_to_favourites
+  post 'favourites/remove/:id', :to => 'favourites#remove', :as => :remove_from_favourites
 
   # poops resources
   resources :poops, :except => :new

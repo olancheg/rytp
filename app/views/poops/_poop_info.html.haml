@@ -2,28 +2,28 @@
   = poop.rating.to_s + ' ' + t(:'rating', :count => poop.rating.abs)
 .links
   - if current_user and current_user.favoured?(poop)
-    = link_to remove_from_favourites_path(poop), :remote => true, :class => :button do
+    = link_to remove_from_favourites_path(poop), :method => :post, :remote => true, :class => :button do
       %span.cross.icon
       удалить из избранного
   - else
-    = link_to add_to_favourites_path(poop), :remote => true, :class => :button do
+    = link_to add_to_favourites_path(poop), :method => :post, :remote => true, :class => :button do
       %span.heart.icon
       добавить в избранное
-  = link_to vote_positive_path(poop), :remote => true, :class => :button do
+  = link_to vote_positive_path(poop), :method => :post, :remote => true, :class => :button do
     %span.kosar.icon
     дать косарь
-  = link_to vote_negative_path(poop), :remote => true, :class => :button do
+  = link_to vote_negative_path(poop), :method => :post, :remote => true, :class => :button do
     %span.xunta.icon
     xynta
   - if poop.contest_id.nil? or !poop.contest.try(:active?)
     = comments_link poop
   .admin_links
     - if can?(:reject, poop) and poop.contest_id.present?
-      = link_to reject_path(poop), :remote => true, :class => :button do
+      = link_to reject_path(poop), :method => :post, :remote => true, :class => :button do
         %span.cross.icon
         отменить участие в конкурсе (#{poop.contest})
     - if can?(:approve, poop) and !poop.approved?
-      = link_to approve_path(poop), :remote => true, :class => :button do
+      = link_to approve_path(poop), :method => :post, :remote => true, :class => :button do
         %span.check.icon
         подтвердить
     - if can?(:edit, poop)
