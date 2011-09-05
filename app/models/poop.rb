@@ -108,7 +108,7 @@ class Poop < ActiveRecord::Base
   private
 
   def self.build_search_conditions(text, field)
-    words = text.split(/[,\.\/\\ \|\[\]-_={}\?]/).compact
+    words = text.split(/[\s,\.\/\\\|\[\]\-_=\+{}\?\(\)]/).compact.select { |word| word.length >= 3 }
     { :query => Array.new(words.size).fill("poops.#{field} ILIKE ?"), :values => words.map{|t| "%#{t}%"} }
   end
 end
