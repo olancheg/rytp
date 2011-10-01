@@ -113,7 +113,7 @@ class User < ActiveRecord::Base
       result = result.approved.without_contest
     end
 
-    result.order((params[:sort_by] == 'date' ? 'created_at' : 'rating') + ' ' + (params[:order] || 'desc'))
+    result.order((params[:sort_by] == 'date' ? 'created_at' : 'rating') + ' ' + (params[:order] == 'asc' ? 'asc' : 'desc'))
   end
 
   def create_default_role
