@@ -1,5 +1,6 @@
 .bundle
 .rspec
+.rvmrc
 .sass-cache/*
 *.swp
 *.swo
