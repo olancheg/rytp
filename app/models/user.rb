@@ -77,11 +77,11 @@ class User < ActiveRecord::Base
   end
 
   def favoured?(poop)
-    favoured_poops_cached.include? poop
+    favoured_poops_cached.include? poop.id
   end
 
   def favoured_poops_cached
-    @favoured_poops_cached ||= favoured_poops
+    @favoured_poops_cached ||= favoured_poop_ids
   end
 
   def set_default_profile_url(hash)
