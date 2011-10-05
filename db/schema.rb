@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110824121945) do
+ActiveRecord::Schema.define(:version => 20111005125211) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -47,8 +47,7 @@ ActiveRecord::Schema.define(:version => 20110824121945) do
     t.datetime "updated_at"
   end
 
-  add_index "favourites", ["poop_id"], :name => "index_favourites_on_poop_id"
-  add_index "favourites", ["user_id"], :name => "index_favourites_on_user_id"
+  add_index "favourites", ["poop_id", "user_id"], :name => "index_favourites_on_poop_id_and_user_id"
 
   create_table "news", :force => true do |t|
     t.string   "title"
@@ -85,8 +84,7 @@ ActiveRecord::Schema.define(:version => 20110824121945) do
     t.datetime "updated_at"
   end
 
-  add_index "role_associations", ["role_id"], :name => "index_role_associations_on_role_id"
-  add_index "role_associations", ["user_id"], :name => "index_role_associations_on_user_id"
+  add_index "role_associations", ["role_id", "user_id"], :name => "index_role_associations_on_role_id_and_user_id"
 
   create_table "roles", :force => true do |t|
     t.integer  "mask",       :default => 0, :null => false
@@ -119,7 +117,6 @@ ActiveRecord::Schema.define(:version => 20110824121945) do
     t.datetime "updated_at"
   end
 
-  add_index "votes", ["poop_id"], :name => "index_votes_on_poop_id"
-  add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
+  add_index "votes", ["poop_id", "user_id"], :name => "index_votes_on_poop_id_and_user_id"
 
 end
