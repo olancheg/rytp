@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
   rescue_from CanCan::AccessDenied, :with => :access_denied
 
+  before_filter :fuck_ie
   after_filter :set_back_path
 
 protected
@@ -96,6 +97,11 @@ protected
 
   def set_feed_class
     @feed_class = 'list_layout'
+  end
+
+  def fuck_ie
+    ua = request.env['HTTP_USER_AGENT'].downcase
+    render :file => File.join(Rails.root, 'public', 'fuck_ie.html'), :layout => false if ua =~ /msie/i
   end
 
   def poops_from_category(category_id)
