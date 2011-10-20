@@ -100,7 +100,7 @@ protected
   end
 
   def fuck_ie
-    ua = request.env['HTTP_USER_AGENT'].downcase
+    ua = request.env['HTTP_USER_AGENT'].downcase rescue nil
     render :file => File.join(Rails.root, 'public', 'fuck_ie.html'), :layout => false if ua =~ /msie/i
   end
 
