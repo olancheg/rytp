@@ -16,4 +16,4 @@ coverage/
 spec/tmp/*
 rerun.txt
 /*.html
-
+.DS_Store
