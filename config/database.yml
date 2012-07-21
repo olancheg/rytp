@@ -2,8 +2,8 @@ development:
   adapter: postgresql
   host: localhost
   port: 5432
-  username: postgres
-  password: system
+  username: olancheg
+  password: 
   database: rytp_development
   encoding: utf8
 
